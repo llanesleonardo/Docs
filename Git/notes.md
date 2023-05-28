@@ -128,11 +128,8 @@ Typically, you would use git rebase to:
 
 Only rebase commits that you have not pushed to a remote repository because, if you do, it canlean to undesirable consequences.
 
-#### Rebasing commits against a branch
-
-To rebase all the commits between another branch and the current branch state, you can enter the following command in your shell (either the command prompt for Windows, or the terminal for Mac and Linux):
-
-    $ git rebase --interactive OTHER-BRANCH-NAME
+Video explaining how rebase work within a workflow:
+[Rebase workflow](https://www.youtube.com/watch?v=f1wnYdLEpgI)
 
 #### Rebasing commits against a point in time
 
