@@ -347,7 +347,11 @@ With GitHub Free, your personal account includes:
 
 [Associating text editors with git](https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git)
 
-## Common errors
+### Extensions & integrations
+
+[Exntesions & integrations](https://docs.github.com/en/get-started/exploring-integrations/github-extensions-and-integrations)
+
+### Common errors
 
 - [The SSH agent is not running](https://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent)
 - [The SSH Agent has not entities](https://stackoverflow.com/questions/26505980/github-permission-denied-ssh-add-agent-has-no-identities)
