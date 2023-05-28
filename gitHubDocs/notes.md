@@ -65,12 +65,11 @@ To use Git, developers use specific commands to copy, create, change, and combin
 - git branch shows the branches being worked on locally.
 - git merge merges lines of development together. This command is typically used to combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment.
 - git pull updates the local line of development with updates from its remote counterpart. Developers use this command if a teammate has made commits to a branch on a remote, and they would like to reflect those changes in their local environment.
-- git push updates the remote repository with any commits made locally to a branch.
+- git push updates the remote repository with any commits made locally to a branch. [Push commits to a remote](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository)
 
 More about:
 
 - [Contribute to an existing repository or an existing branch](https://docs.github.com/en/get-started/using-git/about-git)
--
 
 ## Managing SSH Keys
 
@@ -130,6 +129,8 @@ DO NOT share your passphrase and ssh private keys with anyone.
 - [Working with SSH key passphrases](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases)
 - [Find if your private keys were added to SSH Agent](https://www.freecodecamp.org/news/how-to-manage-multiple-ssh-keys/)
 - [Unprotected private key file](https://www.howtogeek.com/168119/fixing-warning-unprotected-private-key-file-on-linux/)
+- [Non fast forward Errors](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors)
+- [Merge conflict](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
 
 ## Profile & Managing users
 
@@ -259,6 +260,33 @@ Same process the other way around.
     $ git remote rm destination
     Remove remote
 
+### Fetching changes from a remote repository
+
+Use git fetch to retrieve new work done by other people. Fetching from a repository grabs all the new remote-tracking branches and tags without merging those changes into your own branches.
+
+If you already have a local repository with a remote URL set up for the desired project, you can grab all the new information by using git fetch _remotename_ in the terminal:
+
+    $ git fetch REMOTE-NAME
+    # Fetches updates made to a remote repository
+
+### Merging changes into your local branch
+
+Merging combines your local changes with changes made by others.
+
+Typically, you'd merge a remote-tracking branch (i.e., a branch fetched from a remote repository) with your local branch:
+
+    $ git merge REMOTE-NAME/BRANCH-NAME
+    # Merges updates made online with your local work
+
+### Pulling changes from a remote repository
+
+git pull is a convenient shortcut for completing both git fetch and git merge in the same command:
+
+    $ git pull REMOTE-NAME BRANCH-NAME
+    # Grabs online updates and merges them with your local work
+
+Because pull performs a merge on the retrieved changes, you should ensure that your local work is committed before running the pull command. If you run into a merge conflict you cannot resolve, or if you decide to quit the merge, you can use git merge --abort to take the branch back to where it was in before you pulled.
+
 ## Ignoring files
 
 ### Configuring ignored files for a single repository
@@ -272,6 +300,36 @@ GitHub maintains an official list of recommended .gitignore files for many popul
 ## Branches
 
 [Branches](#branches)
+
+### renaming branches
+
+The next code will create a new remote branch after the push command is executed.
+
+    git push REMOTE-NAME LOCAL-BRANCH-NAME:REMOTE-BRANCH-NAME
+
+This pushes the LOCAL-BRANCH-NAME to your REMOTE-NAME, but it is renamed to REMOTE-BRANCH-NAME.
+
+### Delete a branch
+
+The syntax to delete a branch is a bit arcane at first glance:
+
+    git push REMOTE-NAME :BRANCH-NAME
+
+Note that there is a space before the colon. The command resembles the same steps you'd take to rename a branch. However, here, you're telling Git to push nothing into BRANCH-NAME on REMOTE-NAME. Because of this, git push deletes the branch on the remote repository.
+
+## Tags
+
+### Pushing tags
+
+By default, and without additional parameters, git push sends all matching branches that have the same names as remote branches.
+
+To push a single tag, you can issue the same command as pushing a branch:
+
+    git push REMOTE-NAME TAG-NAME
+
+To push all your tags, you can type the command:
+
+    git push REMOTE-NAME --tags
 
 ## Pull request
 
