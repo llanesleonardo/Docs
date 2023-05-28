@@ -28,6 +28,50 @@ There are two way of doing this:
 - HTTPS
 - SSH (best practice)
 
+### About version control and Git
+
+A version control system, or VCS, tracks the history of changes as people and teams collaborate on projects together. As developers make changes to the project, any earlier version of the project can be recovered at any time.
+
+Developers can review project history to find out
+
+- Which changes were made?
+- Who made the changes?
+- When were the changes made?
+- Why were changes needed?
+
+VCSs give each contributor a unified and consistent view of a project, surfacing work that's already in progress. Seeing a transparent history of changes, who made them, and how they contribute to the development of a project helps team members stay aligned while working independently.
+
+Git is the most popular distributed version control system. Git is commonly used for both open source and commercial software development, with significant benefits for individuals, teams and businesses.
+
+- Git lets developers see the entire timeline of their changes, decisions, and progression of any project in one place. From the moment they access the history of a project, the developer has all the context they need to understand it and start contributing.
+- Developers work in every time zone. With a DVCS like Git, collaboration can happen any time while maintaining source code integrity. Using branches, developers can safely propose changes to production code.
+- Businesses using Git can break down communication barriers between teams and keep them focused on doing their best work. Plus, Git makes it possible to align experts across a business to collaborate on major projects.
+
+### About repositories
+
+A repository, or Git project, encompasses the entire collection of files and folders associated with a project, along with each file's revision history. The file history appears as snapshots in time called commits. The commits can be organized into multiple lines of development called branches. Because Git is a DVCS, repositories are self-contained units and anyone who has a copy of the repository can access the entire codebase and its history. Using the command line or other ease-of-use interfaces, a Git repository also allows for: interaction with the history, cloning the repository, creating branches, committing, merging, comparing changes across versions of code, and more.
+
+Through platforms like GitHub, Git also provides more opportunities for project transparency and collaboration. Public repositories help teams work together to build the best possible final product.
+
+### Basic git commands
+
+To use Git, developers use specific commands to copy, create, change, and combine code. These commands can be executed directly from the command line or by using an application like GitHub Desktop. Here are some common commands for using Git:
+
+- git init initializes a brand new Git repository and begins tracking an existing directory. It adds a hidden subfolder within the existing directory that houses the internal data structure required for version control.
+- git clone creates a local copy of a project that already exists remotely. The clone includes all the project's files, history, and branches.
+- git add stages a change. Git tracks changes to a developer's codebase, but it's necessary to stage and take a snapshot of the changes to include them in the project's history. This command performs staging, the first part of that two-step process. Any changes that are staged will become a part of the next snapshot and a part of the project's history. Staging and committing separately gives developers complete control over the history of their project without changing how they code and work.
+- git commit saves the snapshot to the project history and completes the change-tracking process. In short, a commit functions like taking a photo. Anything that's been staged with git add will become a part of the snapshot with git commit.
+- git status shows the status of changes as untracked, modified, or staged.
+- git branch shows the branches being worked on locally.
+- git merge merges lines of development together. This command is typically used to combine changes made on two distinct branches. For example, a developer would merge when they want to combine changes from a feature branch into the main branch for deployment.
+- git pull updates the local line of development with updates from its remote counterpart. Developers use this command if a teammate has made commits to a branch on a remote, and they would like to reflect those changes in their local environment.
+- git push updates the remote repository with any commits made locally to a branch.
+
+More about:
+
+- [Contribute to an existing repository or an existing branch](https://docs.github.com/en/get-started/using-git/about-git)
+-
+
 ## Managing SSH Keys
 
 This topic is one of the basic and most important subjects around git and github.
@@ -89,7 +133,7 @@ DO NOT share your passphrase and ssh private keys with anyone.
 
 ## Profile & Managing users
 
-#### Collaborators
+### Collaborators
 
 You can collaborate on your project with others using your repository's issues, pull requests, and project boards. You can invite other people to your repository as collaborators from the Collaborators tab in the repository settings.
 
@@ -107,6 +151,15 @@ GitHub limits the number of people who can be invited to a repository within a 2
 6. In the search field, start typing the name of person you want to invite, then click a name in the list of matches
 7. Click Add NAME to REPOSITORY
 8. The user will receive an email inviting them to the repository. Once they accept your invitation, they will have collaborator access to your repository
+
+### Following people
+
+You can follow people on GitHub to receive notifications about their activity and discover projects in their communities.
+
+When you follow people, you'll see their public activity on your personal dashboard. If someone you follow stars a public repository, GitHub may recommend the repository to you.
+
+1. Navigate to the user's profile page
+2. Under the user's profile picture, click Follow
 
 ## Projects
 
@@ -149,13 +202,72 @@ After a commit you should create a "Pull Request". [Pull Request](pull_request)
 4. Commit changes
 5. Create a Pull Request
 
-#### Cloning a repository
+### Cloning a repository
 
 You can clone an existing repository from GitHub to your local computer, making it easier to add or remove files, fix merge conflicts, or make complex commits. Cloning a repository pulls down a full copy of all the repository data that GitHub has at that point in time, including all versions of every file and folder for the project.
 
-#### Forking a repository
+### Forking a repository
 
 A fork is a copy of a repository that you manage, where any changes you make will not affect the original repository unless you submit a pull request to the project owner. Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
+
+### Creating remote repositories
+
+You can use the git remote add command to match a remote URL with a name. For example, you'd type the following in the command line:
+
+    git remote add origin <REMOTE_URL>
+
+This associates the name origin with the REMOTE_URL.
+
+You can use the command git remote set-url to change a remote's URL. [Managing remote repositories](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories)
+
+More information: [HTTPS URL'S - SSH URL'S](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories)
+
+### Verify new remote repository
+
+    $ git remote -v
+    # Verify new remote
+    origin  https://github.com/OWNER/REPOSITORY.git (fetch)
+    origin  https://github.com/OWNER/REPOSITORY.git (push)
+
+### Switching remote URL's from SSH to HTTPS
+
+List your existing remotes in order to get the name of the remote you want to change.
+
+    $ git remote -v
+    origin  git@github.com:OWNER/REPOSITORY.git (fetch)
+    origin  git@github.com:OWNER/REPOSITORY.git (push)
+
+Change your remote's URL from SSH to HTTPS with the git remote set-url command.
+
+    $ git remote set-url origin https://github.com/OWNER/REPOSITORY.git
+
+Verify that the remote URL has changed.
+
+    $ git remote -v # Verify new remote URL
+    origin https://github.com/OWNER/REPOSITORY.git (fetch)
+    origin https://github.com/OWNER/REPOSITORY.git (push)
+
+Same process the other way around.
+
+### Renaming a remote repository
+
+    $ git remote rename origin destination
+    Change remote name from 'origin' to 'destination'
+
+### Remove a repository
+
+    $ git remote rm destination
+    Remove remote
+
+## Ignoring files
+
+### Configuring ignored files for a single repository
+
+You can create a .gitignore file in your repository's root directory to tell Git which files and directories to ignore when you make a commit.
+
+To share the ignore rules with other users who clone the repository, commit the .gitignore file in to your repository.
+
+GitHub maintains an official list of recommended .gitignore files for many popular operating systems, environments, and languages in the github/gitignore public repository. You can also use gitignore.io to create a .gitignore file for your operating system, programming language, or IDE.
 
 ## Branches
 
@@ -242,3 +354,7 @@ With GitHub Free, your personal account includes:
 - GitHub Actions features:
   - 2,000 minutes per month
   - Deployment protection rules for public repositories
+
+### Config Visual Studio for Github
+
+[Associating text editors with git](https://docs.github.com/en/get-started/getting-started-with-git/associating-text-editors-with-git)
