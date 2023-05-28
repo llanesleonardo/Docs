@@ -16,3 +16,5 @@ Main topics (Table Contents):
 - Siteground
 - Apanche XAMPP
 - LocalWP
+
+More information: llanesleonardo.developer@gmail.com
