@@ -1,14 +1,10 @@
-# Github
-
-## Web-based version control system (Use git)
+# Github - Web-based version control system (Use git)
 
 These docs were gathered from various sources, such as:
 
 - [connecting to github with ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
----
-
-### SSH Keys
+## SSH Keys
 
 This topic is one of the basic and most important subjects around git and github.
 
@@ -22,7 +18,7 @@ SSH KEY AGENT is a cryptography service that already come with Linux and MacOS. 
 
 If you do not want to use WSL, you can download Putty for this purposes.
 
-#### Start ssh agent
+### Start ssh agent
 
 This way you can ensure the ssh-agent is running.
 
@@ -30,7 +26,7 @@ This way you can ensure the ssh-agent is running.
     $ eval "$(ssh-agent -s)"
     Agent pid 59566
 
-#### Check for existing SSH Keys
+### Check for existing SSH Keys
 
 You should have checked for existing SSH keys and generated a new SSH key.
 
@@ -44,7 +40,7 @@ You can use many types of algorithm like rsa, ed25519 and others.
 
 The best practice should always add all your keys to the same path.
 
-#### Add your SSH private key to the ssh-agent
+### Add your SSH private key to the ssh-agent
 
 Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_ed25519 in the command with the name of your private key file.
 
@@ -59,7 +55,7 @@ After adding or during the creation a ssh key the prompt will ask you for a pass
 
 DO NOT share your passphrase and ssh private keys with anyone.
 
-#### Common errors
+### Common errors
 
 - [The SSH agent is not running](https://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent)
 - [The SSH Agent has not entities](https://stackoverflow.com/questions/26505980/github-permission-denied-ssh-add-agent-has-no-identities)
@@ -67,18 +63,18 @@ DO NOT share your passphrase and ssh private keys with anyone.
 - [Find if your private keys were added to SSH Agent](https://www.freecodecamp.org/news/how-to-manage-multiple-ssh-keys/)
 - [Unprotected private key file](https://www.howtogeek.com/168119/fixing-warning-unprotected-private-key-file-on-linux/)
 
-### Profile & Users
+## Profile & Users
 
-### Projects
+## Projects
 
-### Repositories
+## Repositories
 
-### Pull request
+## Pull request
 
-### Actions
+## Actions
 
-### Issues
+## Issues
 
-### GitHub Pages
+## GitHub Pages
 
-### CoPilot
+## CoPilot
