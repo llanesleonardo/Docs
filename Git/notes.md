@@ -126,6 +126,8 @@ Typically, you would use git rebase to:
 - Combine multiple commits into one
 - Delete or revert commits that are no longer necessary
 
+Only rebase commits that you have not pushed to a remote repository because, if you do, it canlean to undesirable consequences.
+
 #### Rebasing commits against a branch
 
 To rebase all the commits between another branch and the current branch state, you can enter the following command in your shell (either the command prompt for Windows, or the terminal for Mac and Linux):
