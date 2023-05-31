@@ -75,3 +75,7 @@ Security alerts for a repository are visible to people with admin access to the 
 This process also works for disabiling access to security alerts.
 
 ## Access permissions on github
+
+## Important security considerations using forks
+
+[Important security considerations using forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks#important-security-considerations)

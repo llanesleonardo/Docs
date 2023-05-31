@@ -1,138 +1,131 @@
 # Pull Request
 
-## Commits
+Pull requests let you tell others about changes you've pushed to a branch in a repository on GitHub. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add follow-up commits before your changes are merged into the base branch.
 
-You can save small groups of meaningful changes as commits.
+You can create pull requests on GitHub.com, with GitHub Desktop, in GitHub Codespaces, on GitHub Mobile, and when using GitHub CLI.
 
-Similar to saving a file that's been edited, a commit records changes to one or more files in your branch. Git assigns each commit a unique ID, called a SHA or hash, that identifies:
+After initializing a pull request, you'll see a review page that shows a high-level overview of the changes between your branch (the compare branch) and the repository's base branch. You can add a summary of the proposed changes, review the changes made by commits, add labels, milestones, and assignees, and @mention individual contributors or teams.
 
-- The specific changes
-- When the changes were made
-- Who created the changes
+Once you've created a pull request, you can push commits from your topic branch to add them to your existing pull request. These commits will appear in chronological order within your pull request and the changes will be visible in the "Files changed" tab.
 
-When you make a commit, you must include a commit message that briefly describes the changes.
+[Video - Update Pull request with mew changes](https://www.youtube.com/watch?v=Hi2mRlmasCU)
 
-If the repository you are committing to has compulsory commit signoffs enabled, and you are committing via the web interface, you will automatically sign off on the commit as part of the commit process.
+## About collaborative development models
 
-You can add a co-author on any commits you collaborate on.
+The way you use pull requests depends on the type of development model you use in your project. You can use the fork and pull model or the shared repository model.
 
-You can also create a commit on behalf of an organization.
+## Fork an pull model
 
-Rebasing allows you to change a series of commits and can modify the order of the commits in your timeline.
+In the fork and pull model, anyone can fork an existing repository and push changes to their personal fork. You do not need permission to the source repository to push to a user-owned fork. The changes can be pulled into the source repository by the project maintainer. When you open a pull request proposing changes from your user-owned fork to a branch in the source (upstream) repository, you can allow anyone with push access to the upstream repository to make changes to your pull request. This model is popular with open source projects as it reduces the amount of friction for new contributors and allows people to work independently without upfront coordination.
 
-### Commit branches and tag labels
+[Open Source Guides](https://opensource.guide/)
+[Github Skills](https://skills.github.com/)
 
-You can see which branch a commit is on by looking at the labels beneath the commit on the commit page.
+## Shared repository model
 
-1. On GitHub.com, navigate to the main page of the repository.
-2. On the main page of the repository, above the file list, click commits.
-3. To navigate to a specific commit, click the commit message for that commit.
-4. To see what branch the commit is on, check the label below the commit message.
+In the shared repository model, collaborators are granted push access to a single shared repository and topic branches are created when changes need to be made. Pull requests are useful in this model as they initiate code review and general discussion about a set of changes before the changes are merged into the main development branch. This model is more prevalent with small teams and organizations collaborating on private projects.
 
-If your commit is not on the default branch (main), the label will show the branches which contain the commit. If the commit is part of an unmerged pull request, you can click the link to go to the pull request.
+## About status checks
 
-Once the commit is on the default branch, any tags that contain the commit will be shown and the default branch will be the only branch listed
+Status checks let you know if your commits meet the conditions set for the repository you're contributing to.
 
-### Using the file tree
+Status checks are based on external processes, such as continuous integration builds, which run for each push you make to a repository. You can see the pending, passing, or failing state of status checks next to individual commits in your pull request.
 
-You can use the file tree to navigate between files in a commit.
+Anyone with write permissions to a repository can set the state for any status check in the repository.
 
-1. On GitHub.com, navigate to the main page of the repository.
-2. On the main page of the repository, above the file list, click commits.
-3. To navigate to a specific commit, click the commit message for that commit.
-4. Click on a file in the file tree to view the corresponding file diff. If the file tree is hidden, click to display the file tree.
-5. To filter by file path, enter part or all of the file path in the Filter changed files search box.
+You can see the overall state of the last commit to a branch on your repository's branches page or in your repository's list of pull requests.
 
-### Creating a commit with multiple authors
+If status checks are required for a repository, the required status checks must pass before you can merge your branch into the protected branch.
 
-You can attribute a commit to more than one author by adding one or more Co-authored-by trailers to the commit's message. Co-authored commits are visible on GitHub.
-Before you can add a co-author to a commit, you must know the appropriate email to use for each co-author. For the co-author's commit to count as a contribution, you must use the email associated with their account on GitHub.com.
+[About protected repositories](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging)
 
-If a person chooses to keep their email address private, you should use their GitHub-provided no-reply email to protect their privacy. Otherwise, the co-author's email will be available to the public in the commit message. If you want to keep your email private, you can choose to use a GitHub-provided no-reply email for Git operations and ask other co-authors to list your no-reply email in commit trailers.
+### Types of status checks on GitHub
 
-#### Creating co-authored commits on the command line
+There are two types of status checks on GitHub:
 
-1. Collect the name and email address for each co-author. If a person chooses to keep their email address private, you should use their GitHub-provided no-reply email to protect their privacy.
-2. Type your commit message and a short, meaningful description of your changes. After your commit description, instead of a closing quotation, add two empty lines.
-3. On the next line of the commit message, type Co-authored-by: name <name@example.com> with specific information for each co-author. After the co-author information, add a closing quotation mark.
+- Checks
+- Statuses
 
-If you're adding multiple co-authors, give each co-author their own line and Co-authored-by: commit trailer.
+Checks are different from statuses in that they provide line annotations, more detailed messaging, and are only available for use with GitHub Apps.
 
-    $ git commit -m "Refactor usability tests.
-    > Co-authored-by: NAME <NAME@EXAMPLE.COM>
-    > Co-authored-by: ANOTHER-NAME <ANOTHER-NAME@EXAMPLE.COM>"
+Organization owners and users with push access to a repository can create checks and statuses with GitHub's API.
 
-#### Creating co-authored commits on GitHub
+### Checks
 
-1. Collect the name and email address for each co-author. If a person chooses to keep their email address private, you should use their GitHub-provided no-reply email to protect their privacy.
-2. Click Commit changes...
-3. In the "Commit message" field, type a short, meaningful commit message that describes the changes you made.
-4. In the text box below your commit message, add Co-authored-by: name <name@example.com> with specific information for each co-author. If you're adding multiple co-authors, give each co-author their own line and Co-authored-by: commit trailer.
-5. Click Commit changes or Propose changes.
+When checks are set up in a repository, pull requests have a Checks tab where you can view detailed build output from status checks and rerun failed checks.
 
-### Changing a commit message
+When a specific line in a commit causes a check to fail, you will see details about the failure, warning, or notice next to the relevant code in the Files tab of the pull request.
 
-If a commit message contains unclear, incorrect, or sensitive information, you can amend it locally and push a new commit with a new message to GitHub. You can also change a commit message to add missing information.
+You can navigate between the checks summaries for various commits in a pull request, using the commit drop-down menu under the Checks tab.
 
-#### Rewriting the most recent commit message
+[Checks](https://docs.github.com/assets/cb-345021/mw-1440/images/help/pull_requests/checks-summary-for-various-commits.webp)
+[Skipping checks for individual commits](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks#skipping-and-requesting-checks-for-individual-commits)
 
-If a commit message contains unclear, incorrect, or sensitive information, you can amend it locally and push a new commit with a new message to GitHub. You can also change a commit message to add missing information.
+You can also skip workflow runs triggered by the push and pull_request events by including a command in your commit message. [Skipping workflow runs](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs)
 
-You can change the most recent commit message using the git commit --amend command.
+### Retention of status c hecks
 
-In Git, the text of the commit message is part of the commit. Changing the commit message will change the commit ID--i.e., the SHA1 checksum that names the commit. Effectively, you are creating a new commit that replaces the old one.
+GitHub.com retains check data for 400 days. After 400 days, the data is archived.
 
-#### Commit has not been pushed online
+For archived check data, a rollup commit status appears that represents the state of all of the checks for the commit. To merge a pull request with checks that are both required and archived, you must rerun the checks.
 
-If the commit only exists in your local repository and has not been pushed to GitHub.com, you can amend the commit message with the git commit --amend command.
+## Propose changes
 
-1. On the command line, navigate to the repository that contains the commit you want to amend.
-2. Type git commit --amend and press Enter.
-3. In your text editor, edit the commit message, and save the commit.
-   1. You can add a co-author by adding a trailer to the commit. For more information, see "Creating a commit with multiple authors."
-   2. You can create commits on behalf of your organization by adding a trailer to the commit. For more information, see "Creating a commit on behalf of an organization"
+### About branches
 
-#### Amending older or multiple commit messages
+Use a branch to isolate development work without affecting other branches in the repository. Each repository has one default branch, and can have multiple other branches. You can merge a branch into another branch using a pull request.
 
-If you have already pushed the commit to GitHub.com, you will have to force push a commit with an amended message.
-Changing the message of the most recently pushed commit
+Branches allow you to develop features, fix bugs, or safely experiment with new ideas in a contained area of your repository.
 
-1. Follow the steps above to amend the commit message.
-2. Use the push --force-with-lease command to force push over the old commit.
+You always create a branch from an existing branch. Typically, you might create a new branch from the default branch of your repository. You can then work on this new branch in isolation from changes that other people are making to the repository. A branch you create to build a feature is commonly referred to as a feature branch or topic branch.
 
-   $ git push --force-with-lease origin EXAMPLE-BRANCH
+You can also use a branch to publish a GitHub Pages site.
 
-Changing the message of older or multiple commit messages
+You must have write access to a repository to create a branch, open a pull request, or delete and restore branches in a pull request.
 
-If you need to amend the message for multiple commits or an older commit, you can use interactive rebase, then force push to change the commit history.
+### About the default branch
 
-1. On the command line, navigate to the repository that contains the commit you want to amend.
-2. Use the git rebase -i HEAD~n command to display a list of the last n commits in your default text editor.
+When you create a repository with content on GitHub.com, GitHub creates the repository with a single branch. This first branch in the repository is the default branch. The default branch is the branch that GitHub displays when anyone visits your repository. The default branch is also the initial branch that Git checks out locally when someone clones the repository. Unless you specify a different branch, the default branch in a repository is the base branch for new pull requests and code commits.
 
-Displays a list of the last 3 commits on the current branch
+By default, GitHub names the default branch main in any new repository.
 
-    $ git rebase -i HEAD~3
+You can change the default branch for an existing repository.
 
-The list will look similar to the following:
+You can set the name of the default branch for new repositories.
 
-    pick e499d89 Delete CNAME
-    pick 0c39034 Better README
-    pick f7fde4a Change the commit message but push the same commit.
+### Working with branches
 
-    # Rebase 9fdb3bd..f7fde4a onto 9fdb3bd
-    #
-    # Commands:
-    # p, pick = use commit
-    # r, reword = use commit, but edit the commit message
-    # e, edit = use commit, but stop for amending
-    # s, squash = use commit, but meld into previous commit
-    # f, fixup = like "squash", but discard this commit's log message
-    # x, exec = run command (the rest of the line) using shell
-    #
-    # These lines can be re-ordered; they are executed from top to bottom.
-    #
-    # If you remove a line here THAT COMMIT WILL BE LOST.
-    #
-    # However, if you remove everything, the rebase will be aborted.
-    #
-    # Note that empty commits are commented out
+Once you're satisfied with your work, you can open a pull request to merge the changes in the current branch (the head branch) into another branch (the base branch).
+
+After a pull request has been merged, or closed, you can delete the head branch as this is no longer needed. You must have write access in the repository to delete branches. You can't delete branches that are directly associated with open pull requests.
+
+If you delete a head branch after its pull request has been merged, GitHub checks for any open pull requests in the same repository that specify the deleted branch as their base branch. GitHub automatically updates any such pull requests, changing their base branch to the merged pull request's base branch. The following diagrams illustrate this.
+
+Here someone has created a branch called feature1 from the main branch, and you've then created a branch called feature2 from feature1. There are open pull requests for both branches. The arrows indicate the current base branch for each pull request. At this point, feature1 is the base branch for feature2. If the pull request for feature2 is merged now, the feature2 branch will be merged into feature1.
+
+[Branches example](https://docs.github.com/assets/cb-2058/mw-1440/images/help/branches/pr-retargeting-diagram1.webp)
+
+In the next diagram, someone has merged the pull request for feature1 into the main branch, and they have deleted the feature1 branch. As a result, GitHub has automatically retargeted the pull request for feature2 so that its base branch is now main.
+
+[Branches example 2](https://docs.github.com/assets/cb-2581/mw-1440/images/help/branches/pr-retargeting-diagram2.webp)
+
+Now when you merge the feature2 pull request, it'll be merged into the main branch.
+
+### Working with protected branches
+
+Repository administrators or custom roles with the "edit repository rules" permission can enable protections on a branch. If you're working on a branch that's protected, you won't be able to delete or force push to the branch. Repository administrators can additionally enable several other protected branch settings to enforce various workflows before a branch can be merged.
+
+To see if your pull request can be merged, look in the merge box at the bottom of the pull request's Conversation tab.
+
+When a branch is protected:
+
+- You won't be able to delete or force push to the branch.
+- If required status checks are enabled on the branch, you won't be able to merge changes into the branch until all of the required CI tests pass. For more information, see "About status checks."
+- If required pull request reviews are enabled on the branch, you won't be able to merge changes into the branch until all requirements in the pull request review policy have been met. For more information, see "Merging a pull request."
+- If required review from a code owner is enabled on a branch, and a pull request modifies code that has an owner, a code owner must approve the pull request before it can be merged. For more information, see "About code owners."
+- If required commit signing is enabled on a branch, you won't be able to push any commits to the branch that are not signed and verified. For more information, see "About commit signature verification" and "About protected branches."
+- If you use GitHub's conflict editor to fix conflicts for a pull request that you created from a protected branch, GitHub helps you to create an alternative branch for the pull request, so that your resolution of the conflicts can be merged. For more information, see "Resolving a merge conflict on GitHub." [Resolving a merge conflict on Github](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
+
+## Create and delete branches
+
+[Create and Delete branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)

@@ -50,6 +50,14 @@ With GitHub Free, your personal account includes:
 
 [Releases](./releases.md)
 
+## Commits
+
+[Commits](./commits.md)
+
+## Forks
+
+[Forks](./forks.md)
+
 ## Pull request
 
 [Pull Request](./pullrequest.md)
@@ -106,3 +114,4 @@ More information: [Permission levels](https://docs.github.com/en/account-and-pro
 - [About pull request merges](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges)
 - [Cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#troubleshooting-cloning-errors)
 - [Troubleshooting contributors](https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/viewing-a-projects-contributors#troubleshooting-contributors)
+- [Troubleshooting commits](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/commit-exists-on-github-but-not-in-my-local-clone)
