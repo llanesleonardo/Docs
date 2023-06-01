@@ -10,6 +10,88 @@ Once you've created a pull request, you can push commits from your topic branch 
 
 [Video - Update Pull request with mew changes](https://www.youtube.com/watch?v=Hi2mRlmasCU)
 
+Other contributors can review your proposed changes, add review comments, contribute to the pull request discussion, and even add commits to the pull request. By default, in public repositories, any user can submit reviews that approve or request changes to a pull request. Organization owners and repository admins can limit who is able to give approving pull request reviews or request changes.
+
+You can see information about the branch's current deployment status and past deployment activity on the "Conversation" tab.
+
+After you're happy with the proposed changes, you can merge the pull request. If you're working in a shared repository model, you create a pull request and you, or someone else, will merge your changes from your feature branch into the base branch you specify in your pull request.
+
+If status checks are required for a repository, the required status checks must pass before you can merge your branch into the protected branch.
+
+You can link a pull request to an issue to show that a fix is in progress and to automatically close the issue when someone merges the pull request.
+
+You can visit your dashboard to quickly find links to recently updated pull requests you're working on or subscribed to.
+
+## Draft pull requests
+
+Draft pull requests are available in public repositories with GitHub Free for organizations and legacy per-repository billing plans, and in public and private repositories with GitHub Team, GitHub Enterprise Server, and GitHub Enterprise Cloud.
+
+When you create a pull request, you can choose to create a pull request that is ready for review or a draft pull request. Draft pull requests cannot be merged, and code owners are not automatically requested to review draft pull requests.
+
+When you're ready to get feedback on your pull request, you can mark your draft pull request as ready for review. Marking a pull request as ready for review will request reviews from any code owners. You can convert a pull request to a draft at any time.
+
+## Differences between commits on compare and pull request pages
+
+The compare and pull request pages use different methods to calculate the diff for changed files:
+
+- Compare pages show the diff between the tip of the head ref and the current common ancestor (that is, the merge base) of the head and base ref.
+- Pull request pages show the diff between the tip of the head ref and the common ancestor of the head and base ref at the time when the pull request was created. Consequently, the merge base used for the comparison might be different.
+
+## About comparing branches in pull request
+
+Pull requests display diffs to compare the changes you made in your topic branch against the base branch that you want to merge your changes into.
+
+You can view proposed changes in a pull request in the Files changed tab.
+
+Rather than viewing the commits themselves, you can view the proposed changes as they'll appear in the files once the pull request is merged. The files appear in alphabetical order within the Files changed tab. Additions to the files appear in green and are prefaced by a + sign while content that has been removed appears in red and is prefaced by a - sign.
+
+### Diff view options
+
+You have several options for viewing a diff:
+
+- The unified view shows updated and existing content together in a linear view.
+- The split view shows old content on one side and new content on the other side.
+- The rich diff view shows a preview of how the changes will look once the pull request is merged.
+- The source view shows the changes in source without the formatting of the rich diff view.
+
+You can also choose to ignore whitespace changes to get a more accurate view of the substantial changes in a pull request.
+
+[Unified and Split View](https://docs.github.com/assets/cb-186190/mw-1440/images/help/pull_requests/diff-settings-menu.webp)
+
+To simplify reviewing changes in a large pull request, you can filter the diff to only show selected file types, show files you are a CODEOWNER of, hide files you have already viewed, or hide deleted files.
+
+[Filter by extension](https://docs.github.com/assets/cb-48471/mw-1440/images/help/pull_requests/file-filter-menu.webp)
+
+## Three-dot and two-dot Git diff comparisons
+
+There are two comparison methods for the git diff command; two-dot (git diff A..B) and three-dot (git diff A...B). By default, pull requests on GitHub show a three-dot diff.
+
+#### Three-dot Git diff comparison
+
+The three-dot comparison shows the difference between the latest common commit of both branches (merge base) and the most recent version of the topic branch.
+
+#### Two-dot Git diff comparison
+
+The two-dot comparison shows the difference between the latest state of the base branch (for example, main) and the most recent version of the topic branch.
+
+To see two committish references in a two-dot diff comparison on GitHub, you can edit the URL of your repository's "Comparing changes" page.
+
+or example, this URL uses the shortened seven-character SHA codes to compare commits f75c570 and 3391dcc: https://github.com/github-linguist/linguist/compare/f75c570..3391dcc.
+
+A two-dot diff compares two Git committish references, such as SHAs or OIDs (Object IDs), directly with each other. On GitHub, the Git committish references in a two-dot diff comparison must be pushed to the same repository or its forks.
+
+If you want to simulate a two-dot diff in a pull request and see a comparison between the most recent versions of each branch, you can merge the base branch into your topic branch, which updates the last common ancestor between your branches.
+
+[Git diff options](https://git-scm.com/docs/git-diff#git-diff-emgitdiffemltoptionsgtltcommitgtltcommitgt--ltpathgt82308203)
+
+[Difference between 2 dots and 3 dots](https://www.youtube.com/watch?v=WRXmm-E77aY)
+
+[Explaning Git Diff](https://www.youtube.com/watch?v=vXN50AmJjgY)
+
+#### Merging often
+
+To avoid getting confused, merge the base branch (for example, main) into your topic branch frequently. By merging the base branch, the diffs shown by two-dot and three-dot comparisons are the same. We recommend merging a pull request as soon as possible. This encourages contributors to make pull requests smaller, which is recommended in general.
+
 ## About collaborative development models
 
 The way you use pull requests depends on the type of development model you use in your project. You can use the fork and pull model or the shared repository model.
