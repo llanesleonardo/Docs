@@ -215,3 +215,5 @@ There are several possible explanations:
 ## Why are my commits linked to the wrong user?
 
 [Why are my commits linked to the wrong user?](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/why-are-my-commits-linked-to-the-wrong-user)
+
+[How to revert a commit on Github](https://www.youtube.com/watch?v=H2DuJNWbqLw)

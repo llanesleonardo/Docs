@@ -186,3 +186,137 @@ Dependency review helps you understand dependency changes and the security impac
 - Vulnerability data for these dependencies.
 
 Dependency review allows you to "shift left". You can use the provided predictive information to catch vulnerable dependencies before they hit production.
+
+You can use the dependency review action to help enforce dependency reviews on pull requests in your repository. The dependency review action scans your pull requests for dependency changes and raises an error if any new dependencies have known vulnerabilities. The action is supported by an API endpoint that compares the dependencies between two revisions and reports any differences.
+
+You can configure the dependency review action to better suit your needs by specifying the type of dependency vulnerability you wish to catch.
+
+1. Under your repository name, click Pull requests.
+2. In the list of pull requests, click the pull request you'd like to review.
+3. On the pull request, click Files changed.
+4. If the pull request contains many files, use the File filter drop-down menu to collapse all files that don't record dependencies. This will make it easier to focus your review on the dependency changes.
+
+The dependency review provides a clearer view of what has changed in large lock files, where the source diff is not rendered by default.
+
+5. On the right of the header for a manifest or lock file, display the dependency review by clicking .
+6. Check the dependencies listed in the dependency review.
+
+Any added or changed dependencies that have vulnerabilities are listed first, ordered by severity and then by dependency name. This means that the highest severity dependencies are always at the top of a dependency review. Other dependencies are listed alphabetically by dependency name.
+
+The icon beside each dependency indicates whether the dependency has been added (), updated (), or removed () in this pull request.
+
+Other information includes:
+
+The version, or version range, of the new, updated, or deleted dependency.
+For a specific version of a dependency:
+The age of that release of the dependency.
+The number of projects that are dependent on this software. This information is taken from the dependency graph. Checking the number of dependents can help you avoid accidentally adding the wrong dependency.
+The license used by this dependency, if this information is available. This is useful if you want to avoid code with certain licenses being used in your project.
+Where a dependency has a known vulnerability, the warning message includes:
+
+A brief description of the vulnerability.
+A Common Vulnerabilities and Exposures (CVE) or GitHub Security Advisories (GHSA) identification number. You can click this ID to find out more about the vulnerability.
+The severity of the vulnerability.
+The version of the dependency in which the vulnerability was fixed. If you are reviewing a pull request for someone, you might ask the contributor to update the dependency to the patched version, or a later release.
+
+7. You may also want to review the source diff, because there could be changes to the manifest or lock file that don't change dependencies, or there could be dependencies that GitHub can't parse and which, as a result, don't appear in the dependency review.
+
+To return to the source diff view, click the button.
+
+## Incorporating feedback in your pull request
+
+When reviewers suggest changes in a pull request, you can automatically incorporate the changes into the pull request or open an issue to track out-of-scope suggestions.
+
+Other people can suggest specific changes to your pull request. You can apply these suggested changes directly in a pull request if you have write access to the repository. If the pull request was created from a fork and the author allowed edits from maintainers, you can also apply suggested changes if you have write access to the upstream repository.
+
+To quickly incorporate more than one suggested change into a single commit, you can also apply suggested changes as a batch. Applying one suggested change or a batch of suggested changes creates a single commit on the compare branch of the pull request.
+
+Each person who suggested a change included in the commit will be a co-author of the commit. The person who applies the suggested changes will be a co-author and the committer of the commit.
+
+1. Under your repository name, click Pull requests.
+2. In the list of pull requests, click the pull request you'd like to apply a suggested change to.
+3. Navigate to the first suggested change you'd like to apply.
+   1. To apply the change in its own commit, click Commit suggestion.
+   2. To add the suggestion to a batch of changes, click Add suggestion to batch. Continue to add the suggested changes you want to include in a single commit. When you've finished adding suggested changes, click Commit suggestions.
+4. In the commit message field, type a short, meaningful commit message that describes the change you made to the file or files.
+5. Click Commit changes.
+
+[Open a commit suggestion](https://www.youtube.com/watch?v=AFWwVPrULaY)
+
+## Re-requesting a review
+
+You can re-request a review, for example, after you've made substantial changes to your pull request. To request a fresh review from a reviewer, in the sidebar of the Conversation tab, click the icon.
+
+## Opening an issue for an out-of-scope suggestion
+
+If someone suggests changes to your pull request and the changes are out of the pull request's scope, you can open a new issue to track the feedback. For more information, see "Creating an issue."
+
+## Approving a pull request with required reviews
+
+If your repository requires reviews, pull requests must have a specific number of approving reviews from people with write or admin permissions in the repository before they can be merged.
+You can comment on a pull request, approve the changes, or request improvements before approving.
+
+1. Under your repository name, click Pull requests.
+2. In the list of pull requests, click the pull request you'd like to review.
+3. On the pull request, click Files changed.
+4. Review the changes in the pull request, and optionally, comment on specific lines or files.
+5. Above the changed code, click Review changes.
+6. Type a comment summarizing your feedback on the proposed changes.
+7. Select Approve to approve merging the changes proposed in the pull request.
+8. Click Submit review.
+
+## Dismissing a pull request review
+
+If your repository requires reviews, you can dismiss pull request reviews that are no longer valid or are unable to be approved by the reviewer.
+
+If a pull request has changed since it was reviewed and the person who requested changes isn't available to give an approving review, repository administrators or people with write access can dismiss a review. This changes the status of the review to a review comment. When you dismiss a review, you must add a comment explaining why you dismissed it. Your comment will be added to the pull request conversation.
+
+1. Under your repository name, click Pull requests.
+2. In the list of pull requests, click the pull request you'd like to review.
+3. On the "Conversation" tab, next to the summary of reviews, click .
+4. Next. to the review you'd like to dismiss, select the dropdown menu, then click Dismiss review.
+5. Type your reason for dismissing the review, then click Dismiss review.
+
+## Checking out pull requests locally
+
+When someone sends you a pull request from a fork or branch of your repository, you can merge it locally to resolve a merge conflict or to test and verify the changes before merging on GitHub.
+
+To Modify an active pull request locally:
+
+1. Under your repository name, click Pull requests.
+2. In the list of pull requests, click the pull request you'd like to modify.
+3. To choose where you'd like to open the pull request, select the Code dropdown and click one of the tabs.
+
+To Modify an inactive pull request locally:
+If a pull request's author is unresponsive to requests or has deleted their fork, the pull request can still be merged. However, if you want to make changes to a pull request and the author is not responding, you'll need to perform some additional steps to update the pull request.
+
+Once a pull request is opened, GitHub stores all of the changes remotely. In other words, commits in a pull request are available in a repository even before the pull request is merged. You can fetch an open pull request and recreate it as your own.
+
+Anyone can work with a previously opened pull request to continue working on it, test it out, or even open a new pull request with additional changes. However, only collaborators with push access can merge pull requests.
+
+1. Under your repository name, click Issues or Pull requests.
+2. In the "Pull Requests" list, click the pull request you'd like to merge.
+3. Find the ID number of the inactive pull request. This is the sequence of digits right after the pull request's title.
+4. Git Bash.
+5. Fetch the reference to the pull request based on its ID number, creating a new branch in the process.
+6. Switch to the new branch that's based on this pull request:
+
+```
+$ git fetch origin pull/ID/head:BRANCH_NAME
+```
+
+7. At this point, you can do anything you want with this branch. You can run some local tests, or merge other branches into the branch.
+8. When you're ready, you can push the new branch up:
+
+```
+[pull-inactive-pull-request] $ git push origin BRANCH_NAME
+> Counting objects: 32, done.
+> Delta compression using up to 8 threads.
+> Compressing objects: 100% (26/26), done.
+> Writing objects: 100% (29/29), 74.94 KiB | 0 bytes/s, done.
+> Total 29 (delta 8), reused 0 (delta 0)
+> To https://github.com/USERNAME/REPOSITORY.git
+>  * [new branch]      BRANCH_NAME -> BRANCH_NAME
+```
+
+9. Create a new pull request with your new branch.

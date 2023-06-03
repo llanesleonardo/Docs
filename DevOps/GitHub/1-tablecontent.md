@@ -61,12 +61,19 @@ With GitHub Free, your personal account includes:
 ## Pull request
 
 [Pull Request](./pullrequest.md)
+[Reviews](./reviews.md)
+[Incorporate changes](./incorporatechanges.md)
+[Merges](./merges.md)
 
 ## Actions
 
 [Github Actions](./actions.md)
 
 ## Issues
+
+[Github issues](./issues.md)
+[planning & tracking work](./planningtrackingwork.md)
+[Filtering & searching issues and Pull Request](./filtersearchingissuespullrequest.md)
 
 ## View activity and Data
 
