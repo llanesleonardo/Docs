@@ -34,6 +34,8 @@ With GitHub Free, your personal account includes:
 
 ## Projects
 
+[Projects](./projects.md)
+
 ## Repositories
 
 [Repositories](./repositories.md)
