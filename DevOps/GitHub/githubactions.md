@@ -252,3 +252,975 @@ outputs:
   results-file: # id of output
     description: "Path to results file"
 ```
+
+## Essential features of GitHub Actions
+
+GitHub Actions are designed to help you build robust and dynamic automations. This guide will show you how to craft GitHub Actions workflows that include environment variables, customized scripts, and more.
+
+GitHub Actions allow you to customize your workflows to meet the unique needs of your application and team. In this guide, we'll discuss some of the essential customization techniques such as using variables, running scripts, and sharing data and artifacts between jobs.
+
+## Using variables in your workflows
+
+GitHub Actions include default environment variables for each workflow run. If you need to use custom environment variables, you can set these in your YAML workflow file. This example demonstrates how to create custom variables named POSTGRES_HOST and POSTGRES_PORT. These variables are then available to the node client.js script.
+
+```
+jobs:
+  example-job:
+      steps:
+        - name: Connect to PostgreSQL
+          run: node client.js
+          env:
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+```
+
+## Adding scripts to your workflow
+
+You can use actions to run scripts and shell commands, which are then executed on the assigned runner. This example demonstrates how an action can use the run keyword to execute npm install -g bats on the runner.
+
+```
+jobs:
+  example-job:
+    steps:
+      - run: npm install -g bats
+```
+
+For example, to run a script as an action, you can store the script in your repository and supply the path and shell type.
+
+```
+jobs:
+  example-job:
+    steps:
+      - name: Run build script
+        run: ./.github/scripts/build.sh
+        shell: bash
+```
+
+## Sharing data between jobs
+
+If your job generates files that you want to share with another job in the same workflow, or if you want to save the files for later reference, you can store them in GitHub as artifacts. Artifacts are the files created when you build and test your code. For example, artifacts might include binary or package files, test results, screenshots, or log files. Artifacts are associated with the workflow run where they were created and can be used by another job. All actions and workflows called within a run have write access to that run's artifacts.
+
+For example, you can create a file and then upload it as an artifact.
+
+```
+jobs:
+  example-job:
+    name: Save output
+    steps:
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-log-file
+          path: output.log
+```
+
+To download an artifact from a separate workflow run, you can use the actions/download-artifact action. For example, you can download the artifact named output-log-file.
+
+```
+jobs:
+  example-job:
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: output-log-file
+```
+
+To download an artifact from the same workflow run, your download job should specify needs: upload-job-name so it doesn't start until the upload job finishes.
+
+## Expresions
+
+You can evaluate expressions in workflows and actions.
+
+You can use expressions to programmatically set environment variables in workflow files and access contexts. An expression can be any combination of literal values, references to a context, or functions. You can combine literals, context references, and functions using operators.
+
+Expressions are commonly used with the conditional if keyword in a workflow file to determine whether a step should run. When an if conditional is true, the step will run.
+
+You need to use specific syntax to tell GitHub to evaluate an expression rather than treat it as a string.
+
+```
+${{ <expression> }}
+
+```
+
+When you use expressions in an if conditional, you may omit the expression syntax (${{ }}) because GitHub automatically evaluates the if conditional as an expression.
+
+## Example expression in an if conditional
+
+```
+steps:
+  - uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
+    if: ${{ <expression> }}
+```
+
+```
+Example setting an environment variable
+env:
+  MY_ENV_VAR: ${{ <expression> }}
+```
+
+## Literals
+
+As part of an expression, you can use boolean, null, number, or string data types.
+
+[Literals](https://docs.github.com/en/actions/learn-github-actions/expressions#literals)
+
+```
+env:
+  myNull: ${{ null }}
+  myBoolean: ${{ false }}
+  myIntegerNumber: ${{ 711 }}
+  myFloatNumber: ${{ -9.2 }}
+  myHexNumber: ${{ 0xff }}
+  myExponentialNumber: ${{ -2.99e-2 }}
+  myString: Mona the Octocat
+  myStringInBraces: ${{ 'It''s open source!' }}
+```
+
+## Operators
+
+[Operators](https://docs.github.com/en/actions/learn-github-actions/expressions#operators)
+
+## Functions
+
+[Functions](https://docs.github.com/en/actions/learn-github-actions/expressions#functions)
+
+## Contexts
+
+You can access context information in workflows and actions.
+Contexts are a way to access information about workflow runs, variables, runner environments, jobs, and steps. Each context is an object that contains properties, which can be strings or other objects.
+
+Contexts, objects, and properties will vary significantly under different workflow run conditions.
+
+You can access contexts using the expression syntax.
+
+```
+${{ <context> }}
+
+```
+
+[List of context variables](https://docs.github.com/en/actions/learn-github-actions/contexts)
+
+As part of an expression, you can access context information using one of two syntaxes.
+
+- Index syntax: github['sha']
+- Property dereference syntax: github.sha
+  In order to use property dereference syntax, the property name must start with a letter or _ and contain only alphanumeric characters, -, or _.
+
+If you attempt to dereference a non-existent property, it will evaluate to an empty string.
+
+## Determining when to use contexts
+
+GitHub Actions includes a collection of variables called contexts and a similar collection of variables called default variables. These variables are intended for use at different points in the workflow:
+
+- Default environment variables: These environment variables exist only on the runner that is executing your job.
+- Contexts: You can use most contexts at any point in your workflow, including when default variables would be unavailable. For example, you can use contexts with expressions to perform initial processing before the job is routed to a runner for execution; this allows you to use a context with the conditional if keyword to determine whether a step should run. Once the job is running, you can also retrieve context variables from the runner that is executing the job, such as runner.os.
+
+The following example demonstrates how these different types of variables can be used together in a job:
+
+```
+name: CI
+on: push
+jobs:
+  prod-check:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying to production server on branch $GITHUB_REF"
+```
+
+In this example, the if statement checks the github.ref context to determine the current branch name; if the name is refs/heads/main, then the subsequent steps are executed. The if check is processed by GitHub Actions, and the job is only sent to the runner if the result is true. Once the job is sent to the runner, the step is executed and refers to the $GITHUB_REF variable from the runner.
+
+## Context availability
+
+Different contexts are available throughout a workflow run. For example, the secrets context may only be used at certain places within a job.
+
+In addition, some functions may only be used in certain places. For example, the hashFiles function is not available everywhere.
+
+The following table indicates where each context and special function can be used within a workflow. Unless listed below, a function can be used anywhere.
+
+[Content available Workflow key](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)
+
+### Example: printing context information to the log
+
+You can print the contents of contexts to the log for debugging. The toJSON function is required to pretty-print JSON objects to the log.
+
+YAML
+
+```
+name: Context testing
+on: push
+
+jobs:
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+```
+
+## github context
+
+The github context contains information about the workflow run and the event that triggered the run. You can also read most of the github context data in environment variables.
+
+[Github context- property](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)
+
+### Example contents of the github context
+
+The following example context is from a workflow run triggered by the push event. The event object in this example has been truncated because it is identical to the contents of the push webhook payload.
+
+```
+{
+  "token": "***",
+  "job": "dump_contexts_to_log",
+  "ref": "refs/heads/my_branch",
+  "sha": "c27d339ee6075c1f744c5d4b200f7901aad2c369",
+  "repository": "octocat/hello-world",
+  "repository_owner": "octocat",
+  "repositoryUrl": "git://github.com/octocat/hello-world.git",
+  "run_id": "1536140711",
+  "run_number": "314",
+  "retention_days": "90",
+  "run_attempt": "1",
+  "actor": "octocat",
+  "workflow": "Context testing",
+  "head_ref": "",
+  "base_ref": "",
+  "event_name": "push",
+  "event": {
+    ...
+  },
+  "server_url": "https://github.com",
+  "api_url": "https://api.github.com",
+  "graphql_url": "https://api.github.com/graphql",
+  "ref_name": "my_branch",
+  "ref_protected": false,
+  "ref_type": "branch",
+  "secret_source": "Actions",
+  "workspace": "/home/runner/work/hello-world/hello-world",
+  "action": "github_step",
+  "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
+  "action_repository": "",
+  "action_ref": "",
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_b037e7b5-1c88-48e2-bf78-eaaab5e02602",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_b037e7b5-1c88-48e2-bf78-eaaab5e02602"
+}
+```
+
+### Example usage of the github context
+
+This example workflow uses the github.event_name context to run a job only if the workflow run was triggered by the pull_request event.
+
+```
+name: Run CI
+on: [push, pull_request]
+
+jobs:
+  normal_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run normal CI
+        run: ./run-tests
+
+  pull_request_ci:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run PR CI
+        run: ./run-additional-pr-ci
+```
+
+## env context
+
+The env context contains variables that have been set in a workflow, job, or step. For more information about setting variables in your workflow, see "Workflow syntax for GitHub Actions."
+
+The env context syntax allows you to use the value of a variable in your workflow file. You can use the env context in the value of any key in a step except for the id and uses keys. For more information on the step syntax, see "Workflow syntax for GitHub Actions."
+
+If you want to use the value of a variable inside a runner, use the runner operating system's normal method for reading environment variables.
+
+[Env context](https://docs.github.com/en/actions/learn-github-actions/contexts#env-context)
+
+### Example contents of the env context
+
+The contents of the env context is a mapping of variable names to their values. The context's contents can change depending on where it is used in the workflow run.
+
+```
+{
+"first_name": "Mona",
+"super_duper_var": "totally_awesome"
+}
+```
+
+### Example usage of the env context
+
+This example workflow shows how the env context can be configured at the workflow, job, and step levels, as well as using the context in steps.
+
+When more than one environment variable is defined with the same name, GitHub uses the most specific variable. For example, an environment variable defined in a step will override job and workflow environment variables with the same name, while the step executes. An environment variable defined for a job will override a workflow variable with the same name, while the job executes.
+
+```
+name: Hi Mascot
+on: push
+env:
+  mascot: Mona
+  super_duper_var: totally_awesome
+
+jobs:
+  windows_job:
+    runs-on: windows-latest
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
+        env:
+          mascot: Octocat
+  linux_job:
+    runs-on: ubuntu-latest
+    env:
+      mascot: Tux
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
+
+```
+
+### Example contents of the github context
+
+The following example context is from a workflow run triggered by the push event. The event object in this example has been truncated because it is identical to the contents of the push webhook payload.
+
+```
+{
+  "token": "***",
+  "job": "dump_contexts_to_log",
+  "ref": "refs/heads/my_branch",
+  "sha": "c27d339ee6075c1f744c5d4b200f7901aad2c369",
+  "repository": "octocat/hello-world",
+  "repository_owner": "octocat",
+  "repositoryUrl": "git://github.com/octocat/hello-world.git",
+  "run_id": "1536140711",
+  "run_number": "314",
+  "retention_days": "90",
+  "run_attempt": "1",
+  "actor": "octocat",
+  "workflow": "Context testing",
+  "head_ref": "",
+  "base_ref": "",
+  "event_name": "push",
+  "event": {
+    ...
+  },
+  "server_url": "https://github.com",
+  "api_url": "https://api.github.com",
+  "graphql_url": "https://api.github.com/graphql",
+  "ref_name": "my_branch",
+  "ref_protected": false,
+  "ref_type": "branch",
+  "secret_source": "Actions",
+  "workspace": "/home/runner/work/hello-world/hello-world",
+  "action": "github_step",
+  "event_path": "/home/runner/work/_temp/_github_workflow/event.json",
+  "action_repository": "",
+  "action_ref": "",
+  "path": "/home/runner/work/_temp/_runner_file_commands/add_path_b037e7b5-1c88-48e2-bf78-eaaab5e02602",
+  "env": "/home/runner/work/_temp/_runner_file_commands/set_env_b037e7b5-1c88-48e2-bf78-eaaab5e02602"
+}
+
+```
+
+### Example usage of the github context
+
+This example workflow uses the github.event_name context to run a job only if the workflow run was triggered by the pull_request event.
+
+```
+name: Run CI
+on: [push, pull_request]
+
+jobs:
+  normal_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run normal CI
+        run: ./run-tests
+
+  pull_request_ci:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run PR CI
+        run: ./run-additional-pr-ci
+```
+
+## env context
+
+The env context contains variables that have been set in a workflow, job, or step.
+
+The env context syntax allows you to use the value of a variable in your workflow file. You can use the env context in the value of any key in a step except for the id and uses keys.
+
+If you want to use the value of a variable inside a runner, use the runner operating system's normal method for reading environment variables.
+
+### Example contents of the env context
+
+The contents of the env context is a mapping of variable names to their values. The context's contents can change depending on where it is used in the workflow run.
+
+```
+{
+"first_name": "Mona",
+"super_duper_var": "totally_awesome"
+}
+```
+
+### Example usage of the env context
+
+This example workflow shows how the env context can be configured at the workflow, job, and step levels, as well as using the context in steps.
+
+When more than one environment variable is defined with the same name, GitHub uses the most specific variable. For example, an environment variable defined in a step will override job and workflow environment variables with the same name, while the step executes. An environment variable defined for a job will override a workflow variable with the same name, while the job executes.
+
+```
+name: Hi Mascot
+on: push
+env:
+  mascot: Mona
+  super_duper_var: totally_awesome
+
+jobs:
+  windows_job:
+    runs-on: windows-latest
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
+        env:
+          mascot: Octocat
+  linux_job:
+    runs-on: ubuntu-latest
+    env:
+      mascot: Tux
+    steps:
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
+```
+
+## vars context
+
+Note: Configuration variables for GitHub Actions are in beta and subject to change.
+
+The vars context contains custom configuration variables set at the organization, repository, and environment levels.
+
+### Example contents of the vars context
+
+The contents of the vars context is a mapping of configuration variable names to their values.
+
+```
+{
+"mascot": "Mona"
+}
+```
+
+### Example usage of the vars context
+
+This example workflow shows how configuration variables set at the repository, environment, or organization levels are automatically available using the vars context.
+
+If a configuration variable has not been set, the return value of a context referencing the variable will be an empty string.
+
+The following example shows using configuration variables with the vars context across a workflow. Each of the following configuration variables have been defined at the repository, organization, or environment levels.
+
+```
+on:
+  workflow_dispatch:
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+
+jobs:
+  display-variables:
+    name: ${{ vars.JOB_NAME }}
+    # You can use configuration variables with the `vars` context for dynamic jobs
+    if: ${{ vars.USE_VARIABLES == 'true' }}
+    runs-on: ${{ vars.RUNNER }}
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    steps:
+    - name: Use variables
+      run: |
+        echo "repository variable : $REPOSITORY_VAR"
+        echo "organization variable : $ORGANIZATION_VAR"
+        echo "overridden variable : $OVERRIDE_VAR"
+        echo "variable from shell environment : $env_var"
+      env:
+        REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
+        ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
+        OVERRIDE_VAR: ${{ vars.OVERRIDE_VAR }}
+
+    - name: ${{ vars.HELLO_WORLD_STEP }}
+      if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
+      uses: actions/hello-world-javascript-action@main
+      with:
+        who-to-greet: ${{ vars.GREET_NAME }}
+
+```
+
+## Job context
+
+[Job Context](https://docs.github.com/en/actions/learn-github-actions/contexts#job-context)
+
+### Example contents of the job context
+
+This example job context uses a PostgreSQL service container with mapped ports. If there are no containers or service containers used in a job, the job context only contains the status property.
+
+```
+{
+  "status": "success",
+  "container": {
+    "network": "github_network_53269bd575974817b43f4733536b200c"
+  },
+  "services": {
+    "postgres": {
+      "id": "60972d9aa486605e66b0dad4abb638dc3d9116f566579e418166eedb8abb9105",
+      "ports": {
+        "5432": "49153"
+      },
+      "network": "github_network_53269bd575974817b43f4733536b200c"
+    }
+  }
+}
+```
+
+### Example usage of the job context
+
+This example workflow configures a PostgreSQL service container, and automatically maps port 5432 in the service container to a randomly chosen available port on the host. The job context is used to access the number of the port that was assigned on the host.
+
+```
+name: PostgreSQL Service Example
+on: push
+jobs:
+  postgres-job:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        ports:
+          # Maps TCP port 5432 in the service container to a randomly chosen available port on the host.
+          - 5432
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: pg_isready -h localhost -p ${{ job.services.postgres.ports[5432] }}
+      - run: ./run-tests
+```
+
+## jobs context
+
+[Jobs context](https://docs.github.com/en/actions/learn-github-actions/contexts#jobs-context)
+
+### Example contents of the jobs context
+
+This example jobs context contains the result and outputs of a job from a reusable workflow run.
+
+```
+{
+  "example_job": {
+    "result": "success",
+    "outputs": {
+      "output1": "hello",
+      "output2": "world"
+    }
+  }
+}
+```
+
+### Example usage of the jobs context
+
+This example reusable workflow uses the jobs context to set outputs for the reusable workflow. Note how the outputs flow up from the steps, to the job, then to the workflow_call trigger.
+
+```
+name: Reusable workflow
+
+on:
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.example_job.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.example_job.outputs.output2 }}
+
+jobs:
+  example_job:
+    name: Generate output
+    runs-on: ubuntu-latest
+    # Map the job outputs to step outputs
+    outputs:
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
+    steps:
+      - id: step1
+        run: echo "firstword=hello" >> $GITHUB_OUTPUT
+      - id: step2
+        run: echo "secondword=world" >> $GITHUB_OUTPUT
+```
+
+## steps context
+
+[Steps context](https://docs.github.com/en/actions/learn-github-actions/contexts#steps-context)
+
+### Example contents of the steps context
+
+This example steps context shows two previous steps that had an id specified. The first step had the id named checkout, the second generate_number. The generate_number step had an output named random_number.
+
+```
+{
+  "checkout": {
+    "outputs": {},
+    "outcome": "success",
+    "conclusion": "success"
+  },
+  "generate_number": {
+    "outputs": {
+      "random_number": "1"
+    },
+    "outcome": "success",
+    "conclusion": "success"
+  }
+}
+```
+
+### Example usage of the steps context
+
+This example workflow generates a random number as an output in one step, and a later step uses the steps context to read the value of that output.
+
+```
+name: Generate random failure
+on: push
+jobs:
+  randomly-failing-job:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        uses: actions/checkout@v3
+      - name: Generate 0 or 1
+        id: generate_number
+        run:  echo "random_number=$(($RANDOM % 2))" >> $GITHUB_OUTPUT
+      - name: Pass or fail
+        run: |
+          if [[ ${{ steps.generate_number.outputs.random_number }} == 0 ]]; then exit 0; else exit 1; fi
+```
+
+## runner context
+
+[runner context](https://docs.github.com/en/actions/learn-github-actions/contexts#runner-context)
+
+### Example contents of the runner context
+
+The following example context is from a Linux GitHub-hosted runner.
+
+```
+{
+"os": "Linux",
+"arch": "X64",
+"name": "GitHub Actions 2",
+"tool_cache": "/opt/hostedtoolcache",
+"temp": "/home/runner/work/\_temp"
+}
+```
+
+### Example usage of the runner context
+
+This example workflow uses the runner context to set the path to the temporary directory to write logs, and if the workflow fails, it uploads those logs as artifact.
+
+```
+name: Build
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build with logs
+        run: |
+          mkdir ${{ runner.temp }}/build_logs
+          ./build.sh --log-path ${{ runner.temp }}/build_logs
+      - name: Upload logs on fail
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build failure logs
+          path: ${{ runner.temp }}/build_logs
+```
+
+## secrets context
+
+The secrets context contains the names and values of secrets that are available to a workflow run. The secrets context is not available for composite actions due to security reasons. If you want to pass a secret to a composite action, you need to do it explicitly as an input.
+
+GITHUB_TOKEN is a secret that is automatically created for every workflow run, and is always included in the secrets context.
+
+[secrets context](https://docs.github.com/en/actions/learn-github-actions/contexts#secrets-context)
+
+## Example contents of the secrets context
+
+The following example contents of the secrets context shows the automatic GITHUB_TOKEN, as well as two other secrets available to the workflow run.
+
+```
+{
+"github_token": "**_",
+"NPM_TOKEN": "_**",
+"SUPERSECRET": "\*\*\*"
+}
+```
+
+### Example usage of the secrets context
+
+This example workflow uses the labeler action, which requires the GITHUB_TOKEN as the value for the repo-token input parameter:
+
+```
+name: Pull request labeler
+on: [ pull_request_target ]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+## strategy context
+
+[strategy context](https://docs.github.com/en/actions/learn-github-actions/contexts#strategy-context)
+
+### Example contents of the strategy context
+
+The following example contents of the strategy context is from a matrix with four jobs, and is taken from the final job. Note the difference between the zero-based job-index number, and job-total which is not zero-based.
+
+```
+{
+"fail-fast": true,
+"job-index": 3,
+"job-total": 4,
+"max-parallel": 4
+}
+```
+
+### Example usage of the strategy context
+
+This example workflow uses the strategy.job-index property to set a unique name for a log file for each job in a matrix.
+
+```
+name: Test matrix
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-group: [1, 2]
+        node: [14, 16]
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm test > test-job-${{ strategy.job-index }}.txt
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build log for job ${{ strategy.job-index }}
+          path: test-job-${{ strategy.job-index }}.txt
+```
+
+## matrix context
+
+[matrix context](https://docs.github.com/en/actions/learn-github-actions/contexts#matrix-context)
+
+### Example contents of the matrix context
+
+The following example contents of the matrix context is from a job in a matrix that has the os and node matrix properties defined in the workflow. The job is executing the matrix combination of an ubuntu-latest OS and Node.js version 16.
+
+```
+{
+"os": "ubuntu-latest",
+"node": 16
+}
+```
+
+### Example usage of the matrix context
+
+This example workflow creates a matrix with os and node keys. It uses the matrix.os property to set the runner type for each job, and uses the matrix.node property to set the Node.js version for each job.
+
+```
+name: Test matrix
+on: push
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [14, 16]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+```
+
+## needs context
+
+[needs context](https://docs.github.com/en/actions/learn-github-actions/contexts#needs-context)
+
+### Example contents of the needs context
+
+The following example contents of the needs context shows information for two jobs that the current job depends on.
+
+```
+{
+"build": {
+"result": "success",
+"outputs": {
+"build_id": "ABC123"
+}
+},
+"deploy": {
+"result": "failure",
+"outputs": {}
+}
+}
+```
+
+### Example usage of the needs context
+
+This example workflow has three jobs: a build job that does a build, a deploy job that requires the build job, and a debug job that requires both the build and deploy jobs and runs only if there is a failure in the workflow. The deploy job also uses the needs context to access an output from the build job.
+
+```
+name: Build and deploy
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      build_id: ${{ steps.build_step.outputs.build_id }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        id: build_step
+        run: |
+          ./build
+          echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./deploy --build ${{ needs.build.outputs.build_id }}
+  debug:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./debug
+```
+
+## inputs context
+
+[inputs context](https://docs.github.com/en/actions/learn-github-actions/contexts#inputs-context)
+
+### Example contents of the inputs context
+
+The following example contents of the inputs context is from a workflow that has defined the build_id, deploy_target, and perform_deploy inputs.
+
+```
+{
+"build_id": 123456768,
+"deploy_target": "deployment_sys_1a",
+"perform_deploy": true
+}
+```
+
+### Example usage of the inputs context in a reusable workflow
+
+This example reusable workflow uses the inputs context to get the values of the build_id, deploy_target, and perform_deploy inputs that were passed to the reusable workflow from the caller workflow.
+
+```
+name: Reusable deploy workflow
+on:
+  workflow_call:
+    inputs:
+      build_id:
+        required: true
+        type: number
+      deploy_target:
+        required: true
+        type: string
+      perform_deploy:
+        required: true
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.perform_deploy }}
+    steps:
+      - name: Deploy build to target
+        run: deploy --build ${{ inputs.build_id }} --target ${{ inputs.deploy_target }}
+```
+
+### Example usage of the inputs context in a manually triggered workflow
+
+This example workflow triggered by a workflow_dispatch event uses the inputs context to get the values of the build_id, deploy_target, and perform_deploy inputs that were passed to the workflow.
+
+```
+on:
+  workflow_dispatch:
+    inputs:
+      build_id:
+        required: true
+        type: string
+      deploy_target:
+        required: true
+        type: string
+      perform_deploy:
+        required: true
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.perform_deploy }}
+    steps:
+      - name: Deploy build to target
+        run: deploy --build ${{ inputs.build_id }} --target ${{ inputs.deploy_target }}
+```
+
+## Examples
+
+[Using scripts to test your code on a runner](https://docs.github.com/en/actions/examples/using-scripts-to-test-your-code-on-a-runner)
+
+[Using the GitHub CLI on a runner](https://docs.github.com/en/actions/examples/using-the-github-cli-on-a-runner)
+
+[Using concurrency, expressions, and a test matrix](https://docs.github.com/en/actions/examples/using-concurrency-expressions-and-a-test-matrix)
