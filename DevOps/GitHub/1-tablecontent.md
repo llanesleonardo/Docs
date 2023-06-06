@@ -125,3 +125,4 @@ More information: [Permission levels](https://docs.github.com/en/account-and-pro
 - [Troubleshooting contributors](https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/viewing-a-projects-contributors#troubleshooting-contributors)
 - [Troubleshooting commits](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/commit-exists-on-github-but-not-in-my-local-clone)
 - [Reasons diffs will not display](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#reasons-diffs-will-not-display)
+- [Restrictions for accesing a cache](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#restrictions-for-accessing-a-cache)

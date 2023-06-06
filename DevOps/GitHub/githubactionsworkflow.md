@@ -786,3 +786,230 @@ jobs:
 You can configure your workflows to run when specific activity on GitHub happens, at a scheduled time, or when an event outside of GitHub occurs.
 
 [Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
+
+[Workflow Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+
+[Workflow commands](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)
+
+## Reusing workflows
+
+Learn how to avoid duplication when creating a workflow by reusing existing workflows.
+
+Rather than copying and pasting from one workflow to another, you can make workflows reusable. You and anyone with access to the reusable workflow can then call the reusable workflow from another workflow.
+
+Reusing workflows avoids duplication. This makes workflows easier to maintain and allows you to create new workflows more quickly by building on the work of others, just as you do with actions. Workflow reuse also promotes best practice by helping you to use workflows that are well designed, have already been tested, and have been proven to be effective. Your organization can build up a library of reusable workflows that can be centrally maintained.
+
+The diagram below shows an in-progress workflow run that uses a reusable workflow.
+
+- After each of three build jobs on the left of the diagram completes successfully, a dependent job called "Deploy" is run.
+- The "Deploy" job calls a reusable workflow that contains three jobs: "Staging", "Review", and "Production."
+- The "Production" deployment job only runs after the "Staging" job has completed successfully.
+- When a job targets an environment, the workflow run displays a progress bar that shows the number of steps in the job. In the diagram below, the "Production" job contains 8 steps, with step 6 currently being processed.
+- Using a reusable workflow to run deployment jobs allows you to run those jobs for each build without duplicating code in workflows.
+
+[Deployment.yml example](https://docs.github.com/assets/cb-34427/mw-1440/images/help/actions/reusable-workflows-ci-cd.webp)
+
+A workflow that uses another workflow is referred to as a "caller" workflow. The reusable workflow is a "called" workflow. One caller workflow can use multiple called workflows. Each called workflow is referenced in a single line. The result is that the caller workflow file may contain just a few lines of YAML, but may perform a large number of tasks when it's run. When you reuse a workflow, the entire called workflow is used, just as if it was part of the caller workflow.
+
+If you reuse a workflow from a different repository, any actions in the called workflow run as if they were part of the caller workflow. For example, if the called workflow uses actions/checkout, the action checks out the contents of the repository that hosts the caller workflow, not the called workflow.
+
+When a reusable workflow is triggered by a caller workflow, the github context is always associated with the caller workflow. The called workflow is automatically granted access to github.token and secrets.GITHUB_TOKEN.
+
+You can view the reused workflows referenced in your GitHub Actions workflows as dependencies in the dependency graph of the repository containing your workflows.
+
+## Reusable workflows and starter workflows
+
+Starter workflows allow everyone in your organization who has permission to create workflows to do so more quickly and easily. When people create a new workflow, they can choose a starter workflow and some or all of the work of writing the workflow will be done for them. Within a starter workflow, you can also reference reusable workflows to make it easy for people to benefit from reusing centrally managed workflow code. If you use a commit SHA when referencing the reusable workflow, you can ensure that everyone who reuses that workflow will always be using the same YAML code. However, if you reference a reusable workflow by a tag or branch, be sure that you can trust that version of the workflow.
+
+A reusable workflow can be used by another workflow if any of the following is true:
+
+- Both workflows are in the same repository.
+- The called workflow is stored in a public repository, and your organization allows you to use public reusable workflows.
+- The called workflow is stored in a private repository and the settings for that repository allow it to be accessed.
+
+## Using GitHub-hosted runners
+
+The assignment of GitHub-hosted runners is always evaluated using only the caller's context. Billing for GitHub-hosted runners is always associated with the caller. The caller workflow cannot use GitHub-hosted runners from the called repository.
+
+## Using self-hosted runners
+
+Called workflows that are owned by the same user or organization as the caller workflow can access self-hosted runners from the caller's context. This means that a called workflow can access self-hosted runners that are:
+
+- In the caller repository
+- In the caller repository's organization, provided that the runner has been made available to the caller repository
+
+## Creating re usable workflows
+
+[Creating re usable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows#creating-a-reusable-workflow)
+
+[Using outputs from a resusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-outputs-from-a-reusable-workflow)
+
+## Required workflows
+
+You can specify which workflows will run as required status checks in all repositories or selected repositories in your organization.
+
+You can configure a workflow that must run in repositories in an organization for all pull requests opened against any target branch. Required workflows allow you to implement organization-wide CI/CD policies that apply to current and future repositories. A required workflow is triggered by pull_request and pull_request_target default events and appears as a required status check, which blocks the ability to merge the pull request until the required workflow succeeds.
+
+Required workflows are not the same as reusable workflows. Reusable workflows can be called by another workflow. Required workflows are enforced on repositories by an organization owner.
+
+### Prerequisites
+
+Before configuring a required workflow, note the following prerequisites:
+
+- GitHub Actions must be enabled for a repository in the organization's settings in order for required workflows to run. Once enabled at an organization-level, required workflows will run even when GitHub Actions is disabled in the repository's settings.
+- Required workflows are available for organizations and only in repositories where the organization's plan supports required status checks. If required status checks are not supported, the workflow will still run, but it will not be a required check and will not block merging.
+- The repository's default branch must match the organization's default branch setting in order for required workflows to run as required status checks. If the default branch names do not match, the workflow will still run, but it will not be a required check.
+- For required workflows to run, the pull request's source repository must be in the same organization as the target repository. GitHub will source the required workflow from a specified branch, tag, or commit SHA from the repository containing the workflow.
+- Secrets used in a required workflow should be created at either the organization level or in the target repositories.
+- Secrets in the source repository will not be fetched when a workflow runs in the target repository.
+- When a workflow is run as a required workflow it will ignore all the filters in the on: section, for example: branches, branches-ignore, paths, types etc. The required workflow will run only for the pull_request and pull_request_target default events.
+- Required workflows are not automatically triggered on already existing pull requests even though they automatically appear as expected checks. To trigger required workflows for an already existing pull request, push a new change to that pull request.
+
+### Restrictions and behaviors for the source repository
+
+Note the following restrictions and behaviors for the source repository and workflow:
+
+- Required workflows can be stored in any repository folder and are not restricted to the .github/workflows folder like normal workflows. If a required workflow calls a reusable workflow, the reusable workflow must be stored in the .github/workflows folder. When calling a reusable workflow, a required workflow must use the full path and ref to the reusable workflow. For example, {owner}/{repo}/.github/workflows/{filename}@{ref}.
+- If the required workflow is contained in a private repository, you must ensure that workflows within the repository are accessible by other repositories in your organization.
+- Workflows stored in a public repository can be configured as required workflows for any repository in your organization. Workflows stored in a private repository can only be configured as required workflows for other private repositories in your organization.
+- CodeQL is not supported in required workflows because CodeQL requires configuration at the repository level.
+- To push to a branch where required workflows are enforced at the organizational level, create a pull request to make the necessary changes. You cannot push directly to branches with required workflow enforcements.
+- If you want to allow direct pushes for a particular repository, you must remove the repository as a target from respective required workflows.
+- Required workflows can be referenced using any branch, tag, or commit SHA from the repository containing the workflow file.
+
+### Restrictions and behaviors for the target repository
+
+Note the following restrictions and behaviors for the target repositories:
+
+- When configuring a required workflow to run on all or selected repositories, the visibility of the repository containing the required workflow will affect which repositories in your organization the workflow runs on. Required workflows stored in public repositories will run on all repositories. Required workflows stored in private repositories will only run on other private repositories.
+- Required workflows cannot be configured to run in the repository the workflow is created in. You should consider creating a separate repository to store your required workflows.
+- When configuring a required workflow to run on all or selected repositories, required workflows will not run in repositories where actions is disabled in the organization settings.
+
+### Viewing workflow runs for required workflows
+
+After a required workflow has run at least once in a repository, you can view its workflow runs in that repository's "Actions" tab. To make changes to what workflows are configured as required in an organization, you must contact an organization owner. To make changes to a required workflow itself, anyone with write permissions for the repository that contains the required workflow can make changes to it.
+
+1. On GitHub.com, navigate to the main page of the repository.
+2. Under your repository name, click Actions.
+3. In the left sidebar, you can view workflow runs for required workflows under "Required workflows."
+
+### Adding a required workflow to an organization
+
+Organization owners can configure required workflows in their organization.
+
+## Caching dependencies to speed up workflows
+
+To make your workflows faster and more efficient, you can create and use caches for dependencies and other commonly reused files.
+
+[Caching dependencies to speed up workflows](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
+
+## Storing workflow data as artifacts
+
+Artifacts allow you to share data between jobs in a workflow and store data once that workflow has completed.
+
+[Storing workflow data as artifacts](https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts)
+
+## Creating starter workflows for your organization
+
+Learn how you can create starter workflows to help people in your team add new workflows more easily.
+
+Starter workflows allow everyone in your organization who has permission to create workflows to do so more quickly and easily. When you create a new workflow, you can choose a starter workflow and some or all of the work of writing the workflow will be done for you. You can use starter workflows as a starting place to build your custom workflow or use them as-is. This not only saves time, it promotes consistency and best practice across your organization.
+
+GitHub provides ready-to-use starter workflows for the following high level categories:
+
+- Deployment (CD).
+- Security.
+- Continuous Integration (CI).
+- Automation. Automation starter workflows offer solutions for automating workflows, such as triaging pull requests and applying a label based on the paths that are modified in the pull request, or greeting users who are first time contributors to the repository.
+
+### Creating a starter workflow
+
+Starter workflows can be created by users with write access to the organization's .github repository. These can then be used by organization members who have permission to create workflows.
+
+Starter workflows created by users can only be used to create workflows in public repositories. Organizations using GitHub Enterprise Cloud can also use starter workflows to create workflows in private repositories.
+
+This procedure demonstrates how to create a starter workflow and metadata file. The metadata file describes how the starter workflows will be presented to users when they are creating a new workflow.
+
+1. If it doesn't already exist, create a new public repository named .github in your organization.
+2. Create a directory named workflow-templates.
+3. Create your new workflow file inside the workflow-templates directory.
+
+If you need to refer to a repository's default branch, you can use the $default-branch placeholder. When a workflow is created the placeholder will be automatically replaced with the name of the repository's default branch.
+
+For example, this file named octo-organization-ci.yml demonstrates a basic workflow.
+
+```
+name: Octo Organization CI
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: echo Hello from Octo Organization
+```
+
+4. Create a metadata file inside the workflow-templates directory. The metadata file must have the same name as the workflow file, but instead of the .yml extension, it must be appended with .properties.json. For example, this file named octo-organization-ci.properties.json contains the metadata for a workflow file named octo-organization-ci.yml:
+
+```
+{
+    "name": "Octo Organization Workflow",
+    "description": "Octo Organization CI starter workflow.",
+    "iconName": "example-icon",
+    "categories": [
+        "Go"
+    ],
+    "filePatterns": [
+        "package.json$",
+        "^Dockerfile",
+        ".*\\.md$"
+    ]
+}
+```
+
+5. -
+   1. name - Required. The name of the workflow. This is displayed in the list of available workflows.
+   2. description - Required. The description of the workflow. This is displayed in the list of available workflows.
+   3. iconName - Optional. Specifies an icon for the workflow that is displayed in the list of workflows. iconName can one of the following types:
+      1. An SVG file that is stored in the workflow-templates directory. To reference a file, the value must be the file name without the file extension. For example, an SVG file named example-icon.svg is referenced as example-icon.
+      2. An icon from GitHub's set of Octicons. To reference an octicon, the value must be octicon <icon name>. For example, octicon smiley.
+   4. categories - Optional. Defines the categories that the workflow is shown under. You can use category names from the following lists:
+      1. General category names from the starter-workflows repository.
+      2. Linguist languages from the list in the linguist repository.
+      3. Supported tech stacks from the list in the starter-workflows repository.
+   5. filePatterns - Optional. Allows the workflow to be used if the user's repository has a file in its root directory that matches a defined regular expression.
+
+To add another starter workflow, add your files to the same workflow-templates directory.
+
+## Using starter workflows
+
+GitHub provides starter workflows for a variety of languages and tooling.
+
+GitHub offers starter workflows for a variety of languages and tooling. When you set up workflows in your repository, GitHub analyzes the code in your repository and recommends workflows based on the language and framework in your repository. For example, if you use Node.js, GitHub will suggest a starter workflow file that installs your Node.js packages and runs your tests. You can search and filter to find relevant starter workflows.
+
+### Using starter workflows
+
+Anyone with write permission to a repository can set up GitHub Actions starter workflows for CI/CD or other automation.
+
+1. On GitHub.com, navigate to the main page of the repository.
+2. Under your repository name, click Actions.
+3. If you already have a workflow in your repository, click New workflow.
+4. The "Choose a workflow" page shows a selection of recommended starter workflows. Find the starter workflow that you want to use, then click Configure. To help you find the starter workflow that you want, you can search for keywords or filter by category.
+5. If the starter workflow contains comments detailing additional setup steps, follow these steps. Many of the starter workflow have corresponding guides.
+6. Some starter workflows use secrets. For example, ${{ secrets.npm_token }}. If the starter workflow uses a secret, store the value described in the secret name as a secret in your repository.
+7. Optionally, make additional changes. For example, you might want to change the value of on to change when the workflow runs.
+8. Click Start commit.
+9. Write a commit message and decide whether to commit directly to the default branch or to open a pull request.
+
+## Sharing workflows, secrets, and runners with your organization
+
+[Sharing workflows, secrets, and runners with your organization](https://docs.github.com/en/actions/using-workflows/sharing-workflows-secrets-and-runners-with-your-organization)
