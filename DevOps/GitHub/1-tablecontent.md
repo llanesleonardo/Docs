@@ -126,3 +126,7 @@ More information: [Permission levels](https://docs.github.com/en/account-and-pro
 - [Troubleshooting commits](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/troubleshooting-commits/commit-exists-on-github-but-not-in-my-local-clone)
 - [Reasons diffs will not display](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#reasons-diffs-will-not-display)
 - [Restrictions for accesing a cache](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#restrictions-for-accessing-a-cache)
+- [Security Hardening deployments](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
+- [Security hardening for GitHub Actions](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)
+- [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+- [Automatic token authentication](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
