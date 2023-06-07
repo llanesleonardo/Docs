@@ -130,3 +130,6 @@ More information: [Permission levels](https://docs.github.com/en/account-and-pro
 - [Security hardening for GitHub Actions](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)
 - [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 - [Automatic token authentication](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
+- [Troubleshooting publishing from a branch](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#troubleshooting-publishing-from-a-branch)
+- [Securing your GitHub Pages site with HTTPS](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)
+- [Troubleshooting certificate provisioning ("Certificate not yet created" error)](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https#troubleshooting-certificate-provisioning-certificate-not-yet-created-error)
