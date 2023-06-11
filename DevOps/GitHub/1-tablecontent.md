@@ -1,12 +1,4 @@
-# Github - Web-based version control system (Use git)
-
-These docs were gathered from various sources, such as:
-
-- [Connecting to github with ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-- [Github users](https://docs.github.com/en/enterprise-cloud@latest/admin/user-management)
-- [Github Glossary](https://docs.github.com/en/get-started/quickstart/github-glossary)
-- [Free courses](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)
-- [Git](https://git-scm.com/docs)
+# Github - Web-based version control system
 
 if you need a quick reference you should go here:
 
@@ -15,10 +7,6 @@ if you need a quick reference you should go here:
 ## Github Free for personal account
 
 - [General Specs for personal accounts](./specs.md)
-
-## Profile & Managing users
-
-- [Managing users](./managinguser.md)
 
 ## Github Flow
 
@@ -33,13 +21,13 @@ if you need a quick reference you should go here:
 - [Automating projects](./automatingprojects.md)
 - [Project's Insights](./insightsofprojects.md)
 - [Managing projects](./managingprojects.md)
-- [Planning and Tracking work](./planningtrackingwork.md)
 
 ## Repositories
 
 - [Repositories](./repositories.md)
 - [Licensing a Repository](./licensing_repository.md)
 - [Working with files](./workingfiles.md)
+- [Managing users](./managinguser.md)
 
 ## Branches
 
@@ -155,3 +143,13 @@ if you need a quick reference you should go here:
 - [About JEkyll build errors for Github Pages sites](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-jekyll-build-errors-for-github-pages-sites) -[Troubleshooting Jekyll build errors for Github Pages sites](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/troubleshooting-jekyll-build-errors-for-github-pages-sites)
 - [Troubleshooting custom domains and GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages)
 - [Code security docs](https://docs.github.com/en/code-security)
+
+### References Links
+
+These docs were gathered from various sources, such as:
+
+- [Connecting to github with ssh](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [Github users](https://docs.github.com/en/enterprise-cloud@latest/admin/user-management)
+- [Github Glossary](https://docs.github.com/en/get-started/quickstart/github-glossary)
+- [Free courses](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)
+- [Git](https://git-scm.com/docs)

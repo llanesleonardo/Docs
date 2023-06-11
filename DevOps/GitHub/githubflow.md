@@ -1,6 +1,10 @@
+Back: [Table contents](./1-tablecontent.md)
+
 # Github Flow
 
-## GitHub flow is a lightweight, branch-based workflow.
+GitHub flow is a lightweight, branch-based workflow.
+
+## Flow's checklist:
 
 1. Create a branch
 2. Make changes (Create, Edit, Rename, Move, Delete)
@@ -10,5 +14,4 @@
 6. Create a Pull request (basically this is a peer review)
 7. Address review comments
 8. Merge you pull request (changes will appear on the default branch)
-9. If the Pull Request has problems go here: [Addressing merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts)
-10. Delete your branch
+9. Delete your branch

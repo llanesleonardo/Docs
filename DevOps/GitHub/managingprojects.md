@@ -1,3 +1,5 @@
+[Projects](./projects.md)
+
 # Managing your projects
 
 Learn about setting your project to private or public visibility.
@@ -16,12 +18,18 @@ Project admins can also manage write and admin access to their project and contr
 
 ## Changing project visibility
 
+---
+
+### Process' checklist
+
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
 3. In the menu, click (screw) Settings to access the project settings.
 4. Next to Visibility in the "Danger zone", select Private or Public.
 
 ## Managing access to your projects
+
+---
 
 Learn how to manage team and individual access to your project.
 
@@ -31,15 +39,15 @@ Admins of user-level projects can invite individual collaborators and manage the
 
 Project admins can also control the visibility of their project for everyone on the internet.
 
-## Managing access for organization-level projects
-
-You can control access to your project by setting permissions for particular individuals and teams or you can set a base permission that applies to everyone in your organization.
-
 ### Managing access for everyone in your organization
+
+---
 
 You can manage access for everyone in your organization to a particular project by changing the project's base permission. Changes to the base permission only affect organization members who are not organization owners and who are not granted individual access.
 
 You can also configure the default base permission at the organization-level for new projects and projects that haven't yet had a base permission configured.
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -53,11 +61,15 @@ You can also configure the default base permission at the organization-level for
 
 ## Managing access for teams and individual members of your organization
 
+---
+
 You can also add teams, external collaborators, and individual organization members as collaborators for an organization-level project.
 
 If you grant a team read permissions or greater for a project, the project is also displayed on the team's projects page. You can also add projects to a team on the team's projects page.
 
 You can only invite an individual user to collaborate on your organization-level project if they are already a member of the organization or an outside collaborator on at least one repository in the organization.
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -72,6 +84,10 @@ You can only invite an individual user to collaborate on your organization-level
 
 ## Managing access of an existing collaborator on your project
 
+---
+
+### Process' checklist
+
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
 3. In the menu, click (screw icon) Settings to access the project settings.
@@ -81,9 +97,13 @@ You can only invite an individual user to collaborate on your organization-level
 7. Edit the role for the collaborator(s).
 8. Optionally, click Remove to remove the collaborator(s).
 
+### More information:
+
 [Managing access for user level projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-your-project/managing-access-to-your-projects#managing-access-for-user-level-projects)
 
 ## Managing project templates in your organization
+
+---
 
 You can set projects in your organization as templates, allowing other people to select your template as the base for projects they create.
 
@@ -95,7 +115,11 @@ When someone creates a project from a template, the views, custom fields, and dr
 
 ## Setting a project as a template
 
+---
+
 If you have admin permissions for a project in your organization, you can set the project as a template and make it available for others in your organization to use.
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -104,7 +128,11 @@ If you have admin permissions for a project in your organization, you can set th
 
 ## Finding templates in your organization
 
+---
+
 You can filter the list of projects in your organization to only show projects set as templates.
+
+### Process' checklist
 
 1. In the top right corner of GitHub.com, click your profile photo, then click Your organizations.
 2. Click the name of your organization.
@@ -113,7 +141,11 @@ You can filter the list of projects in your organization to only show projects s
 
 ## Copying a project as a template
 
+---
+
 If you have write or admin permissions for a project in your organization, you can choose to copy the project as a template. This will make a duplicate of the current project, copying the views, custom fields, and draft issues, and set that copied project as a template for your organization.
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -122,15 +154,23 @@ If you have write or admin permissions for a project in your organization, you c
 
 ## Closing and deleting your projects
 
+---
+
+### More information:
+
 [Closing and deleting your projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-your-project/closing-and-deleting-your-projects)
 
 ## Adding your project to a repository
+
+---
 
 You can add your project to a repository to make it accessible from that repository.
 
 You can list relevant projects in a repository. You can only list projects that are owned by the same user or organization that owns the repository.
 
 In order for repository members to see a project listed in a repository, they must have visibility for the project.
+
+### Process' checklist
 
 1. On GitHub, navigate to the main page of your repository.
 2. Click Projects.
@@ -139,5 +179,9 @@ In order for repository members to see a project listed in a repository, they mu
 5. Click on a project to list it in your repository.
 
 ## Adding your project to a team
+
+---
+
+### More information:
 
 [Adding your project to a team](https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-your-project/adding-your-project-to-a-team)

@@ -1,8 +1,10 @@
-## General specs for personal account
+Back: [Table contents](./1-tablecontent.md)
+
+# General specs for personal account
 
 With GitHub Free for personal accounts, you can work with unlimited collaborators on unlimited public repositories with a full feature set, and on unlimited private repositories with a limited feature set.
 
-With GitHub Free, your personal account includes:
+## With GitHub Free, your personal account includes:
 
 - GitHub Community Support
 - Dependabot alerts
@@ -17,4 +19,6 @@ With GitHub Free, your personal account includes:
 
 A repository owned by a personal account has two permission levels: the repository owner and collaborators.
 
-More information: [Permission levels](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-personal-account-settings/permission-levels-for-a-personal-account-repository)
+## More information:
+
+- [Permission levels](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-personal-account-settings/permission-levels-for-a-personal-account-repository)

@@ -1,9 +1,7 @@
+[Projects](./projects.md)
+
 # Project fields
 
-Text and number fields
-In this article
-Adding a text field
-Adding a number field
 You can add custom text and number fields to your project.
 
 You can use text fields to include notes or any other freeform text in your project.
@@ -13,6 +11,10 @@ Text fields can be used in filters, for example: field:"exact text". Text fields
 Number fields can also be used in filters. You can use >, >=, <, <=, and .. range queries to filter by a number field. For example: field:5..15 or field:>=20.
 
 ## Adding a text field
+
+---
+
+### Process' checklist
 
 1. In table view, in the rightmost field header, click +.
 2. Click New field.
@@ -24,6 +26,10 @@ Alternatively, open the project command palette by pressing Command+K (Mac) or C
 
 ## Adding a number field
 
+---
+
+### Process' checklist
+
 1. In table view, in the rightmost field header, click +.
 2. Click New field.
 3. At the top of the dropdown, type the name of your new field.
@@ -34,13 +40,19 @@ Alternatively, open the project command palette by pressing Command+K (Mac) or C
 
 ## Date fields
 
+---
+
 You can create custom date fields that can be set by typing a date or using a calendar.
 
 You can filter for date values using the YYYY-MM-DD format, for example: date:2022-07-01. You can also use operators, such as >, >=, <, <=, and ... For example, date:>2022-07-01 and date:2022-07-01..2022-07-31. You can also provide @today to represent the current day in your filter.
 
 If your project makes use of date fields, you can use the roadmap layout to view items on a timeline.
 
-### Adding a date field
+## Adding a date field
+
+---
+
+Process' checklist
 
 1. In table view, in the rightmost field header, click +.
 2. Click New field.
@@ -52,13 +64,19 @@ Alternatively, open the project command palette by pressing Command+K (Mac) or C
 
 ## Single select fields
 
+---
+
 You can create single select fields with multiple options, each with a description and a color, that can be selected from a dropdown menu.
 
 You can filter by your single select fields by specifying the option, for example: fieldname:option. You can filter for multiple values by providing a comma-separated list of options, for example: fieldname:option,option.
 
 Single select fields can contain up to 50 options.
 
-### Adding a single select field
+## Adding a single select field
+
+---
+
+### Process' checklist
 
 1. In table view, in the rightmost field header, click +.
 2. Click New field.
@@ -70,9 +88,13 @@ Single select fields can contain up to 50 options.
 
 Alternatively, open the project command palette by pressing Command+K (Mac) or Ctrl+K (Windows/Linux) and start typing "Create new field."
 
-### Editing a single select field
+## Editing a single select field
+
+---
 
 You can set descriptions and colors for each of your single select options.
+
+### Process' checklist
 
 1. Access your project's settings.
 2. To the right of the single select field you want to edit, click (pencil).
@@ -83,16 +105,19 @@ You can set descriptions and colors for each of your single select options.
 
 ## Iteration fields
 
+---
+
 You can create iterations to plan upcoming work and group items.
 
 You can create an iteration field to associate items with specific repeating blocks of time. Iterations can be set to any length of time, can include breaks, and can be individually edited to modify name and date range. With projects, you can group by iteration to visualize the balance of upcoming work, use filters to focus on a single iteration, and sort by iteration.
 
 You can filter for iterations by specifying the iteration name or @current for the current iteration, @previous for the previous iteration, or @next for the next iteration. You can also use operators such as >, >=, <, <=, and ... For example, iteration:>"Iteration 4" and iteration:<@current.
 
-When you first create an iteration field, three iterations are automatically created. You can add additional iterations and make other changes on your project's settings page.
-If your project makes use of iteration fields, you can use the roadmap layout to view items on a timeline.
+## Adding an iteration field
 
-### Adding an iteration field
+---
+
+### Process' checklist
 
 1. In table view, in the rightmost field header, click +.
 2. Click New field.
@@ -104,7 +129,11 @@ If your project makes use of iteration fields, you can use the roadmap layout to
 
 Alternatively, open the project command palette by pressing Command+K (Mac) or Ctrl+K (Windows/Linux) and start typing "Create new field."
 
-### Adding new iterations
+## Adding new iterations
+
+---
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -114,9 +143,13 @@ Alternatively, open the project command palette by pressing Command+K (Mac) or C
 6. Optionally, to customize the duration of the new iteration and when it will start, click (arrow-down) More options, select a starting date and duration, and click Add.
 7. Click Save changes.
 
-### Editing an iteration
+## Editing an iteration
+
+---
 
 You can edit iterations in your project settings. You can also access the settings for an iteration field by clicking in the table header for the field and clicking Edit values.
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -127,9 +160,13 @@ You can edit iterations in your project settings. You can also access the settin
 7. Optionally, to delete an iteration, on the right of the iteration, click (trash).
 8. Click Save changes.
 
-### Inserting a break
+## Inserting a break
+
+---
 
 You can insert breaks into your iterations to communicate when you are taking time away from scheduled work. The duration of a new break defaults to the length of the most recently created iteration.
+
+### Process' checklist
 
 1. Navigate to your project.
 2. In the top-right, click ... to open the menu.
@@ -141,12 +178,24 @@ You can insert breaks into your iterations to communicate when you are taking ti
 
 ## About Tracks and Tracked by fields
 
-[About tracks and tracked by fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-tracks-and-tracked-by-fields)
+---
+
+### More information:
+
+- [About tracks and tracked by fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-tracks-and-tracked-by-fields)
 
 ## Renaming custom fields
 
-[Renaming custom fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/renaming-custom-fields)
+---
+
+### More information:
+
+- [Renaming custom fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/renaming-custom-fields)
 
 ## Deleting custom fields
 
-[Deleting custom fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/deleting-custom-fields)
+---
+
+### More information:
+
+- [Deleting custom fields](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/deleting-custom-fields)
