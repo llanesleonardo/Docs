@@ -61,7 +61,7 @@ YAML
 
 ```
 name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: $ github.actor  is learning GitHub Actions
 on: [push]
 jobs:
   check-bats-version:
@@ -342,24 +342,24 @@ Expressions are commonly used with the conditional if keyword in a workflow file
 You need to use specific syntax to tell GitHub to evaluate an expression rather than treat it as a string.
 
 ```
-${{ <expression> }}
+'$ <expression> '
 
 ```
 
-When you use expressions in an if conditional, you may omit the expression syntax (${{ }}) because GitHub automatically evaluates the if conditional as an expression.
+When you use expressions in an if conditional, you may omit the expression syntax ('$ ') because GitHub automatically evaluates the if conditional as an expression.
 
 ## Example expression in an if conditional
 
 ```
 steps:
   - uses: actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
-    if: ${{ <expression> }}
+    if: '$ <expression> '
 ```
 
 ```
 Example setting an environment variable
 env:
-  MY_ENV_VAR: ${{ <expression> }}
+  MY_ENV_VAR: '$ <expression> '
 ```
 
 ## Literals
@@ -370,14 +370,14 @@ As part of an expression, you can use boolean, null, number, or string data type
 
 ```
 env:
-  myNull: ${{ null }}
-  myBoolean: ${{ false }}
-  myIntegerNumber: ${{ 711 }}
-  myFloatNumber: ${{ -9.2 }}
-  myHexNumber: ${{ 0xff }}
-  myExponentialNumber: ${{ -2.99e-2 }}
+  myNull: '$ null '
+  myBoolean: '$ false '
+  myIntegerNumber: '$ 711 '
+  myFloatNumber: '$ -9.2 '
+  myHexNumber: '$ 0xff '
+  myExponentialNumber: '$ -2.99e-2 '
   myString: Mona the Octocat
-  myStringInBraces: ${{ 'It''s open source!' }}
+  myStringInBraces: '$ 'It''s open source!' '
 ```
 
 ## Operators
@@ -398,7 +398,7 @@ Contexts, objects, and properties will vary significantly under different workfl
 You can access contexts using the expression syntax.
 
 ```
-${{ <context> }}
+'$ <context> '
 
 ```
 
@@ -426,7 +426,7 @@ name: CI
 on: push
 jobs:
   prod-check:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: '$ github.ref == 'refs/heads/main' '
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploying to production server on branch $GITHUB_REF"
@@ -460,17 +460,17 @@ jobs:
     steps:
       - name: Dump GitHub context
         id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+        run: echo '$ toJSON(github) '
       - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
+        run: echo '$ toJSON(job) '
       - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
+        run: echo '$ toJSON(steps) '
       - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
+        run: echo '$ toJSON(runner) '
       - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
+        run: echo '$ toJSON(strategy) '
       - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
+        run: echo '$ toJSON(matrix) '
 ```
 
 ## github context
@@ -539,7 +539,7 @@ jobs:
 
   pull_request_ci:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
+    if: '$ github.event_name == 'pull_request' '
     steps:
       - uses: actions/checkout@v3
       - name: Run PR CI
@@ -584,8 +584,8 @@ jobs:
   windows_job:
     runs-on: windows-latest
     steps:
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
+      - run: echo 'Hi $ env.mascot '  # Hi Mona
+      - run: echo 'Hi $ env.mascot '  # Hi Octocat
         env:
           mascot: Octocat
   linux_job:
@@ -593,7 +593,7 @@ jobs:
     env:
       mascot: Tux
     steps:
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
+      - run: echo 'Hi $ env.mascot '  # Hi Tux
 
 ```
 
@@ -658,7 +658,7 @@ jobs:
 
   pull_request_ci:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
+    if: '$ github.event_name == 'pull_request' '
     steps:
       - uses: actions/checkout@v3
       - name: Run PR CI
@@ -701,8 +701,8 @@ jobs:
   windows_job:
     runs-on: windows-latest
     steps:
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
+      - run: echo 'Hi $ env.mascot '  # Hi Mona
+      - run: echo 'Hi $ env.mascot '  # Hi Octocat
         env:
           mascot: Octocat
   linux_job:
@@ -710,7 +710,7 @@ jobs:
     env:
       mascot: Tux
     steps:
-      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
+      - run: echo 'Hi $ env.mascot '  # Hi Tux
 ```
 
 ## vars context
@@ -742,15 +742,15 @@ on:
   workflow_dispatch:
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
+  env_var: '$ vars.ENV_CONTEXT_VAR '
 
 jobs:
   display-variables:
-    name: ${{ vars.JOB_NAME }}
+    name: '$ vars.JOB_NAME '
     # You can use configuration variables with the `vars` context for dynamic jobs
-    if: ${{ vars.USE_VARIABLES == 'true' }}
-    runs-on: ${{ vars.RUNNER }}
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    if: '$ vars.USE_VARIABLES == 'true' '
+    runs-on: '$ vars.RUNNER '
+    environment: '$ vars.ENVIRONMENT_STAGE '
     steps:
     - name: Use variables
       run: |
@@ -759,15 +759,15 @@ jobs:
         echo "overridden variable : $OVERRIDE_VAR"
         echo "variable from shell environment : $env_var"
       env:
-        REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
-        ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
-        OVERRIDE_VAR: ${{ vars.OVERRIDE_VAR }}
+        REPOSITORY_VAR: '$ vars.REPOSITORY_VAR '
+        ORGANIZATION_VAR: '$ vars.ORGANIZATION_VAR '
+        OVERRIDE_VAR: '$ vars.OVERRIDE_VAR '
 
-    - name: ${{ vars.HELLO_WORLD_STEP }}
-      if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
+    - name:'$ vars.HELLO_WORLD_STEP '
+      if: '$ vars.HELLO_WORLD_ENABLED == 'true' '
       uses: actions/hello-world-javascript-action@main
       with:
-        who-to-greet: ${{ vars.GREET_NAME }}
+        who-to-greet: '$ vars.GREET_NAME '
 
 ```
 
@@ -819,7 +819,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: pg_isready -h localhost -p ${{ job.services.postgres.ports[5432] }}
+      - run: pg_isready -h localhost -p '$ job.services.postgres.ports[5432] '
       - run: ./run-tests
 ```
 
@@ -856,10 +856,10 @@ on:
     outputs:
       firstword:
         description: "The first output string"
-        value: ${{ jobs.example_job.outputs.output1 }}
+        value: '$ jobs.example_job.outputs.output1 '
       secondword:
         description: "The second output string"
-        value: ${{ jobs.example_job.outputs.output2 }}
+        value: '$ jobs.example_job.outputs.output2 '
 
 jobs:
   example_job:
@@ -867,8 +867,8 @@ jobs:
     runs-on: ubuntu-latest
     # Map the job outputs to step outputs
     outputs:
-      output1: ${{ steps.step1.outputs.firstword }}
-      output2: ${{ steps.step2.outputs.secondword }}
+      output1: '$ steps.step1.outputs.firstword '
+      output2: '$ steps.step2.outputs.secondword '
     steps:
       - id: step1
         run: echo "firstword=hello" >> $GITHUB_OUTPUT
@@ -919,7 +919,7 @@ jobs:
         run:  echo "random_number=$(($RANDOM % 2))" >> $GITHUB_OUTPUT
       - name: Pass or fail
         run: |
-          if [[ ${{ steps.generate_number.outputs.random_number }} == 0 ]]; then exit 0; else exit 1; fi
+          if [[ '$ steps.generate_number.outputs.random_number ' == 0 ]]; then exit 0; else exit 1; fi
 ```
 
 ## runner context
@@ -955,14 +955,14 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build with logs
         run: |
-          mkdir ${{ runner.temp }}/build_logs
-          ./build.sh --log-path ${{ runner.temp }}/build_logs
+          mkdir '$ runner.temp '/build_logs
+          ./build.sh --log-path '$ runner.temp '/build_logs
       - name: Upload logs on fail
-        if: ${{ failure() }}
+        if: '$ failure() '
         uses: actions/upload-artifact@v3
         with:
           name: Build failure logs
-          path: ${{ runner.temp }}/build_logs
+          path: '$ runner.temp '/build_logs
 ```
 
 ## secrets context
@@ -1002,7 +1002,7 @@ jobs:
     steps:
       - uses: actions/labeler@v4
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: '$ secrets.GITHUB_TOKEN '
 ```
 
 ## strategy context
@@ -1039,12 +1039,12 @@ jobs:
         node: [14, 16]
     steps:
       - uses: actions/checkout@v3
-      - run: npm test > test-job-${{ strategy.job-index }}.txt
+      - run: npm test > test-job-$' strategy.job-index '.txt
       - name: Upload logs
         uses: actions/upload-artifact@v3
         with:
-          name: Build log for job ${{ strategy.job-index }}
-          path: test-job-${{ strategy.job-index }}.txt
+          name: Build log for job '$ strategy.job-index '
+          path: test-job-'$ strategy.job-index '.txt
 ```
 
 ## matrix context
@@ -1072,7 +1072,7 @@ on: push
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: '$ matrix.os '
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -1081,7 +1081,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '$ matrix.node '
       - name: Install dependencies
         run: npm ci
       - name: Run tests
@@ -1123,7 +1123,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      build_id: ${{ steps.build_step.outputs.build_id }}
+      build_id: '$ steps.build_step.outputs.build_id '
     steps:
       - uses: actions/checkout@v3
       - name: Build
@@ -1136,11 +1136,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: ./deploy --build ${{ needs.build.outputs.build_id }}
+      - run: ./deploy --build '$ needs.build.outputs.build_id '
   debug:
     needs: [build, deploy]
     runs-on: ubuntu-latest
-    if: ${{ failure() }}
+    if: '$ failure() '
     steps:
       - uses: actions/checkout@v3
       - run: ./debug
@@ -1184,10 +1184,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ inputs.perform_deploy }}
+    if:' $ inputs.perform_deploy '
     steps:
       - name: Deploy build to target
-        run: deploy --build ${{ inputs.build_id }} --target ${{ inputs.deploy_target }}
+        run: deploy --build '$ inputs.build_id ' --target '$ inputs.deploy_target '
 ```
 
 ### Example usage of the inputs context in a manually triggered workflow
@@ -1211,10 +1211,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ inputs.perform_deploy }}
+    if: '$ inputs.perform_deploy '
     steps:
       - name: Deploy build to target
-        run: deploy --build ${{ inputs.build_id }} --target ${{ inputs.deploy_target }}
+        run: deploy --build '$ inputs.build_id ' --target $ inputs.deploy_target '
 ```
 
 ## Examples
