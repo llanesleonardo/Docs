@@ -59,7 +59,7 @@ Returns 'Hello Mona the Octocat'.
 
 ### Example escaping braces
 
-format({{Hello {0} {1} {2}!}}, 'Mona', 'the', 'Octocat')
+format("brakets"Hello {0} {1} {2}!"brakets", 'Mona', 'the', 'Octocat')
 Returns '{Hello Mona the Octocat!}'.
 
 ## join
