@@ -93,6 +93,10 @@ With GitHub Free, your personal account includes:
 
 [Github Pages](./ghpages.md)
 
+## GitHub Pages Jekyll
+
+[Github Pages Jekyll](./ghpjekyll.md)
+
 #### Personal accounts
 
 A repository owned by a personal account has two permission levels: the repository owner and collaborators.
