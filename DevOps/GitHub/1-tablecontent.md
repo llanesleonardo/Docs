@@ -1,3 +1,7 @@
+layout: page
+title: "TABLE CONTENTS"
+permalink: /Docs/DevOps/GitHub/1-tablecontent.html
+
 # Github - Web-based version control system (Use git)
 
 These docs were gathered from various sources, such as:
@@ -6,6 +10,7 @@ These docs were gathered from various sources, such as:
 - [Github users](https://docs.github.com/en/enterprise-cloud@latest/admin/user-management)
 - [Github Glossary](https://docs.github.com/en/get-started/quickstart/github-glossary)
 - [Free courses](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)
+- [Git](https://git-scm.com/docs)
 
 if you need a quick reference you should go here:
 
@@ -13,20 +18,7 @@ if you need a quick reference you should go here:
 
 ## Github Free for personal account
 
-With GitHub Free for personal accounts, you can work with unlimited collaborators on unlimited public repositories with a full feature set, and on unlimited private repositories with a limited feature set.
-
-With GitHub Free, your personal account includes:
-
-- GitHub Community Support
-- Dependabot alerts
-- Deployment protection rules for public repositories
-- Two-factor authentication enforcement
-- 500 MB GitHub Packages storage
-- 120 GitHub Codespaces core hours per month
-- 15 GB GitHub Codespaces storage per month
-- GitHub Actions features:
-  - 2,000 minutes per month
-  - Deployment protection rules for public repositories
+[General Specs for personal accounts](./specs.md)
 
 ## Profile & Managing users
 
@@ -97,13 +89,9 @@ With GitHub Free, your personal account includes:
 
 [Github Pages Jekyll](./ghpjekyll.md)
 
-#### Personal accounts
-
-A repository owned by a personal account has two permission levels: the repository owner and collaborators.
-
-More information: [Permission levels](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-personal-account-settings/permission-levels-for-a-personal-account-repository)
-
 ## CoPilot
+
+.... working on it.
 
 ## Github Flow
 
