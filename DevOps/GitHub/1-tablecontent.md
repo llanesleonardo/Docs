@@ -91,6 +91,8 @@ With GitHub Free, your personal account includes:
 
 ## GitHub Pages
 
+[Github Pages](./ghpages.md)
+
 #### Personal accounts
 
 A repository owned by a personal account has two permission levels: the repository owner and collaborators.
@@ -133,3 +135,6 @@ More information: [Permission levels](https://docs.github.com/en/account-and-pro
 - [Troubleshooting publishing from a branch](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#troubleshooting-publishing-from-a-branch)
 - [Securing your GitHub Pages site with HTTPS](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)
 - [Troubleshooting certificate provisioning ("Certificate not yet created" error)](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https#troubleshooting-certificate-provisioning-certificate-not-yet-created-error)
+- [About JEkyll build errors for Github Pages sites](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-jekyll-build-errors-for-github-pages-sites) -[Troubleshooting Jekyll build errors for Github Pages sites](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/troubleshooting-jekyll-build-errors-for-github-pages-sites)
+- [Troubleshooting custom domains and GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages)
+- [Code security docs](https://docs.github.com/en/code-security)
