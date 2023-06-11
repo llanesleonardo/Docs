@@ -1,7 +1,3 @@
-layout: page
-title: "TABLE CONTENTS"
-permalink: /Docs/DevOps/GitHub/1-tablecontent.html
-
 # Github - Web-based version control system (Use git)
 
 These docs were gathered from various sources, such as:
@@ -24,33 +20,34 @@ if you need a quick reference you should go here:
 
 [Managing users](./managinguser.md)
 
+## Github Flow
+
+[Github WorkFlow](./githubflow.md)
+
 ## Projects
 
 [Projects](./projects.md)
+[Project's items](./projectitems.md)
+[Project's layouts](./projectlayouts.md)
+[Project's fields](./projectsfields.md)
+[Automating projects](./automatingprojects.md)
+[Project's Insights](./insightsofprojects.md)
+[Managing projects](./managingprojects.md)
+[Planning and Tracking work](./planningtrackingwork.md)
 
 ## Repositories
 
 [Repositories](./repositories.md)
+[Licensing a Repository](./licensing_repository.md)
+[Working with files](./workingfiles.md)
 
 ## Branches
 
 [Git Repository branches](./branches.md)
 
-## Tags
-
-[Tags](./tags.md)
-
-## Releases
-
-[Releases](./releases.md)
-
 ## Commits
 
 [Commits](./commits.md)
-
-## Forks
-
-[Forks](./forks.md)
 
 ## Pull request
 
@@ -58,16 +55,51 @@ if you need a quick reference you should go here:
 [Reviews](./reviews.md)
 [Incorporate changes](./incorporatechanges.md)
 [Merges](./merges.md)
-
-## Actions
-
-[Github Actions](./actions.md)
+[Filtering and Searching a Pull Request](./fsissuespullrequest.md)
 
 ## Issues
 
 [Github issues](./issues.md)
 [planning & tracking work](./planningtrackingwork.md)
-[Filtering & searching issues and Pull Request](./filtersearchingissuespullrequest.md)
+[Filtering and searching Issues](./filtersearchingissuespullrequest.md)
+
+## Tags
+
+[Tags](./tags.md)
+
+## Labels
+
+[Managing labels](./managinglabels.md)
+
+## Releases
+
+[Releases](./releases.md)
+
+## Packages
+
+[Packages](./packages.md)
+
+## Forks
+
+[Forks](./forks.md)
+
+## Actions
+
+[Github Actions](./gha.md)
+[Github Actions Functions](./ghabifunctions.md)
+[Github Continuous integration](./ghabuildtext.md)
+[Github Deployment](./ghadeployment.md)
+[Github Enviroments](./ghaenviroments.md)
+[Github Actions Jobs](./ghajobs.md)
+[Github Actions Workflow](./ghaworkflow.md)
+[Github Management Workflows Run](./ghamanageworkflowruns.md)
+[Github Actions Migrate](./ghamigrate.md)
+[Github Actions Troubleshooting](./ghamonitoringtroubleshoot.md)
+[Github Actions Project management](./ghaprojectmanagement.md)
+[Github Actions Publish Packages](./ghapublishpackage.md)
+[Github Actions Review Deployments](./ghareviewdeployments.md)
+[Github Actions Service Containers](./ghaservicecontainers.md)
+[Github Actions Variables](./ghavariables.md)
 
 ## View activity and Data
 
@@ -79,23 +111,16 @@ if you need a quick reference you should go here:
 
 ## GitHub Security
 
-[Github Security](./security.md)
+[Github Security](./security_docs.md)
 
 ## GitHub Pages
 
 [Github Pages](./ghpages.md)
-
-## GitHub Pages Jekyll
-
 [Github Pages Jekyll](./ghpjekyll.md)
 
 ## CoPilot
 
 .... working on it.
-
-## Github Flow
-
-[Github WorkFlow](./githubflow.md)
 
 ### Config Visual Studio for Github
 
