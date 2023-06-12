@@ -1,8 +1,12 @@
+Back: [Pull Requests](./pullrequest.md)
+
 # Filtering and searching issues and pull requests
 
 To find detailed information about a repository on GitHub, you can filter, sort, and search issues and pull requests that are relevant to the repository.
 
 ## Filtering issues and pull requests
+
+---
 
 Issues and pull requests come with a set of default filters you can apply to organize your listings.
 
@@ -15,13 +19,19 @@ You can filter issues and pull requests to find:
 - Issues and pull requests that are assigned to you
 - Issues and pull requests where you're @mentioned
 
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Issues or Pull requests.
 3. Above the list, select the Filters dropdown menu, then click the type of filter you're interested in.
 
 ## Filtering issues and pull requests by assignees
 
+---
+
 Once you've assigned an issue or pull request to someone, you can find items based on who's working on them.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Issues or Pull requests.
@@ -30,7 +40,11 @@ Once you've assigned an issue or pull request to someone, you can find items bas
 
 ## Filtering issues and pull requests by labels
 
+---
+
 Once you've applied labels to an issue or pull request, you can find items based on their labels.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Issues or Pull requests.
@@ -38,6 +52,8 @@ Once you've applied labels to an issue or pull request, you can find items based
 4. In the list of labels, click a label.
 
 ## Filtering pull requests by review status
+
+---
 
 You can use filters to list pull requests by review status and to find pull requests that you've reviewed or other people have asked you to review.
 
@@ -51,6 +67,8 @@ You can filter a repository's list of pull requests to find:
 - Pull requests that someone has asked you directly to review
 - Pull requests that someone has asked you, or a team you're a member of, to review
 
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Pull requests.
 3. In the upper-right corner, select the Reviews dropdown menu.
@@ -58,13 +76,19 @@ You can filter a repository's list of pull requests to find:
 
 ## Using search to filter issues and pull requests
 
+---
+
 You can use advanced filters to search for issues and pull requests that meet specific criteria.
 
-Searching for issues and pull requests
+## Searching for issues and pull requests
+
+---
 
 The issues and pull requests search bar allows you to define your own custom filters and sort by a wide variety of criteria. You can find the search bar on each repository's Issues and Pull requests tabs and on your Issues and Pull requests dashboards.
 
 ### About search terms
+
+---
 
 With issue and pull request search terms, you can:
 
@@ -94,6 +118,8 @@ For pull requests, you can also use search to:
 
 ## Sorting issues and pull requests
 
+---
+
 Filters can be sorted to provide better information during a specific time period.
 
 You can sort any filtered view by:
@@ -106,6 +132,8 @@ You can sort any filtered view by:
 - The oldest updated issues or pull requests
 - The most added reaction on issues or pull requests
 
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Issues or Pull requests.
 3. Above the list of issues or pull requests, select the Sort dropdown menu, then click a sort method.
@@ -113,6 +141,8 @@ You can sort any filtered view by:
 To clear your sort selection, click Sort > Newest.
 
 ## Sharing filters
+
+---
 
 When you filter or sort issues and pull requests, your browser's URL is automatically updated to match the new view.
 

@@ -1,6 +1,10 @@
+Back: [Pull Requests](./pullrequest.md)
+
 # Reviews
 
 ## About pull request reviews
+
+---
 
 Reviews allow collaborators to comment on the changes proposed in pull requests, approve the changes, or request further changes before the pull request is merged. Repository administrators can require that all pull requests are approved before being merged.
 
@@ -22,7 +26,9 @@ A review has three possible statuses:
 
 You can view all of the reviews a pull request has received in the Conversation timeline, and you can see reviews by repository owners and collaborators in the pull request's merge box.
 
-### Resolving conversations
+## Resolving conversations
+
+---
 
 You can resolve a conversation in a pull request if you opened the pull request or if you have write access to the repository where the pull request was opened.
 
@@ -32,27 +38,39 @@ The entire conversation will be collapsed and marked as resolved, making it easi
 
 If the suggestion in a comment is out of your pull request's scope, you can open a new issue that tracks the feedback and links back to the original comment.
 
-#### Discovering and navigating conversations
+## Discovering and navigating conversations
+
+---
 
 You can discover and navigate to all the conversations in your pull request using the Conversations menu that's shown at the top of the Files Changed tab.
 
 From this view, you can see which conversations are unresolved, resolved, and outdated. This makes it easy to discover and resolve conversations.
 
-### Re-requesting a review
+## Re-requesting a review
 
-You can re-request a review, for example, after you've made substantial changes to your pull request. To request a fresh review from a reviewer, in the sidebar of the Conversation tab, click the icon.
+---
 
-### Required reviews
+You can re-request a review, for example, after you've made substantial changes to your pull request. To request a fresh review from a reviewer, in the sidebar of the Conversation tab, click the (refresh icon).
+
+## Required reviews
+
+---
 
 Repository administrators or custom roles with the "edit repository rules" permission can require that all pull requests receive a specific number of approving reviews before someone merges the pull request into a protected branch. You can require approving reviews from people with write permissions in the repository or from a designated code owner.
 
 ## Reviewing proposed changes in a pull request
 
+---
+
 In a pull request, you can review and discuss commits, changed files, and the differences (or "diff") between the files in the base and compare branches.
 
 You can review changes in a pull request one file at a time. While reviewing the files in a pull request, you can leave individual comments on specific changes. After you finish reviewing each file, you can mark the file as viewed. This collapses the file, helping you identify the files you still need to review. A progress bar in the pull request header shows the number of files you've viewed. After reviewing as many files as you want, you can approve the pull request or request additional changes by submitting your review with a summary comment.
 
-### Starting a review
+## Starting a review
+
+---
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to review.
@@ -73,7 +91,11 @@ Before you submit your review, your line comments are pending and only visible t
 
 ### Reviewing dependency changes
 
+---
+
 If the pull request contains changes to dependencies you can use the dependency review for a manifest or lock file to see what has changed and check whether the changes introduce security vulnerabilities.
+
+### Process' checklist
 
 1. On the pull request, click Files changed.
 2. On the right of the header for a manifest or lock file, display the dependency review by clicking the rich diff button.
@@ -81,14 +103,22 @@ If the pull request contains changes to dependencies you can use the dependency 
 
 ### Marking a file as viewed
 
+---
+
 After you finish reviewing a file, you can mark the file as viewed, and the file will collapse. If the file changes after you view the file, it will be unmarked as viewed.
+
+### Process' checklist
 
 1. On the pull request, click Files changed.
 2. On the right of the header of the file you've finished reviewing, select Viewed.
 
 ### Submitting your review
 
+---
+
 After you've finished reviewing all the files you want in the pull request, submit your review.
+
+### Process' checklist
 
 1. On the pull request, click Files changed.
 2. Above the changed code, click Review changes.
@@ -101,11 +131,17 @@ After you've finished reviewing all the files you want in the pull request, subm
 
 ## Filtering files in a pull request
 
+---
+
 To help you quickly review changes in a large pull request, you can filter changed files or use the file tree to navigate between files.
 
 You can filter files in a pull request by file extension type, such as .html or .js, lack of an extension, code ownership, or dotfiles. You can also use the file tree to filter by file path, navigate between files, or see a high level view of the changed files.
 
-### Using the file filter dropdown
+## Using the file filter dropdown
+
+---
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to filter.
@@ -113,7 +149,11 @@ You can filter files in a pull request by file extension type, such as .html or 
 4. Use the File filter dropdown menu, and select, deselect, or click the desired filters.
 5. Optionally, to clear the filter selection, under the Files changed tab, click Clear filters.
 
-### Using the file tree
+## Using the file tree
+
+---
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to filter.
@@ -122,6 +162,8 @@ You can filter files in a pull request by file extension type, such as .html or 
 5. To filter by file path, enter part or all of the file path in the Filter changed files search box. Alternatively, use the file filter dropdown.
 
 ## Finding changed methods and functions in a pull request
+
+---
 
 You can quickly find proposed changes to a method or function in a pull request in .go, .js, .ts, .py, .php, and .rb files.
 
@@ -135,6 +177,8 @@ The summary list of methods and functions is created from these supported file t
 - Python
 - Ruby
 
+### Process' checklist
+
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request where you'd like to find the changed functions and methods.
 3. On the pull request, click Files changed.
@@ -144,6 +188,8 @@ The summary list of methods and functions is created from these supported file t
 
 ## Commenting on a pull request
 
+---
+
 After you open a pull request in a repository, collaborators or team members can comment on the comparison of files between the two specified branches, or leave general comments on the project as a whole.
 
 You can comment on a pull request's Conversation tab to leave general comments, questions, or props. You can also suggest changes that the author of the pull request can apply directly from your comment.
@@ -151,6 +197,8 @@ You can comment on a pull request's Conversation tab to leave general comments, 
 You can also comment on specific files or sections of a file in a pull request's Files changed tab in the form of individual line or file comments, or as part of a pull request review. Adding line or file comments is a great way to discuss questions about implementation or provide feedback to the author.
 
 To reply to an existing line or file comment, you'll need to navigate to the comment on either the Conversation tab or Files changed tab and add an additional comment below it.
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request where you'd like to leave line comments.
@@ -165,17 +213,23 @@ Anyone watching the pull request or repository will receive a notification of yo
 
 ## Viewing a pull request review
 
+---
+
 You can view all of the comments made in a single pull request review.
 
 You can find a pull request where you or a team you're a member of is requested for review with the search qualifier review-requested:[USERNAME] or team-review-requested:[TEAMNAME].
 
 When you view a full review, you'll see the same version of the pull request as the reviewer did at the time of the review.
 
+### Process' checklist
+
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to review.
 3. On the "Conversation" tab, scroll to the review you'd like to see, then click View changes.
 
 ## Reviewing dependency changes in a pull request
+
+---
 
 If a pull request contains changes to dependencies, you can view a summary of what has changed and whether there are known vulnerabilities in any of the dependencies.
 
@@ -187,9 +241,13 @@ Dependency review helps you understand dependency changes and the security impac
 
 Dependency review allows you to "shift left". You can use the provided predictive information to catch vulnerable dependencies before they hit production.
 
-You can use the dependency review action to help enforce dependency reviews on pull requests in your repository. The dependency review action scans your pull requests for dependency changes and raises an error if any new dependencies have known vulnerabilities. The action is supported by an API endpoint that compares the dependencies between two revisions and reports any differences.
+You can use the dependency review action to help enforce dependency reviews on pull requests in your repository. The dependency review action scans your pull requests for dependency changes and raises an error if any new dependencies have known vulnerabilities.
+
+The action is supported by an API endpoint that compares the dependencies between two revisions and reports any differences.
 
 You can configure the dependency review action to better suit your needs by specifying the type of dependency vulnerability you wish to catch.
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to review.
@@ -207,23 +265,29 @@ The icon beside each dependency indicates whether the dependency has been added 
 
 Other information includes:
 
-The version, or version range, of the new, updated, or deleted dependency.
+- The version, or version range, of the new, updated, or deleted dependency.
+
 For a specific version of a dependency:
-The age of that release of the dependency.
-The number of projects that are dependent on this software. This information is taken from the dependency graph. Checking the number of dependents can help you avoid accidentally adding the wrong dependency.
-The license used by this dependency, if this information is available. This is useful if you want to avoid code with certain licenses being used in your project.
+
+- The age of that release of the dependency.
+- The number of projects that are dependent on this software. This information is taken from the dependency graph. Checking the number of dependents can help you avoid accidentally adding the wrong dependency.
+- The license used by this dependency, if this information is available. This is useful if you want to avoid code with certain licenses being used in your project.
+
 Where a dependency has a known vulnerability, the warning message includes:
 
-A brief description of the vulnerability.
-A Common Vulnerabilities and Exposures (CVE) or GitHub Security Advisories (GHSA) identification number. You can click this ID to find out more about the vulnerability.
-The severity of the vulnerability.
-The version of the dependency in which the vulnerability was fixed. If you are reviewing a pull request for someone, you might ask the contributor to update the dependency to the patched version, or a later release.
+- A brief description of the vulnerability.
+- A Common Vulnerabilities and Exposures (CVE) or GitHub Security
+- Advisories (GHSA) identification number. You can click this ID to find out more about the vulnerability.
+- The severity of the vulnerability.
+- The version of the dependency in which the vulnerability was fixed. If you are reviewing a pull request for someone, you might ask the contributor to update the dependency to the patched version, or a later release.
 
 7. You may also want to review the source diff, because there could be changes to the manifest or lock file that don't change dependencies, or there could be dependencies that GitHub can't parse and which, as a result, don't appear in the dependency review.
 
 To return to the source diff view, click the button.
 
 ## Incorporating feedback in your pull request
+
+---
 
 When reviewers suggest changes in a pull request, you can automatically incorporate the changes into the pull request or open an issue to track out-of-scope suggestions.
 
@@ -233,6 +297,8 @@ To quickly incorporate more than one suggested change into a single commit, you 
 
 Each person who suggested a change included in the commit will be a co-author of the commit. The person who applies the suggested changes will be a co-author and the committer of the commit.
 
+### Process' checklist
+
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to apply a suggested change to.
 3. Navigate to the first suggested change you'd like to apply.
@@ -241,20 +307,31 @@ Each person who suggested a change included in the commit will be a co-author of
 4. In the commit message field, type a short, meaningful commit message that describes the change you made to the file or files.
 5. Click Commit changes.
 
-[Open a commit suggestion](https://www.youtube.com/watch?v=AFWwVPrULaY)
+### More information:
+
+- [Open a commit suggestion](https://www.youtube.com/watch?v=AFWwVPrULaY)
 
 ## Re-requesting a review
 
-You can re-request a review, for example, after you've made substantial changes to your pull request. To request a fresh review from a reviewer, in the sidebar of the Conversation tab, click the icon.
+---
+
+You can re-request a review, for example, after you've made substantial changes to your pull request. To request a fresh review from a reviewer, in the sidebar of the Conversation tab, click the (refresh icon).
 
 ## Opening an issue for an out-of-scope suggestion
 
-If someone suggests changes to your pull request and the changes are out of the pull request's scope, you can open a new issue to track the feedback. For more information, see "Creating an issue."
+---
+
+If someone suggests changes to your pull request and the changes are out of the pull request's scope, you can open a new issue to track the feedback.
 
 ## Approving a pull request with required reviews
 
+---
+
 If your repository requires reviews, pull requests must have a specific number of approving reviews from people with write or admin permissions in the repository before they can be merged.
+
 You can comment on a pull request, approve the changes, or request improvements before approving.
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to review.
@@ -267,9 +344,13 @@ You can comment on a pull request, approve the changes, or request improvements 
 
 ## Dismissing a pull request review
 
+---
+
 If your repository requires reviews, you can dismiss pull request reviews that are no longer valid or are unable to be approved by the reviewer.
 
 If a pull request has changed since it was reviewed and the person who requested changes isn't available to give an approving review, repository administrators or people with write access can dismiss a review. This changes the status of the review to a review comment. When you dismiss a review, you must add a comment explaining why you dismissed it. Your comment will be added to the pull request conversation.
+
+### Process checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to review.
@@ -279,20 +360,23 @@ If a pull request has changed since it was reviewed and the person who requested
 
 ## Checking out pull requests locally
 
+---
+
 When someone sends you a pull request from a fork or branch of your repository, you can merge it locally to resolve a merge conflict or to test and verify the changes before merging on GitHub.
 
 To Modify an active pull request locally:
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the list of pull requests, click the pull request you'd like to modify.
 3. To choose where you'd like to open the pull request, select the Code dropdown and click one of the tabs.
 
 To Modify an inactive pull request locally:
-If a pull request's author is unresponsive to requests or has deleted their fork, the pull request can still be merged. However, if you want to make changes to a pull request and the author is not responding, you'll need to perform some additional steps to update the pull request.
 
-Once a pull request is opened, GitHub stores all of the changes remotely. In other words, commits in a pull request are available in a repository even before the pull request is merged. You can fetch an open pull request and recreate it as your own.
-
-Anyone can work with a previously opened pull request to continue working on it, test it out, or even open a new pull request with additional changes. However, only collaborators with push access can merge pull requests.
+- If a pull request's author is unresponsive to requests or has deleted their fork, the pull request can still be merged. However, if you want to make changes to a pull request and the author is not responding, you'll need to perform some additional steps to update the pull request.
+- Once a pull request is opened, GitHub stores all of the changes remotely. In other words, commits in a pull request are available in a repository even before the pull request is merged. You can fetch an open pull request and recreate it as your own.
+- Anyone can work with a previously opened pull request to continue working on it, test it out, or even open a new pull request with additional changes. However, only collaborators with push access can merge pull requests.
 
 1. Under your repository name, click Issues or Pull requests.
 2. In the "Pull Requests" list, click the pull request you'd like to merge.

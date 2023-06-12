@@ -1,32 +1,46 @@
+Back: [Pull Requests](./pullrequest.md)
+
 # Incorporate changes
 
 You can merge pull requests by retaining all the commits in a feature branch, squashing all commits into a single commit, or by rebasing individual commits from the head branch onto the base branch.
 
 ## Merge your commits
 
+---
+
 When you click the default Merge pull request option on a pull request on GitHub.com, all commits from the feature branch are added to the base branch in a merge commit. The pull request is merged using the --no-ff option.
 
 To merge pull requests, you must have write permissions in the repository.
 
-[Merge your commits](https://docs.github.com/assets/cb-5402/mw-1440/images/help/pull_requests/standard-merge-commit-diagram.webp)
+### More information:
+
+- [Merge your commits](https://docs.github.com/assets/cb-5402/mw-1440/images/help/pull_requests/standard-merge-commit-diagram.webp)
 
 ## Squash and merge your commits
+
+---
 
 When you select the Squash and merge option on a pull request on GitHub.com, the pull request's commits are squashed into a single commit. Instead of seeing all of a contributor's individual commits from a topic branch, the commits are combined into one commit and merged into the default branch. Pull requests with squashed commits are merged using the fast-forward option.
 
 To squash and merge pull requests, you must have write permissions in the repository, and the repository must allow squash merging.
 
-[Squash and merge your commits](https://docs.github.com/assets/cb-5742/mw-1440/images/help/pull_requests/commit-squashing-diagram.webp)
+### More information:
+
+- [Squash and merge your commits](https://docs.github.com/assets/cb-5742/mw-1440/images/help/pull_requests/commit-squashing-diagram.webp)
 
 You can use squash and merge to create a more streamlined Git history in your repository. Work-in-progress commits are helpful when working on a feature branch, but they aren’t necessarily important to retain in the Git history. If you squash these commits into one commit while merging to the default branch, you can retain the original changes with a clear Git history.
 
 When you squash and merge, GitHub generates a default commit message, which you can edit. Depending on how the repository is configured and the number of commits in the pull request, not including merge commits, this message may include the pull request title, pull request description, or information about the commits.
 
-[Merge message for a squash merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#merge-message-for-a-squash-merge)
+### More information:
+
+- [Merge message for a squash merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#merge-message-for-a-squash-merge)
 
 People with maintainer or admin access to a repository can configure their repository's default merge message for all squashed commits to use the pull request title, the pull request title and commit details, or the pull request title and description.
 
-### Squashing and merging a long-running branch
+## Squashing and merging a long-running branch
+
+---
 
 If you plan to continue work on the head branch of a pull request after the pull request is merged, we recommend you don't squash and merge the pull request.
 
@@ -35,6 +49,8 @@ When you create a pull request, GitHub identifies the most recent commit that is
 Because this commit is only on the base branch and not the head branch, the common ancestor of the two branches remains unchanged. If you continue to work on the head branch, then create a new pull request between the two branches, the pull request will include all of the commits since the common ancestor, including commits that you squashed and merged in the previous pull request. If there are no conflicts, you can safely merge these commits. However, this workflow makes merge conflicts more likely. If you continue to squash and merge pull requests for a long-running head branch, you will have to resolve the same conflicts repeatedly.
 
 ## Rebase and merge your commits
+
+---
 
 When you select the Rebase and merge option on a pull request on GitHub.com, all commits from the topic branch (or head branch) are added onto the base branch individually without a merge commit. In that way, the rebase and merge behavior resembles a fast-forward merge by maintaining a linear project history. However, rebasing achieves this by re-writing the commit history on the base branch with new commits.
 
@@ -60,6 +76,8 @@ Anyone with write permissions in the repository, can then merge the changes usin
 
 ## Indirect merges
 
+---
+
 A pull request can be merged automatically if its head branch is directly or indirectly merged into the base branch externally. In other words, if the head branch's tip commit becomes reachable from the tip of the target branch. For example:
 
 - Branch main is at commit C.
@@ -71,6 +89,8 @@ If pull request E --> main is merged first, pull request D --> main will be mark
 Pull requests in this situation will be marked as merged even if branch protection rules have not been satisfied.
 
 ## Merging a pull request
+
+---
 
 Merge a pull request into the upstream branch when work is completed. Anyone with push access to the repository can complete the merge.
 
@@ -90,6 +110,8 @@ You can link a pull request to an issue to show that a fix is in progress and to
 
 If you decide you don't want the changes in a topic branch to be merged to the upstream branch, you can close the pull request without merging.
 
+### Process' checklist
+
 1. Under your repository name, click Pull requests.
 2. In the "Pull Requests" list, click the pull request you'd like to merge.
 3. Scroll down to the bottom of the pull request. Depending on the merge options enabled for your repository, you can:
@@ -103,6 +125,8 @@ If you decide you don't want the changes in a topic branch to be merged to the u
 
 ## Automatically merging a pull request
 
+---
+
 You can increase development velocity by enabling auto-merge for a pull request so that the pull request will merge automatically when all merge requirements are met.
 
 If you enable auto-merge for a pull request, the pull request will merge automatically when all required reviews are met and all required status checks have passed. Auto-merge prevents you from waiting around for requirements to be met, so you can move on to other tasks.
@@ -113,9 +137,13 @@ After you enable auto-merge for a pull request, if someone who does not have wri
 
 You can provide feedback about auto-merge through a GitHub Community discussion.
 
-### Enabling auto-merge
+## Enabling auto-merge
+
+---
 
 People with write permissions to a repository can enable auto-merge for a pull request.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Pull requests.
@@ -125,9 +153,13 @@ People with write permissions to a repository can enable auto-merge for a pull r
 6. If you chose the merge or squash and merge methods, type a commit message and description and choose the email address you want to author the merge commit.
 7. Click Confirm auto-merge.
 
-### Disabling auto-merge
+## Disabling auto-merge
+
+---
 
 People with write permissions to a repository and pull request authors can disable auto-merge for a pull request.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Pull requests.
@@ -135,6 +167,8 @@ People with write permissions to a repository and pull request authors can disab
 4. In the merge box, click Disable auto-merge.
 
 ## Merging a pull request with a merge queue
+
+---
 
 If a merge queue is required by the branch protection setting for the branch, you can add your pull requests to a merge queue and GitHub will merge the pull requests for you once all required checks have passed.
 
@@ -144,14 +178,20 @@ Once a pull request has passed all of the required branch protection checks, a u
 
 A merge queue may use GitHub Actions.
 
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Pull requests.
 3. In the "Pull Requests" list, click the pull request you would like to add to a merge queue.
 4. Click Merge when ready to add the pull request to the merge queue. Alternatively, if you are an administrator, you can:
-   1. Directly merge the pull request by checking Merge without waiting for requirements to be met (bypass branch protections), if allowed by branch protection settings, and follow the standard flow.
+   - Directly merge the pull request by checking Merge without waiting for requirements to be met (bypass branch protections), if allowed by branch protection settings, and follow the standard flow.
 5. Confirm you want to add the pull request to the merge queue by clicking Confirm merge when ready.
 
-### Removing a pull request from a merge queue
+## Removing a pull request from a merge queue
+
+---
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Pull requests.
@@ -162,19 +202,29 @@ Alternatively, you can navigate to the merge queue page for the base branch, cli
 
 ### Viewing merge queues
 
+---
+
 You can view the merge queue for a base branch in various places on GitHub.
 
 - On the Branches page for the repository. We recommend you use this route if you don't have or don't know about a pull request already in a queue, and if you want to see what's in that queue. For more information, see "Viewing branches in your repository."
 - On the pull request page when merge queue is required for merging, scroll to the bottom of the timeline and click the merge queue link.
 - The merge queue view shows the pull requests that are currently in the queue, with your pull requests clearly marked.
 
-### Handling pull requests removed from the merge queue
+## Handling pull requests removed from the merge queue
 
-After grouping a pull request with the latest version of the target branch and changes ahead of it in the queue, if there are failed required status checks or conflicts with the base branch, GitHub will remove the pull request from the queue. The pull request timeline will display the reason why the pull request was removed from the queue.
+---
+
+After grouping a pull request with the latest version of the target branch and changes ahead of it in the queue, if there are failed required status checks or conflicts with the base branch, GitHub will remove the pull request from the queue.
+
+The pull request timeline will display the reason why the pull request was removed from the queue.
 
 ## Closing a pull request
 
+---
+
 You may choose to close a pull request without merging it into the upstream branch. This can be handy if the changes proposed in the branch are no longer needed, or if another solution has been proposed in another branch.
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the "Pull Requests" list, click the pull request you'd like to close.
@@ -183,15 +233,20 @@ You may choose to close a pull request without merging it into the upstream bran
 
 ## Reverting a pull request
 
+---
+
 You can revert a pull request after it's been merged to the upstream branch.
 
 Reverting a pull request on GitHub creates a new pull request that contains one revert of the merge commit from the original merged pull request. To revert pull requests, you must have write permissions in the repository.
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the "Pull Requests" list, click the pull request you'd like to revert.
 3. Near the bottom of the pull request, click Revert. If the Revert option isn't displayed, you'll need to ask the repository administrator for write permissions.
 4. Merge the resulting pull request. For more information, see "Merging a pull request."
 
-[How to revert a commit on Github](https://www.youtube.com/watch?v=H2DuJNWbqLw)
+### More information:
 
-[Use of Revert command on Git](https://www.youtube.com/watch?v=U3uwMr3u2Q4)
+- [How to revert a commit on Github](https://www.youtube.com/watch?v=H2DuJNWbqLw)
+- [Use of Revert command on Git](https://www.youtube.com/watch?v=U3uwMr3u2Q4)

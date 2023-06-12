@@ -1,10 +1,16 @@
+Back: [Pull Request](./pullrequest.md)
+
 # Merge
 
 ## Address merge conflicts
 
+---
+
 Merge conflicts happen when you merge branches that have competing commits, and Git needs your help to decide which changes to incorporate in the final merge.
 
-Git can often resolve differences between branches and merge them automatically. Usually, the changes are on different lines, or even in different files, which makes the merge simple for computers to understand. However, sometimes there are competing changes that Git can't resolve without your help. Often, merge conflicts happen when people make different changes to the same line of the same file, or when one person edits a file and another person deletes the same file.
+Git can often resolve differences between branches and merge them automatically. Usually, the changes are on different lines, or even in different files, which makes the merge simple for computers to understand.
+
+However, sometimes there are competing changes that Git can't resolve without your help. Often, merge conflicts happen when people make different changes to the same line of the same file, or when one person edits a file and another person deletes the same file.
 
 You must resolve all merge conflicts before you can merge a pull request on GitHub. If you have a merge conflict between the compare branch and base branch in your pull request, you can view a list of the files with conflicting changes above the Merge pull request button. The Merge pull request button is deactivated until you've resolved all conflicts between the compare branch and base branch.
 
@@ -25,11 +31,15 @@ $ git merge BRANCH-NAME
 
 ## Resolving a merge conflict on GitHub
 
+---
+
 You can resolve simple merge conflicts that involve competing line changes on GitHub, using the conflict editor.
 
 You can only resolve merge conflicts on GitHub that are caused by competing line changes, such as when people make different changes to the same line of the same file on different branches in your Git repository. For all other types of merge conflicts, you must resolve the conflict locally on the command line.
 
-hen you resolve a merge conflict on GitHub, the entire base branch of your pull request is merged into the head branch. Make sure you really want to commit to this branch. If the head branch is the default branch of your repository, you'll be given the option of creating a new branch to serve as the head branch for your pull request. If the head branch is protected you won't be able to merge your conflict resolution into it, so you'll be prompted to create a new head branch.
+When you resolve a merge conflict on GitHub, the entire base branch of your pull request is merged into the head branch. Make sure you really want to commit to this branch. If the head branch is the default branch of your repository, you'll be given the option of creating a new branch to serve as the head branch for your pull request. If the head branch is protected you won't be able to merge your conflict resolution into it, so you'll be prompted to create a new head branch.
+
+### Process' checklist
 
 1. Under your repository name, click Pull requests.
 2. In the "Pull Requests" list, click the pull request with a merge conflict that you'd like to resolve.
@@ -53,15 +63,21 @@ Click Create branch and update my pull request or I understand, continue updatin
 
 ## Resolving a merge conflict using the command line
 
+---
+
 You can resolve merge conflicts using the command line and a text editor.
 
 Merge conflicts occur when competing changes are made to the same line of a file, or when one person edits a file and another person deletes the same file.
 
 ### Competing line change merge conflicts
 
+---
+
 To resolve a merge conflict caused by competing line changes, you must choose which changes to incorporate from the different branches in a new commit.
 
 For example, if you and another person both edited the file styleguide.md on the same lines in different branches of the same Git repository, you'll get a merge conflict error when you try to merge these branches. You must resolve this merge conflict with a new commit before you can merge these branches.
+
+### Process' checklist
 
 1. Git Bash.
 2. Navigate into the local Git repository that has the merge conflict.
@@ -93,9 +109,13 @@ $ git commit -m "Resolved merge conflict by incorporating both suggestions."
 
 ### Removed file merge conflicts
 
+---
+
 To resolve a merge conflict caused by competing changes to a file, where a person deletes a file in one branch and another person edits the same file, you must choose whether to delete or keep the removed file in a new commit.
 
 For example, if you edited a file, such as README.md, and another person removed the same file in another branch in the same Git repository, you'll get a merge conflict error when you try to merge these branches. You must resolve this merge conflict with a new commit before you can merge these branches.
+
+### Process' checklist
 
 1. Open Git Bash.
 2. Navigate into the local Git repository that has the merge conflict.
