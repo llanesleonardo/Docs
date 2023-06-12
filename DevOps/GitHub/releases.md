@@ -1,6 +1,6 @@
-# Releases
+Back: [Table contents](./1-tablecontent.md)
 
-[Video about releases](https://www.youtube.com/watch?v=Ob9llA_QhQY)
+# Releases
 
 You can create a release to package software, along with release notes and links to binary files, for other people to use.
 
@@ -12,11 +12,19 @@ You can manually create release notes while managing a release. Alternatively, y
 
 When viewing the details for a release, the creation date for each release asset is shown next to the release asset.
 
-People with admin permissions to a repository can choose whether Git Large File Storage (Git LFS) objects are included in the ZIP files and tarballs that GitHub creates for each release. [GitHub Large files](https://docs.github.com/en/repositories/working-with-files/managing-large-files)
+People with admin permissions to a repository can choose whether Git Large File Storage (Git LFS) objects are included in the ZIP files and tarballs that GitHub creates for each release.
+
+### More information:
+
+- [GitHub Large files](https://docs.github.com/en/repositories/working-with-files/managing-large-files)
 
 If a release fixes a security vulnerability, you should publish a security advisory in your repository. GitHub reviews each published security advisory and may use it to send Dependabot alerts to affected repositories.
 
 You can view the Dependents tab of the dependency graph to see which repositories and packages depend on code in your repository, and may therefore be affected by a new release.
+
+### More information:
+
+- [Video about releases](https://www.youtube.com/watch?v=Ob9llA_QhQY)
 
 ChatPGT definition:
 
@@ -42,7 +50,11 @@ Each file included in a release must be under 2 GB. There is no limit on the tot
 
 ## Managing releases in a repository
 
-[View releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)
+---
+
+### More information:
+
+- [View releases](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)
 
 You can create releases to bundle and deliver iterations of a project to users.
 
@@ -51,6 +63,8 @@ You can create new releases with release notes, @mentions of contributors, and l
 You can also publish an action from a specific release in GitHub Marketplace.
 
 You can choose whether Git Large File Storage (Git LFS) objects are included in the ZIP files and tarballs that GitHub creates for each release.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. To the right of the list of files, click Releases.
@@ -66,30 +80,45 @@ You can choose whether Git Large File Storage (Git LFS) objects are included in 
 10. Optionally, to notify users that the release is not ready for production and may be unstable, select This is a pre-release.
 11. Optionally, select Set as latest release. If you do not select this option, the latest release label will automatically be assigned based on semantic versioning.
 12. Optionally, if GitHub Discussions is enabled for the repository, create a discussion for the release.
-    1. Select Create a discussion for this release.
-    2. Select the Category dropdown menu, then click a category for the release discussion.
+    - Select Create a discussion for this release.
+    - Select the Category dropdown menu, then click a category for the release discussion.
 13. If you're ready to publicize your release, click Publish release. To work on the release later, click Save draft. You can then view your published or draft releases in the releases feed for your repository. For more information, see "Viewing your repository's releases and tags."
 
 ## Create an automated release with github actions
 
-[Create an automated release with github actions](https://github.com/marketplace/actions/create-release)
+---
+
+### More information:
+
+- [Create an automated release with github actions](https://github.com/marketplace/actions/create-release)
 
 ## Edit and Delete a Release
 
-[Edit and Delete a Release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#editing-a-release)
+---
+
+### More information:
+
+- [Edit and Delete a Release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#editing-a-release)
 
 ## Searching a repository's releases
 
+---
+
 You can use keywords, tags, and other qualifiers to search for particular releases in a repository.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. To the right of the list of files, click Releases.
 3. At the top of the page, in the "Find a release" field, type your query and press Enter.
 
-Search syntax
-[Search syntax](https://docs.github.com/en/repositories/releasing-projects-on-github/searching-a-repositorys-releases#search-syntax-for-searching-releases-in-a-repository)
+### More information:
+
+- [Search syntax](https://docs.github.com/en/repositories/releasing-projects-on-github/searching-a-repositorys-releases#search-syntax-for-searching-releases-in-a-repository)
 
 ## Linking to releases
+
+---
 
 You can share a link to the latest release for a repository by adding releases/latest to the end of a repository's URL. For example, the URL for the latest release of octo-org/octo-repo on GitHub.com is https://github.com/octo-org/octo-repo/releases/latest.
 
@@ -97,4 +126,8 @@ To link directly to a download of your latest release asset that was manually up
 
 ## Comparing releases
 
-[Comparing releases](https://docs.github.com/en/repositories/releasing-projects-on-github/comparing-releases)
+---
+
+### More information:
+
+- [Comparing releases](https://docs.github.com/en/repositories/releasing-projects-on-github/comparing-releases)

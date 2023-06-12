@@ -49,8 +49,6 @@ if you need a quick reference you should go here:
 ## Issues
 
 - [Github issues](./issues.md)
-- [planning & tracking work](./planningtrackingwork.md)
-- [Filtering and searching Issues](./filtersearchingissuespullrequest.md)
 
 ## Tags
 
