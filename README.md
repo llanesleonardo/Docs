@@ -9,6 +9,7 @@ I hope you enjoy this doc and its content.
 Main topics (Table Contents):
 
 - [Github](./DevOps/GitHub/1-tablecontent.md)
+- [Git](./DevOps/Git/1-tablecontent.md)
 - Gitlab
 - Docker
 - Digital Ocean
@@ -18,3 +19,5 @@ Main topics (Table Contents):
 - LocalWP
 
 More information: llanesleonardo.developer@gmail.com
+
+[3LStrategy](https://3lstrategy.com)
