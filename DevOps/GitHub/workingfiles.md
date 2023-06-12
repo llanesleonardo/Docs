@@ -1,6 +1,10 @@
+Back: [Repositories](./repositories.md)
+
 # Managing files
 
 ## Creating new files
+
+---
 
 You can create new files directly on GitHub in any repository you have write access to.
 
@@ -8,6 +12,8 @@ When creating a file on GitHub, consider the following:
 
 - If you try to create a new file in a repository that you don’t have access to, we will fork the project to your personal account and help you send a pull request to the original repository after you commit your change.
 - File names created via the web interface can only contain alphanumeric characters and hyphens (-). To use other characters, create and commit the files locally, then push them to the repository on GitHub.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository
 2. In your repository, browse to the folder where you want to create a file
@@ -23,7 +29,9 @@ When creating a file on GitHub, consider the following:
 
 ## Removing sensitive data from a repository
 
-**Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:**
+---
+
+Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
 
 - Passwords
 - SSH keys
@@ -32,11 +40,17 @@ When creating a file on GitHub, consider the following:
 - Credit card numbers
 - PIN numbers
 
-[Removing senstiive data](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
+### More information:
+
+- [Removing senstiive data](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
 
 ## Adding a file to a repository
 
+---
+
 You can upload and commit an existing file to a repository on GitHub or by using the command line. Files that you add to a repository via a browser are limited to 25 MB per file. You can add larger files, up to 100 MB each, via the command line.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository
 2. Above the list of files, select the Add file dropdown menu and click Upload files. Alternatively, you can drag and drop files into your browser
@@ -47,26 +61,40 @@ You can upload and commit an existing file to a repository on GitHub or by using
 
 ## Adding a file to a repository using the command line
 
+---
+
+```
     $ git add .
     $ git commit -m "Add existing file"
     $ git push origin YOUR_BRANCH
+```
 
 ## Viewing a file
+
+---
 
 You can view raw file content or trace changes to lines in a file and discover how parts of the file evolved over time.
 
 With the raw view, you can view or copy the raw content of a file without any styling.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Click the file that you want to view.
 3. In the upper-right corner of the file view, click Raw.
 4. Optionally, to copy the raw file content, in the upper-right corner of the file view, click . To download the raw file, click
 
-[Blame View](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#viewing-the-line-by-line-revision-history-for-a-file)
+### More information:
+
+- [Blame View](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#viewing-the-line-by-line-revision-history-for-a-file)
 
 ## Moving a file to a new location
 
+---
+
 You can move a file to a different directory on GitHub or by using the command line.
+
+### Process' checklist
 
 1. In your repository, browse to the file you want to move
 2. In the upper right corner of the file view, click to open the file editor
@@ -78,13 +106,19 @@ You can move a file to a different directory on GitHub or by using the command l
 6. Below the commit message fields, decide whether to add your commit to the current branch or to a new branch.
 7. Click Commit changes or Propose changes
 
-[Use command line to a file to a new location](https://docs.github.com/en/repositories/working-with-files/managing-files/moving-a-file-to-a-new-location)
+### More information:
+
+- [Use command line to a file to a new location](https://docs.github.com/en/repositories/working-with-files/managing-files/moving-a-file-to-a-new-location)
 
 This process can also be use to rename a file.
 
 ## Editing files
 
+---
+
 You can edit files directly on GitHub in any of your repositories using the file editor.
+
+### Process' checklist
 
 1. In your repository, browse to the file you want to edit
 2. In the upper right corner of the file view, click to open the file editor
@@ -97,6 +131,8 @@ You can edit files directly on GitHub in any of your repositories using the file
 
 ## Deleting files in a repository
 
+---
+
 You can delete an individual file or an entire directory in your repository on GitHub.
 
 You can delete an individual file in your repository or an entire directory, including all the files in the directory.
@@ -105,7 +141,11 @@ If you try to delete a file or directory in a repository that you don’t have w
 
 If the file or directory you deleted contains sensitive data, the data will still be available in the repository's Git history. To completely remove the file from GitHub, you must remove the file from your repository's history.
 
-### Deleting a file
+## Deleting a file
+
+---
+
+### Process' checklist
 
 1. Browse to the file in your repository that you want to delete
 2. In the top-right corner, select the dropdown menu, then click Delete file
@@ -117,6 +157,8 @@ If the file or directory you deleted contains sensitive data, the data will stil
 This process will work for deleting a directory, the only change that we have to apply is choose the option "Delete directory" in the dropdown menu.
 
 ## Navigating code on GitHub
+
+---
 
 You can understand the relationships within and across repositories by navigating code directly in GitHub.
 
@@ -131,26 +173,43 @@ GitHub has developed two code navigation approaches based on the open source tre
 - Search-based - searches all definitions and references across a repository to find entities with a given name
 - Precise - resolves definitions and references based on the set of classes, functions, and imported definitions at a given point in your code
 
-[Precise and search-based navigation](https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github#precise-and-search-based-navigation)
+### More information:
 
-[Advanced search for code repositories](https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github#using-the-symbols-pane)
+- [Precise and search-based navigation](https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github#precise-and-search-based-navigation)
+- [Advanced search for code repositories](https://docs.github.com/en/repositories/working-with-files/using-files/navigating-code-on-github#using-the-symbols-pane)
 
 ## Permalinks
 
-[File's Permalinks](https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files)
+---
+
+### More information:
+
+- [File's Permalinks](https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files)
 
 ## Download source code
+
+---
 
 You can download a snapshot of the code in your repository.
 
 You can download a snapshot of any branch, tag, or specific commit from GitHub.com. These snapshots are generated by the git archive command in one of two formats: tarball or zipball. Snapshots don't contain the entire repository history. If you want the entire history, you can clone the repository.
 
-[Download source code](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives)
+### More information:
+
+- [Download source code](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives)
 
 ## Advanced manipulation of non-code files
+
+---
+
+### More information:
 
 [non-code files](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files)
 
 ## Managing large files
+
+---
+
+### More information:
 
 [Managing large files](https://docs.github.com/en/repositories/working-with-files/managing-large-files)

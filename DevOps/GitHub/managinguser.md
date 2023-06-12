@@ -2,9 +2,13 @@
 
 ## Collaborators
 
+---
+
 You can collaborate on your project with others using your repository's issues, pull requests, and project boards. You can invite other people to your repository as collaborators from the Collaborators tab in the repository settings.
 
 ### Inviting collaborators to a personal repository
+
+---
 
 You can send an invitation to collaborate in your repository directly to someone on GitHub.com, or to the person's email address.
 
@@ -22,6 +26,8 @@ GitHub limits the number of people who can be invited to a repository within a 2
 8. The user will receive an email inviting them to the repository. Once they accept your invitation, they will have collaborator access to your repository
 
 ## Following people
+
+---
 
 You can follow people on GitHub to receive notifications about their activity and discover projects in their communities. When you follow people, you'll see their public activity on your personal dashboard.
 

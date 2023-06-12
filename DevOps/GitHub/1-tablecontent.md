@@ -25,6 +25,7 @@ if you need a quick reference you should go here:
 ## Repositories
 
 - [Repositories](./repositories.md)
+- [Repositories settings](./repositoriesettings.md)
 - [Licensing a Repository](./licensing_repository.md)
 - [Working with files](./workingfiles.md)
 - [Managing users](./managinguser.md)
