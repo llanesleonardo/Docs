@@ -1,3 +1,5 @@
+Back: [Github Actions](./gha.md)
+
 # Github Actions Publish Packages
 
 You can set up workflows in GitHub Actions to produce packages and upload them to GitHub Packages or another package hosting provider.
@@ -30,8 +32,12 @@ You can automate this by creating a workflow that publishes packages to a packag
 
 You can publish Docker images to a registry, such as Docker Hub or GitHub Packages, as part of your continuous integration (CI) workflow.
 
-[Publishing Docker images](https://docs.github.com/en/actions/publishing-packages/publishing-docker-images)
+### More information
+
+- [Publishing Docker images](https://docs.github.com/en/actions/publishing-packages/publishing-docker-images)
 
 ## Publishing Node Packages
 
-[Publishing Node Packages](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages)
+### More information
+
+- [Publishing Node Packages](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages)

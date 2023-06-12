@@ -74,7 +74,7 @@ if you need a quick reference you should go here:
 
 - [Github Actions](./gha.md)
 - [Github Actions Functions](./ghabifunctions.md)
-- [Github Continuous integration](./ghabuildtext.md)
+- [Github Continuous integration](./ghabuildtest.md)
 - [Github Deployment](./ghadeployment.md)
 - [Github Enviroments](./ghaenviroments.md)
 - [Github Actions Jobs](./ghajobs.md)

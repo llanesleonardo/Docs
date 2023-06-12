@@ -1,6 +1,10 @@
+Back: [Table contents](./gha.md)
+
 # Github Actions Build & Test
 
 ## Continuous integration
+
+---
 
 You can create custom continuous integration (CI) workflows directly in your GitHub repository with GitHub Actions.
 
@@ -22,12 +26,18 @@ In addition to helping you set up CI workflows for your project, you can use Git
 
 ## Starter workflow
 
+---
+
 GitHub offers CI starter workflow for a variety of languages and frameworks.
 
 Browse the complete list of CI starter workflow offered by GitHub in the actions/starter-workflows repository.
 
 ## Buildung and Testing NodeJS
 
+---
+
 You can create a continuous integration (CI) workflow to build and test your Node.js project.
 
-[Building and Testing Node.JS](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs)
+### More information
+
+- [Building and Testing Node.JS](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs)

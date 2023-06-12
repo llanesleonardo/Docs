@@ -1,10 +1,14 @@
+Back: [Github Actions](./gha.md)
+
 # Manage workflow runs
 
 ## Manually running a workflow
 
 When a workflow is configured to run on the workflow_dispatch event, you can run the workflow using the Actions tab on GitHub, GitHub CLI, or the REST API.
 
-[Manually running a workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow)
+### More information
+
+- [Manually running a workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow)
 
 ## Re-running workflows and jobs
 
@@ -13,6 +17,8 @@ You can re-run a workflow run, all failed jobs in a workflow run, or specific jo
 Re-running a workflow or jobs in a workflow uses the same GITHUB_SHA (commit SHA) and GITHUB_REF (Git ref) of the original event that triggered the workflow run. The workflow will use the privileges of the actor who initially triggered the workflow, not the privileges of the actor who initiated the re-run. You can re-run a workflow or jobs in a workflow for up to 30 days after the initial run. You cannot re-run jobs in a workflow once its logs have passed their retention limits.
 
 ## Re-running all the jobs in a workflow
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Actions.
@@ -28,6 +34,8 @@ Re-running a workflow or jobs in a workflow uses the same GITHUB_SHA (commit SHA
 
 If any jobs in a workflow run failed, you can re-run just the jobs that failed. When you re-run failed jobs in a workflow, a new workflow run will start for all failed jobs and their dependents. Any outputs for any successful jobs in the previous workflow run will be used for the re-run. Any artifacts that were created in the initial run will be available in the re-run. Any environment protection rules that passed in the previous run will automatically pass in the re-run.
 
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Actions.
 3. In the left sidebar, click the workflow you want to see.
@@ -39,6 +47,8 @@ If any jobs in a workflow run failed, you can re-run just the jobs that failed. 
 ## Re-running a specific job in a workflow
 
 When you re-run a specific job in a workflow, a new workflow run will start for the job and any dependents. Any outputs for any other jobs in the previous workflow run will be used for the re-run. Any artifacts that were created in the initial run will be available in the re-run. Any environment protection rules that passed in the previous run will automatically pass in the re-run.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Actions.
@@ -61,6 +71,8 @@ When you re-run a workflow that uses a reusable workflow and the reference is no
 
 You can view the results from your previous attempts at running a workflow. You can also view previous workflow runs using the API. For more information, see "Actions."
 
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Actions.
 3. In the left sidebar, click the workflow you want to see.
@@ -69,12 +81,18 @@ You can view the results from your previous attempts at running a workflow. You 
 
 ## Canceling a workflow
 
-[Canceling a workflow](https://docs.github.com/en/actions/managing-workflow-runs/canceling-a-workflow)
+### More information
+
+- [Canceling a workflow](https://docs.github.com/en/actions/managing-workflow-runs/canceling-a-workflow)
 
 ## Aproving workflow runs from public forks
 
-[Aproving workflow runs from public forks](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks)
+### More information
+
+- [Aproving workflow runs from public forks](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks)
 
 ## Aproving workflow runs from private forks
 
-[Aproving workflow runs from private forks](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-private-forks)
+### More information
+
+- [Aproving workflow runs from private forks](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-private-forks)

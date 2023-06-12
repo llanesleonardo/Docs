@@ -1,3 +1,5 @@
+Back: [Github Actions](./gha.md)
+
 # Github actions Deployment
 
 You can create custom continuous deployment (CD) workflows directly in your GitHub repository with GitHub Actions.
@@ -14,23 +16,33 @@ GitHub Actions provides features that give you more control over deployments. Fo
 
 ## Using OpenID Connect to access cloud resources
 
+---
+
 If your GitHub Actions workflows need to access resources from a cloud provider that supports OpenID Connect (OIDC), you can configure your workflows to authenticate directly to the cloud provider. This will let you stop storing these credentials as long-lived secrets and provide other security benefits.
 
 ## Starter workflows and third party actions
 
+---
+
 GitHub offers deployment starter workflows for several popular services, such as Azure Web App.
 
-[Deploying nodeJS to azure app service](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service)
+### More information
+
+- [Deploying nodeJS to azure app service](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service)
 
 Many service providers also offer actions on GitHub Marketplace for deploying to their service.
 
 ## Deploying with GitHub Actions
+
+---
 
 In this article
 
 Learn how to control deployments with features like environments and concurrency.
 
 ## Introduction
+
+---
 
 GitHub Actions offers features that let you control deployments. You can:
 
@@ -41,6 +53,8 @@ GitHub Actions offers features that let you control deployments. You can:
 You should be familiar with the syntax for GitHub Actions.
 
 ## Triggering your deployment
+
+---
 
 You can use a variety of events to trigger your deployment workflow. Some of the most common are: pull_request, push, and workflow_dispatch.
 
@@ -63,9 +77,13 @@ on:
 
 ## Using environments
 
+---
+
 Environments are used to describe a general deployment target like production, staging, or development. When a GitHub Actions workflow deploys to an environment, the environment is displayed on the main page of the repository. You can use environments to require approval for a job to proceed, restrict which branches can trigger a workflow, gate deployments with custom deployment protection rules, or limit access to secrets.
 
 ## Using concurrency
+
+---
 
 Concurrency ensures that only a single job or workflow using the same concurrency group will run at a time. You can use concurrency so that an environment has a maximum of one deployment in progress and one deployment pending at a time.
 
@@ -137,13 +155,19 @@ jobs:
 
 ## Viewing deployment history
 
+---
+
 When a GitHub Actions workflow deploys to an environment, the environment is displayed on the main page of the repository.
 
 ## Monitoring workflow runs
 
+---
+
 Every workflow run generates a real-time graph that illustrates the run progress. You can use this graph to monitor and debug deployments.
 
 ## Tracking deployments through apps
+
+---
 
 If your personal account or organization on GitHub.com is integrated with Microsoft Teams or Slack, you can track deployments that use environments through Microsoft Teams or Slack. For example, you can receive notifications through the app when a deployment is pending approval, when a deployment is approved, or when the deployment status changes.
 
@@ -151,13 +175,19 @@ You can also build an app that uses deployment and deployment status webhooks to
 
 ## Choosing a runner
 
+---
+
 You can run your deployment workflow on GitHub-hosted runners or on self-hosted runners. Traffic from GitHub-hosted runners can come from a wide range of network addresses. If you are deploying to an internal environment and your company restricts external traffic into private networks, GitHub Actions workflows running on GitHub-hosted runners may not be able to communicate with your internal services or resources. To overcome this, you can host your own runners.
 
 ## Displaying a status badge
 
+---
+
 You can use a status badge to display the status of your deployment workflow. A status badge shows whether a workflow is currently failing or passing. A common place to add a status badge is in the README.md file of your repository, but you can add it to any web page you'd like. By default, badges display the status of your default branch. You can also display the status of a workflow run for a specific branch or event using the branch and event query parameters in the URL.
 
 ## Finding deployment examples
+
+---
 
 This article demonstrated features of GitHub Actions that you can add to your deployment workflows.
 
@@ -165,15 +195,19 @@ GitHub offers deployment starter workflows for several popular services, such as
 
 Many service providers also offer actions on GitHub Marketplace for deploying to their service.
 
-[Deploying to Azure statci web app](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-to-azure-static-web-app)
+### More information
 
-[Deploying Docker to Azure App Service](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-docker-to-azure-app-service)
-
-[Deploying Node.JS to Azure App Service](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service)
+- [Deploying to Azure statci web app](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-to-azure-static-web-app)
+- [Deploying Docker to Azure App Service](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-docker-to-azure-app-service)
+- [Deploying Node.JS to Azure App Service](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-azure/deploying-nodejs-to-azure-app-service)
 
 ## Security Harden deployments
 
-[Security Harden deployments](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
+---
+
+### More information
+
+- [Security Harden deployments](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
 
 "Security hardening deployments" refers to the process of implementing measures to enhance the security of software deployments and make them more resistant to security threats and vulnerabilities. It involves adopting various security practices, configurations, and technologies to reduce the risk of unauthorized access, data breaches, and other security incidents.
 
@@ -195,11 +229,16 @@ By applying security hardening practices to deployments, organizations can signi
 
 ## OpenID Configuration for Giuthub Actions
 
-[OpenID Connect for Giuthub Actions](https://token.actions.githubusercontent.com/.well-known/openid-configuration)
+---
 
-[OpenID Connect in cloud providers](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers)
+### More informatio
+
+- [OpenID Connect for Giuthub Actions](https://token.actions.githubusercontent.com/.well-known/openid-configuration)
+- [OpenID Connect in cloud providers](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers)
 
 ## Using environments for deployment
+
+---
 
 You can configure environments with protection rules and secrets. A workflow job that references an environment must follow any protection rules for the environment before running or accessing the environment's secrets.
 
@@ -211,6 +250,8 @@ Optionally, you can bypass an environment's protection rules and force all pendi
 
 ## Deployment protection rules
 
+---
+
 Deployment protection rules require specific conditions to pass before a job referencing the environment can proceed. You can use deployment protection rules to require a manual approval, delay a job, or restrict the environment to certain branches. You can also create and implement custom protection rules powered by GitHub Apps to use third-party systems to control deployments referencing environments configured on GitHub.com.
 
 Third-party systems can be observability systems, change management systems, code quality systems, or other manual configurations that you use to assess readiness before deployments are safely rolled out to environments.
@@ -219,13 +260,19 @@ Any number of GitHub Apps-based deployment protection rules can be installed on 
 
 ## Required reviewers
 
+---
+
 Use required reviewers to require a specific person or team to approve workflow jobs that reference the environment. You can list up to six users or teams as reviewers. The reviewers must have at least read access to the repository. Only one of the required reviewers needs to approve the job for it to proceed.
 
 ## Wait timer
 
+---
+
 Use a wait timer to delay a job for a specific amount of time after the job is initially triggered. The time (in minutes) must be an integer between 0 and 43,200 (30 days).
 
 ## Deployment branches
+
+---
 
 Use deployment branches to restrict which branches can deploy to the environment. Below are the options for deployment branches for an environment:
 
@@ -239,11 +286,15 @@ For example, if you specify releases/_ as a deployment branch rule, only branche
 
 ## Allow administrators to bypass configured protection rules
 
+---
+
 By default, administrators can bypass the protection rules and force deployments to specific environments.
 
 Alternatively, you can configure environments to disallow bypassing the protection rules for all deployments to the environment.
 
 ## Custom deployment protection rules
+
+---
 
 You can enable your own custom protection rules to gate deployments with third-party services. For example, you can use services such as Datadog, Honeycomb, and ServiceNow to provide automated approvals for deployments to GitHub.com.
 
@@ -251,15 +302,23 @@ Once custom deployment protection rules have been created and installed on a rep
 
 ## Environment secrets
 
+---
+
 Secrets stored in an environment are only available to workflow jobs that reference the environment. If the environment requires approval, a job cannot access environment secrets until one of the required reviewers approves it.
 
 ## Environment variables
+
+---
 
 Variables stored in an environment are only available to workflow jobs that reference the environment.
 
 ## Creating an environment
 
+---
+
 To configure an environment in a personal account repository, you must be the repository owner. To configure an environment in an organization repository, you must have admin access.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Settings. If you cannot see the "Settings" tab, select the dropdown menu, then click Settings.
@@ -295,6 +354,8 @@ You can also create and configure environments through the REST API.
 Running a workflow that references an environment that does not exist will create an environment with the referenced name. The newly created environment will not have any protection rules or secrets configured. Anyone that can edit workflows in the repository can create environments via a workflow file, but only repository admins can configure the environment.
 
 ## Using an environment
+
+---
 
 Each job in a workflow can reference a single environment. Any protection rules configured for the environment must pass before a job referencing the environment is sent to a runner. The job can access the environment's secrets only after the job is sent to a runner.
 
@@ -346,9 +407,13 @@ jobs:
 
 ## Deleting an environment
 
+---
+
 To configure an environment in a personal account repository, you must be the repository owner. To configure an environment in an organization repository, you must have admin access.
 
 Deleting an environment will delete all secrets and protection rules associated with the environment. Any jobs currently waiting because of protection rules from the deleted environment will automatically fail.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Settings. If you cannot see the "Settings" tab, select the dropdown menu, then click Settings.
@@ -360,19 +425,31 @@ You can also delete environments through the REST API.
 
 ## How environments relate to deployments
 
+---
+
 When a workflow job that references an environment runs, it creates a deployment object with the environment property set to the name of your environment. As the workflow progresses, it also creates deployment status objects with the environment property set to the name of your environment, the environment_url property set to the URL for environment (if specified in the workflow), and the state property set to the status of the job.
 
 You can access these objects through the REST API or GraphQL API.
 
 ## Creating custom deployment protection rules
 
-[Creating custom deployment protection rules](https://docs.github.com/en/actions/deployment/protecting-deployments/creating-custom-deployment-protection-rules)
+---
+
+### More information
+
+- [Creating custom deployment protection rules](https://docs.github.com/en/actions/deployment/protecting-deployments/creating-custom-deployment-protection-rules)
 
 ## Configuring custom deployment protection rules
 
-[Configuring custom deployment protection rules](https://docs.github.com/en/actions/deployment/protecting-deployments/configuring-custom-deployment-protection-rules)
+---
+
+### More information
+
+- [Configuring custom deployment protection rules](https://docs.github.com/en/actions/deployment/protecting-deployments/configuring-custom-deployment-protection-rules)
 
 ## Viewing deployment history
+
+---
 
 View current and previous deployments for your repository.
 
@@ -388,4 +465,8 @@ You can also use the REST API to get information about deployments.
 
 ## Deploying Xcode applications
 
-[Deploying Xcode applications](https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development)
+---
+
+### More information
+
+- [Deploying Xcode applications](https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development)

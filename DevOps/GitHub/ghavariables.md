@@ -1,3 +1,5 @@
+Back: [Github Actions](./gha.md)
+
 # Github Action Variables
 
 GitHub sets default variables for each GitHub Actions workflow run. You can also set custom variables for use in a single workflow or multiple workflows.
@@ -44,7 +46,7 @@ You can access env variable values using runner environment variables or using c
 
 Because runner environment variable interpolation is done after a workflow job is sent to a runner machine, you must use the appropriate syntax for the shell that's used on the runner. In this example, the workflow specifies ubuntu-latest. By default, Linux runners use the bash shell, so you must use the syntax $NAME. If the workflow specified a Windows runner, you would use the syntax for PowerShell, $env:NAME.
 
-### Naming conventions for environment variables
+## Naming conventions for environment variables
 
 When you set an environment variable, you cannot use any of the default environment variable names.
 
@@ -68,7 +70,7 @@ If a variable with the same name exists at multiple levels, the variable at the 
 
 For reusable workflows, the variables from the caller workflow's repository are used. Variables from the repository that contains the called workflow are not made available to the caller workflow.
 
-### Naming conventions for configuration variables
+## Naming conventions for configuration variables
 
 The following rules apply to configuration variable names:
 
@@ -93,11 +95,15 @@ To create secrets or variables for a personal account repository, you must be th
 
 ## Creating configuration variables for an enviroment
 
-[Creating configuration variables for an enviroment](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment)
+### More information
+
+- [Creating configuration variables for an enviroment](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment)
 
 ## Creating configuration variables for an organization
 
-[Creating configuration variables for an organization](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-organization)
+### More information
+
+- [Creating configuration variables for an organization](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-organization)
 
 ## Limits for configuration variables
 
@@ -117,7 +123,7 @@ Contexts are a way to access information about workflow runs, variables, runner 
 
 You can access environment variable values using the env context and configuration variable values using the vars context.
 
-### Using the env context to access environment variable values
+## Using the env context to access environment variable values
 
 In addition to runner environment variables, GitHub Actions allows you to set and read env key values using contexts. Environment variables and contexts are intended for use at different points in the workflow.
 
@@ -187,9 +193,11 @@ jobs:
         who-to-greet: ${{ vars.GREET_NAME }}
 ```
 
-### Default enviromental variables
+## Default enviromental variables
 
-[Default enviromental variables](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)
+### More information
+
+- [Default enviromental variables](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)
 
 ## Detecting the operating system
 
@@ -205,4 +213,6 @@ If you want to pass a value from a step in one job in a workflow to a step in an
 
 ## Workflow billing & Limits
 
-[Workflow billing & Limits](https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration)
+### More information
+
+- [Workflow billing & Limits](https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration)
