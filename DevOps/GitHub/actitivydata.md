@@ -1,3 +1,5 @@
+Back: [Table contents](./1-tablecontent.md)
+
 # View activity and Data
 
 You can view information about deployments for your entire repository or a specific pull request.
@@ -8,10 +10,16 @@ You can also see deployment information on the "Conversation" tab of a pull requ
 
 ## Viewing deployment activity for your repository
 
+---
+
+### Process' checklist
+
 1. On GitHub.com, navigate to the main page of the repository.
 2. In the right sidebar, click Environments.
 
 ## About repository graphs
+
+---
 
 Repository graphs help you view and analyze data for your repository.
 
@@ -26,13 +34,17 @@ Some repository graphs are available only in public repositories with GitHub Fre
 - Code frequency
 - Network
 
-All other repository graphs are available in all repositories. Every repository graph is available in public and private repositories with GitHub Pro, GitHub Team, and GitHub Enterprise Cloud. For more information, see "GitHub’s products."
+All other repository graphs are available in all repositories. Every repository graph is available in public and private repositories with GitHub Pro, GitHub Team, and GitHub Enterprise Cloud.
 
 ## Viewing a project's contributors
+
+---
 
 You can see who contributed commits to a repository and its dependencies.
 
 You can view the top 100 contributors to a repository in the contributors graph. Merge commits and empty commits aren't counted as contributions for this graph.
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Insights.
@@ -41,15 +53,23 @@ You can view the top 100 contributors to a repository in the contributors graph.
 
 ## Analyzing changes to a repository's content
 
+---
+
 You can see the changes to the content of a repository by analyzing the repository's commits, commit frequency, and content additions and deletions.
 
 You can see all commits made to a repository in the past year (excluding merge commits) in the Commit graph.
 
 The top graph shows commits for the entire year by week. The bottom graph shows the average number of commits by day of the week for the selected week.
 
-[Commits graph exhibit](https://docs.github.com/assets/cb-15065/mw-1440/images/help/graphs/repo-commit-activity-graphs.webp)
+### More information:
+
+- [Commits graph exhibit](https://docs.github.com/assets/cb-15065/mw-1440/images/help/graphs/repo-commit-activity-graphs.webp)
 
 ### Accessing the commits graph
+
+---
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Insights.
@@ -57,9 +77,15 @@ The top graph shows commits for the entire year by week. The bottom graph shows 
 
 ### Visualizing additions and deletion to content in a repository
 
+---
+
 The code frequency graph displays the content additions and deletions for each week in a repository's history.
 
-[The code frequency graph](https://docs.github.com/assets/cb-22197/mw-1440/images/help/graphs/repo_code_frequency_graph_dotcom.webp)
+### More information:
+
+- [The code frequency graph](https://docs.github.com/assets/cb-22197/mw-1440/images/help/graphs/repo_code_frequency_graph_dotcom.webp)
+
+### Process' checklist
 
 1. On GitHub.com, navigate to the main page of the repository.
 2. Under your repository name, click Insights.
@@ -67,4 +93,8 @@ The code frequency graph displays the content additions and deletions for each w
 
 ## Viewing a repository's network
 
-[Repository's network](https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/understanding-connections-between-repositories#viewing-a-repositorys-network)
+---
+
+### More information:
+
+- [Repository's network](https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/understanding-connections-between-repositories#viewing-a-repositorys-network)

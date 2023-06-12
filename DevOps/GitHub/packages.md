@@ -127,7 +127,7 @@ If a new version of a package fixes a security vulnerability, you should publish
 
 You can publish a package to GitHub Packages using any supported package client by following the same general guidelines.
 
-### More information:
+### Process' checklist:
 
 1. Create or use an existing personal access token (classic) with the appropriate scopes for the task you want to accomplish. For more information, see "About permissions for GitHub Packages."
 2. Authenticate to GitHub Packages using your personal access token (classic) and the instructions for your package client.

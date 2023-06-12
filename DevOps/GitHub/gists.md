@@ -1,12 +1,20 @@
+Back: [Table contents](./1-tablecontent.md)
+
 # Gists
 
 ## What is a gists?
+
+---
 
 Gists provide a simple way to share code snippets with others. Every gist is a Git repository, which means that it can be forked and cloned.
 
 ## Creating a gists
 
+---
+
 You can create two kinds of gists: public and secret. Create a public gist if you're ready to share your ideas with the world or a secret gist if you're not.
+
+### Process' checklist
 
 1. Sigin to Github
 2. Navigate to your gist home page
@@ -26,4 +34,4 @@ You'll receive a notification when:
 
 You can pin gists to your profile so other people can see them easily.
 
-**You can discover public gists others have created by going to the gist home page and clicking All Gists.**
+You can discover public gists others have created by going to the gist home page and clicking All Gists.

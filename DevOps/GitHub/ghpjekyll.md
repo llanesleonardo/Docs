@@ -1,3 +1,5 @@
+Back: [Github Pages](./ghpages.md)
+
 # Github Pages and Jekyll
 
 Jekyll is a static site generator with built-in support for GitHub Pages.
@@ -9,6 +11,8 @@ Jekyll is not officially supported for Windows.
 We recommend using Jekyll with GitHub Pages. If you prefer, you can use other static site generators or customize your own build process locally or on another server.
 
 ## Configuring Jekyll in your GitHub Pages site
+
+---
 
 You can configure most Jekyll settings, such as your site's theme and plugins, by editing your \_config.yml file.
 
@@ -38,11 +42,17 @@ If you want Jekyll to process any of these files, you can use the include settin
 
 ## Front matter
 
+---
+
 To set variables and metadata, such as a title and layout, for a page or post on your site, you can add YAML front matter to the top of any Markdown or HTML file.
 
-[Front Matter](https://jekyllrb.com/docs/front-matter/)
+### More information
+
+- [Front Matter](https://jekyllrb.com/docs/front-matter/)
 
 ## Themes
+
+---
 
 You can add a Jekyll theme to your GitHub Pages site to customize the look and feel of your site.
 
@@ -53,6 +63,8 @@ To use any other open source Jekyll theme hosted on GitHub, you can add the them
 You can override any of your theme's defaults by editing the theme's files.
 
 ## Plugins
+
+---
 
 You can download or create Jekyll plugins to extend the functionality of Jekyll for your site. For example, the jemoji plugin lets you use GitHub-flavored emoji in any page on your site the same way you would on GitHub. For more information, see "Plugins" in the Jekyll documentation.
 
@@ -72,11 +84,15 @@ You can enable additional plugins by adding the plugin's gem to the plugins sett
 
 For a list of supported plugins, see "Dependency versions" on the GitHub Pages site.
 
-[Dependency versions](https://pages.github.com/versions/)
+### More information
+
+- [Dependency versions](https://pages.github.com/versions/)
 
 GitHub Pages cannot build sites using unsupported plugins. If you want to use unsupported plugins, generate your site locally and then push your site's static files to GitHub.
 
 ## Syntax highlighting
+
+---
 
 To make your site easier to read, code snippets are highlighted on GitHub Pages sites the same way they're highlighted on GitHub.
 
@@ -99,22 +115,32 @@ $ rougify style github > style.css
 
 ## Building your site locally
 
+---
+
 If you are publishing from a branch, changes to your site are published automatically when the changes are merged into your site's publishing source. If you are publishing from a custom GitHub Actions workflow, changes are published whenever your workflow is triggered (typically by a push to the default branch). If you want to preview your changes first, you can make the changes locally instead of on GitHub. Then, test your site locally.
 
 ## Creating a GitHub Pages site with Jekyll
+
+---
 
 You can use Jekyll to create a GitHub Pages site in a new or existing repository.
 
 ## Prerequisites
 
+---
+
 Before you can use Jekyll to create a GitHub Pages site, you must install Jekyll and Git.
 
 We recommend using Bundler to install and run Jekyll. Bundler manages Ruby gem dependencies, reduces Jekyll build errors, and prevents environment-related bugs. To install [Bundler](https://bundler.io/):
+
+### Process' checklist
 
 1. Install Ruby. For more information, see "Installing Ruby" in the Ruby documentation.
 2. Install Bundler.
 
 ## Creating a repository for your site
+
+---
 
 You can either create a repository or choose an existing repository for your site.
 
@@ -124,6 +150,8 @@ If the account that owns the repository uses GitHub Free or GitHub Free for orga
 
 If you want to create a site in an existing repository, skip to the "Creating your site" section.
 
+### Process' checklist
+
 1. In the upper-right corner of any page, use the drop-down menu, and select New repository.
 2. Use the Owner dropdown menu to select the account you want to own the repository.
 3. Type a name for your repository and an optional description. If you're creating a user or organization site, your repository must be named <user>.github.io or <organization>.github.io. If your user or organization name contains uppercase letters, you must lowercase the letters.
@@ -131,7 +159,11 @@ If you want to create a site in an existing repository, skip to the "Creating yo
 
 ## Creating your site
 
+---
+
 Before you can create your site, you must have a repository for your site on GitHub.
+
+### Process' checklist
 
 1. Open Git Bash.
 2. If you don't already have a local copy of your repository, navigate to the location where you want to store your site's source files, replacing PARENT-FOLDER with the folder you want to contain the folder for your repository.
@@ -228,11 +260,15 @@ You can add a Jekyll theme to your GitHub Pages site to customize the look and f
 
 ## Testing your GitHub Pages site locally with Jekyll
 
+---
+
 You can build your GitHub Pages site locally to preview and test changes to your site.
 
 Anyone with read permissions for a repository can test a GitHub Pages site locally.
 
 ## Prerequisites
+
+---
 
 Before you can use Jekyll to test a site, you must:
 
@@ -245,6 +281,10 @@ We recommend using Bundler to install and run Jekyll. Bundler manages Ruby gem d
 - Install Bundler.
 
 ## Building your site locally
+
+---
+
+### Process' checklist
 
 1. Open Git Bash.
 2. Navigate to the publishing source for your site.
@@ -269,14 +309,20 @@ $ bundle exec jekyll serve
 
 ## Updating the GitHub Pages gem
 
+---
+
 Jekyll is an active open source project that is updated frequently. If the github-pages gem on your computer is out of date with the github-pages gem on the GitHub Pages server, your site may look different when built locally than when published on GitHub. To avoid this, regularly update the github-pages gem on your computer.
+
+### Process' checklist
 
 1. Open Git Bash.
 2. Update the github-pages gem.
-   1. If you installed Bundler, run bundle update github-pages.
-   2. If you don't have Bundler installed, run gem update github-pages.
+   - If you installed Bundler, run bundle update github-pages.
+   - If you don't have Bundler installed, run gem update github-pages.
 
 ## Adding content to your GitHub Pages site using Jekyll
+
+---
 
 You can add a new page or post to your Jekyll site on GitHub Pages.
 
@@ -293,6 +339,10 @@ To set variables and metadata, such as a title and layout, for a page or post on
 If you are publishing from a branch, changes to your site are published automatically when the changes are merged into your site's publishing source. If you are publishing from a custom GitHub Actions workflow, changes are published whenever your workflow is triggered (typically by a push to the default branch). If you want to preview your changes first, you can make the changes locally instead of on GitHub. T
 
 ## Adding a new page to your site
+
+---
+
+### Process' checklist
 
 1. On GitHub, navigate to your site's repository.
 2. Navigate to the publishing source for your site.
@@ -319,6 +369,10 @@ permalink: /URL-PATH
 16. Optionally, delete the branch.
 
 ## Adding a new post to your site
+
+---
+
+### Process' checklist
 
 1. On GitHub, navigate to your site's repository.
 2. Navigate to the publishing source for your site.
@@ -350,6 +404,8 @@ Your post should now be up on your site! If the base URL of your site is https:/
 
 ## Setting a Markdown processor for your GitHub Pages site using Jekyll
 
+---
+
 You can choose a Markdown processor to determine how Markdown is rendered on your GitHub Pages site.
 
 People with write permissions for a repository can set the Markdown processor for a GitHub Pages site.
@@ -357,6 +413,8 @@ People with write permissions for a repository can set the Markdown processor fo
 GitHub Pages supports two Markdown processors: kramdown and GitHub's own Markdown processor, which is used to render GitHub Flavored Markdown (GFM) throughout GitHub.
 
 You can use GitHub Flavored Markdown with either processor, but only our GFM processor will always match the results you see on GitHub.
+
+### Process' checklist
 
 1. On GitHub, navigate to your site's repository.
 2. In your repository, browse to the \_config.yml file.
@@ -370,9 +428,13 @@ You can use GitHub Flavored Markdown with either processor, but only our GFM pro
 
 ## Adding a theme to your GitHub Pages site using Jekyll
 
+---
+
 You can personalize your Jekyll site by adding and customizing a theme.
 
-### Adding a theme
+## Adding a theme
+
+### Process' checklist
 
 1. On GitHub, navigate to your site's repository.
 2. Navigate to the publishing source for your site.
@@ -390,6 +452,8 @@ You can personalize your Jekyll site by adding and customizing a theme.
 10. Click Commit changes or Propose changes.
 
 ## Customizing your theme's CSS
+
+---
 
 These instructions work best with themes that are officially supported by GitHub Pages. For a complete list of supported themes, see "Supported themes" on the GitHub Pages site.
 
@@ -409,7 +473,9 @@ Your theme's source repository may offer some help in customizing your theme. Fo
 
 5. Add any custom CSS or Sass (including imports) you'd like immediately after the @import line.
 
-### Customizing your theme's HTML layout
+## Customizing your theme's HTML layout
+
+---
 
 These instructions work best with themes that are officially supported by GitHub Pages. For a complete list of supported themes, see "Supported themes" on the GitHub Pages site.
 
@@ -426,6 +492,8 @@ Your theme's source repository may offer some help in customizing your theme. Fo
 
 ## About custom domains and GitHub Pages
 
+---
+
 GitHub Pages supports using custom domains, or changing the root of your site's URL from the default, like octocat.github.io, to any domain you own.
 
 GitHub Pages works with two types of domains: subdomains and apex domains.
@@ -438,21 +506,29 @@ After you configure a custom domain for a user or organization site, the custom 
 
 ## Using a subdomain for your GitHub Pages site
 
+---
+
 A subdomain is the part of a URL before the root domain. You can configure your subdomain as www or as a distinct section of your site, like blog.example.com.
 
 Subdomains are configured with a CNAME record through your DNS provider.
 
-### www subdomains
+## www subdomains
+
+---
 
 A www subdomain is the most commonly used type of subdomain. For example, www.example.com includes a www subdomain.
 
 www subdomains are the most stable type of custom domain because www subdomains are not affected by changes to the IP addresses of GitHub's servers.
 
-### Custom subdomains
+## Custom subdomains
+
+---
 
 A custom subdomain is a type of subdomain that doesn't use the standard www variant. Custom subdomains are mostly used when you want two distinct sections of your site. For example, you can create a site called blog.example.com and customize that section independently from www.example.com.
 
 ## Using an apex domain for your GitHub Pages site
+
+---
 
 An apex domain is a custom domain that does not contain a subdomain, such as example.com. Apex domains are also known as base, bare, naked, root apex, or zone apex domains.
 
@@ -461,6 +537,8 @@ An apex domain is configured with an A, ALIAS, or ANAME record through your DNS 
 If you are using an apex domain as your custom domain, we recommend also setting up a www subdomain. If you configure the correct records for each domain type through your DNS provider, GitHub Pages will automatically create redirects between the domains. For example, if you configure www.example.com as the custom domain for your site, and you have GitHub Pages DNS records set up for the apex and www domains, then example.com will redirect to www.example.com. Note that automatic redirects only apply to the www subdomain. Automatic redirects do not apply to any other subdomains, such as blog.
 
 ## Securing the custom domain for your GitHub Pages site
+
+---
 
 If your GitHub Pages site is disabled but has a custom domain set up, it is at risk of a domain takeover. Having a custom domain configured with your DNS provider while your site is disabled could result in someone else hosting a site on one of your subdomains.
 
@@ -473,8 +551,16 @@ There are a couple of reasons your site might be automatically disabled.
 
 ## Managing a custom domain for your Github pages site
 
-[Managing a custom domain for your Github pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+---
+
+### More information
+
+- [Managing a custom domain for your Github pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 
 ## Verifying your custom domain for Github Pages
 
-[Verifying your custom domain for Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
+---
+
+### More information
+
+- [Verifying your custom domain for Github Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
