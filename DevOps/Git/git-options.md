@@ -1,10 +1,6 @@
 Back: [Table contents](./1-tablecontent.md)
 
-# Git command
-
-- [Git tutorial to get started](https://git-scm.com/docs/gittutorial)
-- [Git everyday](https://git-scm.com/docs/giteveryday)
-- [Most common commands](https://www.youtube.com/watch?v=b4zp02iULYY)
+# Git setup options
 
 ## Description
 
@@ -96,6 +92,8 @@ The -c option is particularly useful when you want to override specific configur
 
 - [--config-env](https://git-scm.com/docs/git#Documentation/git.txt---config-envltnamegtltenvvargt)
 
+TODO: FIND MORE INFO.
+
 ---
 
 ```
@@ -146,6 +144,8 @@ Print the path where the Info files documenting this version of Git are installe
 
 - [-p](https://git-scm.com/docs/git#Documentation/git.txt---paginate)
 
+TODO: FIND MORE INFO.
+
 ---
 
 ```
@@ -154,6 +154,8 @@ Print the path where the Info files documenting this version of Git are installe
 ```
 
 Do not pipe Git output into a pager.
+
+TODO: FIND MORE INFO.
 
 ---
 
@@ -234,5 +236,85 @@ When you don't have a working tree:
 ### More:
 
 [Git Repo Bare](https://www.youtube.com/watch?v=8aZW9mYOxhc)
+
+---
+
+```
+--no-replace-objects
+
+```
+
+Do not use replacement refs to replace Git objects. It is linked to git-replace.
+
+TODO: FIND MORE INFO.
+
+---
+
+```
+--glob-pathspecs
+```
+
+Add "glob" magic to all pathspec. This is equivalent to setting the GIT_GLOB_PATHSPECS environment variable to 1. Disabling globbing on individual pathspecs can be done using pathspec magic ":(literal)"
+
+TODO: FIND MORE INFO.
+
+---
+
+```
+--noglob-pathspecs
+
+```
+
+Add "literal" magic to all pathspec. This is equivalent to setting the GIT_NOGLOB_PATHSPECS environment variable to 1. Enabling globbing on
+individual pathspecs can be done using pathspec magic ":(glob)"
+
+TODO: FIND MORE INFO.
+
+---
+
+```
+--icase-pathspecs
+```
+
+Add "icase" magic to all pathspec. This is equivalent to setting the
+GIT_ICASE_PATHSPECS environment variable to 1.
+
+TODO: FIND MORE INFO.
+
+---
+
+```
+--no-optional-locks
+```
+
+Do not perform optional operations that require locks. This is equivalent to setting the GIT_OPTIONAL_LOCKS to 0.
+
+TODO: FIND MORE INFO.
+
+---
+
+```
+--list-cmds=group[,group…​]
+```
+
+List commands by group. This is an internal/experimental option and may change or be removed in the future. Supported groups are: builtins, parseopt (builtin commands that use parse-options), main (all commands in libexec directory), others (all other commands in $PATH that have git- prefix), list-<category> (see categories in command-list.txt), nohelpers (exclude helper commands), alias and config (retrieve command list from config variable completion.commands)
+
+TODO: FIND MORE INFO.
+
+---
+
+```
+--attr-source=<tree-ish>
+# git check-attr <attribute> <path>
+
+```
+
+Read gitattributes from <tree-ish> instead of the worktree. See gitattributes[5]. This is equivalent to setting the GIT_ATTR_SOURCE environment variable.
+
+Git does provide the git check-attr command to check the attributes of files in a Git repository. However, there is no specific --attr-source option associated with it.
+
+The git check-attr command allows you to check the attributes set in the .gitattributes file for specific files or paths.
+
+his command checks the value of the specified attribute for the given file or path.
 
 ---

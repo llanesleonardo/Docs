@@ -5,6 +5,9 @@ Back: [Table contents](./1-tablecontent.md)
 - [setup Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
 - [Git software](https://git-scm.com/downloads)
 - [Git: The essentials](https://www.youtube.com/watch?v=Uk5TnFL7jh4)
+- [Git tutorial to get started](https://git-scm.com/docs/gittutorial)
+- [Git everyday](https://git-scm.com/docs/giteveryday)
+- [Most common commands](https://www.youtube.com/watch?v=b4zp02iULYY)
 
 ## set your Git username fro every repository on your computer
 

@@ -9,7 +9,7 @@ These docs were gathered from various sources, such as:
 ## Setup and Config
 
 - [setup](./setupgit.md)
-- [git](./git-command.md)
+- [git options](./git-options.md)
 - config
 - help
 - bugreport
@@ -21,7 +21,7 @@ These docs were gathered from various sources, such as:
 
 ## Basic Snapshotting
 
-- add
+- [git add](./git-add.md)
 - status
 - diff
 - commit
@@ -68,12 +68,14 @@ These docs were gathered from various sources, such as:
 - diff
 - rebase
 - revert
+- [am](git-am.md)
 
 ## Debugging
 
 - bisect
 - blame
 - grep
+- bisect
 
 ## Administration
 
@@ -82,7 +84,7 @@ These docs were gathered from various sources, such as:
 - reflog
 - filter-branch
 - instaweb
-- archive
+- [archive](./git-archive.md)
 - bundle
 - daemon
 - update-server-info
