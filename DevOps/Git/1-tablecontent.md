@@ -33,8 +33,8 @@ These docs were gathered from various sources, such as:
 
 ## Branching and Merging
 
-- branch
-- checkout
+- [branch](./git-branch.md)
+- [checkout](./git-checkout.md)
 - switch
 - merge
 - mergetool
@@ -75,7 +75,7 @@ These docs were gathered from various sources, such as:
 - bisect
 - blame
 - grep
-- bisect
+- [bisect](./git-bisect.md)
 
 ## Administration
 
@@ -85,7 +85,7 @@ These docs were gathered from various sources, such as:
 - filter-branch
 - instaweb
 - [archive](./git-archive.md)
-- bundle
+- [bundle](./git-bundle.md)
 - daemon
 - update-server-info
 
