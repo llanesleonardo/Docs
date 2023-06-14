@@ -17,14 +17,15 @@ These docs were gathered from various sources, such as:
 ## Getting and Creating Projects
 
 - init
-- clone
+- [clone](https://git-scm.com/docs/git-clone)
 
 ## Basic Snapshotting
 
 - [git add](./git-add.md)
 - status
 - diff
-- commit
+- [commit](./git-commit.md)
+- [citool](https://git-scm.com/docs/git-citool)
 - notes
 - restore
 - reset
@@ -64,7 +65,7 @@ These docs were gathered from various sources, such as:
 ## Patching
 
 - apply
-- cherry-pick
+- [cherry-pick](./git cherry-pick.md)
 - diff
 - rebase
 - revert
@@ -79,7 +80,7 @@ These docs were gathered from various sources, such as:
 
 ## Administration
 
-- clean
+- [clean](https://git-scm.com/docs/git-clean)
 - gc
 - reflog
 - filter-branch

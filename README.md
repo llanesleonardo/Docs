@@ -18,6 +18,7 @@ Main topics (Table Contents):
 - Apanche XAMPP
 - LocalWP
 
-More information: llanesleonardo.developer@gmail.com
+[You can visit the github pages from these repository here](https://llanesleonardo.github.io/Docs/)
 
+More information: llanesleonardo.developer@gmail.com
 [3LStrategy](https://3lstrategy.com)

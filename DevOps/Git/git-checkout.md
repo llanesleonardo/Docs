@@ -84,3 +84,141 @@ Create the new branch’s reflog;
 ```
 
 Rather than checking out a branch to work on it, check out a commit for inspection and discardable experiments. This is the default behavior of git checkout <commit> when <commit> is not a branch name. See the "DETACHED HEAD" section below for details.
+
+```
+--orphan <new-branch>
+```
+
+Create a new orphan branch, named <new-branch>, started from <start-point> and switch to it. The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
+
+The index and the working tree are adjusted as if you had previously run git checkout <start-point>. This allows you to start a new history that records a set of paths similar to <start-point> by easily running git commit -a to make the root commit.
+
+This can be useful when you want to publish the tree from a commit without exposing its full history. You might want to do this to publish an open source branch of a project whose current tree is "clean", but whose full history contains proprietary or otherwise encumbered bits of code.
+
+If you want to start a disconnected history that records a set of paths that is totally different from the one of <start-point>, then you should clear the index and the working tree right after creating the orphan branch by running git rm -rf . from the top level of the working tree. Afterwards you will be ready to prepare your new files, repopulating the working tree, by copying them from elsewhere, extracting a tarball, etc.
+
+```
+-m
+--merge
+```
+
+When switching branches, if you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context. However, with this option, a three-way merge between the current branch, your working tree contents, and the new branch is done, and you will be on the new branch.
+
+When a merge conflict happens, the index entries for conflicting paths are left unmerged, and you need to resolve the conflicts and mark the resolved paths with git add (or git rm if the merge should result in deletion of the path).
+
+When checking out paths from the index, this option lets you recreate the conflicted merge in the specified paths.
+When switching branches with --merge, staged changes may be lost.
+
+TODO: FIND MORE INFO.
+
+## Examples
+
+HEAD normally refers to a named branch (e.g. master). Meanwhile, each branch refers to a specific commit. Let’s look at a repo with three commits, one of them tagged, and with branch master checked out:
+
+```
+           HEAD (refers to branch 'master')
+            |
+            v
+a---b---c  branch 'master' (refers to commit 'c')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+```
+
+When a commit is created in this state, the branch is updated to refer to the new commit. Specifically, git commit creates a new commit d, whose parent is commit c, and then updates branch master to refer to new commit d. HEAD still refers to branch master and so indirectly now refers to commit d:
+
+```
+$ edit; git add; git commit
+
+               HEAD (refers to branch 'master')
+                |
+                v
+a---b---c---d  branch 'master' (refers to commit 'd')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+```
+
+It is sometimes useful to be able to checkout a commit that is not at the tip of any named branch, or even to create a new commit that is not referenced by a named branch. Let’s look at what happens when we checkout commit b (here we show two ways this may be done):
+
+```
+$ git checkout v2.0  # or
+$ git checkout master^^
+
+   HEAD (refers to commit 'b')
+    |
+    v
+a---b---c---d  branch 'master' (refers to commit 'd')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+```
+
+Notice that regardless of which checkout command we use, HEAD now refers directly to commit b. This is known as being in detached HEAD state. It means simply that HEAD refers to a specific commit, as opposed to referring to a named branch. Let’s see what happens when we create a commit:
+
+```
+$ edit; git add; git commit
+
+     HEAD (refers to commit 'e')
+      |
+      v
+      e
+     /
+a---b---c---d  branch 'master' (refers to commit 'd')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+```
+
+There is now a new commit e, but it is referenced only by HEAD. We can of course add yet another commit in this state:
+
+```
+$ edit; git add; git commit
+
+	 HEAD (refers to commit 'f')
+	  |
+	  v
+      e---f
+     /
+a---b---c---d  branch 'master' (refers to commit 'd')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+```
+
+In fact, we can perform all the normal Git operations. But, let’s look at what happens when we then checkout master:
+
+```
+$ git checkout master
+
+               HEAD (refers to branch 'master')
+      e---f     |
+     /          v
+a---b---c---d  branch 'master' (refers to commit 'd')
+    ^
+    |
+  tag 'v2.0' (refers to commit 'b')
+```
+
+It is important to realize that at this point nothing refers to commit f. Eventually commit f (and by extension commit e) will be deleted by the routine Git garbage collection process, unless we create a reference before that happens. If we have not yet moved away from commit f, any of these will create a reference to it:
+
+```
+$ git checkout -b foo  # or "git switch -c foo"  (1)
+$ git branch foo                                 (2)
+$ git tag foo                                    (3)
+```
+
+1. creates a new branch foo, which refers to commit f, and then updates HEAD to refer to branch foo. In other words, we’ll no longer be in detached HEAD state after this command.
+2. similarly creates a new branch foo, which refers to commit f, but leaves HEAD detached.
+3. creates a new tag foo, which refers to commit f, leaving HEAD detached.
+
+If we have moved away from commit f, then we must first recover its object name (typically by using git reflog), and then we can create a reference to it. For example, to see the last two commits to which HEAD referred, we can use either of these commands:
+
+```
+$ git reflog -2 HEAD # or
+$ git log -g -2 HEAD
+```
+
+## Examples
+
+More: [Git checkout](https://git-scm.com/docs/git-checkout#_examples)
