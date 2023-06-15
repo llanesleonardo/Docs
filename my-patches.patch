@@ -1,0 +1,1064 @@
+From 651a3126433344c574a5ea1a43d57a60a7b8f32d Mon Sep 17 00:00:00 2001
+From: Leonardo Llanes <llanesleonardo.developer@gmail.com>
+Date: Tue, 13 Jun 2023 22:37:07 -0700
+Subject: [PATCH 1/3] clone,clean,commit, updated README, cherry pick
+
+---
+ DevOps/Git/1-tablecontent.md  |   9 +-
+ DevOps/Git/git-checkout.md    | 138 +++++++++++++++++++++++
+ DevOps/Git/git-cherry-pick.md | 205 ++++++++++++++++++++++++++++++++++
+ DevOps/Git/git-clean.md       |  54 +++++++++
+ DevOps/Git/git-clone.md       | 159 ++++++++++++++++++++++++++
+ DevOps/Git/git-commit.md      |  17 +++
+ README.md                     |   3 +-
+ 7 files changed, 580 insertions(+), 5 deletions(-)
+ create mode 100644 DevOps/Git/git-cherry-pick.md
+ create mode 100644 DevOps/Git/git-clean.md
+ create mode 100644 DevOps/Git/git-clone.md
+ create mode 100644 DevOps/Git/git-commit.md
+
+diff --git a/DevOps/Git/1-tablecontent.md b/DevOps/Git/1-tablecontent.md
+index 5a751a3..c2b9236 100644
+--- a/DevOps/Git/1-tablecontent.md
++++ b/DevOps/Git/1-tablecontent.md
+@@ -17,14 +17,15 @@ These docs were gathered from various sources, such as:
+ ## Getting and Creating Projects
+ 
+ - init
+-- clone
++- [clone](https://git-scm.com/docs/git-clone)
+ 
+ ## Basic Snapshotting
+ 
+ - [git add](./git-add.md)
+ - status
+ - diff
+-- commit
++- [commit](./git-commit.md)
++- [citool](https://git-scm.com/docs/git-citool)
+ - notes
+ - restore
+ - reset
+@@ -64,7 +65,7 @@ These docs were gathered from various sources, such as:
+ ## Patching
+ 
+ - apply
+-- cherry-pick
++- [cherry-pick](./git cherry-pick.md)
+ - diff
+ - rebase
+ - revert
+@@ -79,7 +80,7 @@ These docs were gathered from various sources, such as:
+ 
+ ## Administration
+ 
+-- clean
++- [clean](https://git-scm.com/docs/git-clean)
+ - gc
+ - reflog
+ - filter-branch
+diff --git a/DevOps/Git/git-checkout.md b/DevOps/Git/git-checkout.md
+index a4fd9aa..5ee2b6e 100644
+--- a/DevOps/Git/git-checkout.md
++++ b/DevOps/Git/git-checkout.md
+@@ -84,3 +84,141 @@ Create the new branch’s reflog;
+ ```
+ 
+ Rather than checking out a branch to work on it, check out a commit for inspection and discardable experiments. This is the default behavior of git checkout <commit> when <commit> is not a branch name. See the "DETACHED HEAD" section below for details.
++
++```
++--orphan <new-branch>
++```
++
++Create a new orphan branch, named <new-branch>, started from <start-point> and switch to it. The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
++
++The index and the working tree are adjusted as if you had previously run git checkout <start-point>. This allows you to start a new history that records a set of paths similar to <start-point> by easily running git commit -a to make the root commit.
++
++This can be useful when you want to publish the tree from a commit without exposing its full history. You might want to do this to publish an open source branch of a project whose current tree is "clean", but whose full history contains proprietary or otherwise encumbered bits of code.
++
++If you want to start a disconnected history that records a set of paths that is totally different from the one of <start-point>, then you should clear the index and the working tree right after creating the orphan branch by running git rm -rf . from the top level of the working tree. Afterwards you will be ready to prepare your new files, repopulating the working tree, by copying them from elsewhere, extracting a tarball, etc.
++
++```
++-m
++--merge
++```
++
++When switching branches, if you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context. However, with this option, a three-way merge between the current branch, your working tree contents, and the new branch is done, and you will be on the new branch.
++
++When a merge conflict happens, the index entries for conflicting paths are left unmerged, and you need to resolve the conflicts and mark the resolved paths with git add (or git rm if the merge should result in deletion of the path).
++
++When checking out paths from the index, this option lets you recreate the conflicted merge in the specified paths.
++When switching branches with --merge, staged changes may be lost.
++
++TODO: FIND MORE INFO.
++
++## Examples
++
++HEAD normally refers to a named branch (e.g. master). Meanwhile, each branch refers to a specific commit. Let’s look at a repo with three commits, one of them tagged, and with branch master checked out:
++
++```
++           HEAD (refers to branch 'master')
++            |
++            v
++a---b---c  branch 'master' (refers to commit 'c')
++    ^
++    |
++  tag 'v2.0' (refers to commit 'b')
++```
++
++When a commit is created in this state, the branch is updated to refer to the new commit. Specifically, git commit creates a new commit d, whose parent is commit c, and then updates branch master to refer to new commit d. HEAD still refers to branch master and so indirectly now refers to commit d:
++
++```
++$ edit; git add; git commit
++
++               HEAD (refers to branch 'master')
++                |
++                v
++a---b---c---d  branch 'master' (refers to commit 'd')
++    ^
++    |
++  tag 'v2.0' (refers to commit 'b')
++```
++
++It is sometimes useful to be able to checkout a commit that is not at the tip of any named branch, or even to create a new commit that is not referenced by a named branch. Let’s look at what happens when we checkout commit b (here we show two ways this may be done):
++
++```
++$ git checkout v2.0  # or
++$ git checkout master^^
++
++   HEAD (refers to commit 'b')
++    |
++    v
++a---b---c---d  branch 'master' (refers to commit 'd')
++    ^
++    |
++  tag 'v2.0' (refers to commit 'b')
++```
++
++Notice that regardless of which checkout command we use, HEAD now refers directly to commit b. This is known as being in detached HEAD state. It means simply that HEAD refers to a specific commit, as opposed to referring to a named branch. Let’s see what happens when we create a commit:
++
++```
++$ edit; git add; git commit
++
++     HEAD (refers to commit 'e')
++      |
++      v
++      e
++     /
++a---b---c---d  branch 'master' (refers to commit 'd')
++    ^
++    |
++  tag 'v2.0' (refers to commit 'b')
++```
++
++There is now a new commit e, but it is referenced only by HEAD. We can of course add yet another commit in this state:
++
++```
++$ edit; git add; git commit
++
++	 HEAD (refers to commit 'f')
++	  |
++	  v
++      e---f
++     /
++a---b---c---d  branch 'master' (refers to commit 'd')
++    ^
++    |
++  tag 'v2.0' (refers to commit 'b')
++```
++
++In fact, we can perform all the normal Git operations. But, let’s look at what happens when we then checkout master:
++
++```
++$ git checkout master
++
++               HEAD (refers to branch 'master')
++      e---f     |
++     /          v
++a---b---c---d  branch 'master' (refers to commit 'd')
++    ^
++    |
++  tag 'v2.0' (refers to commit 'b')
++```
++
++It is important to realize that at this point nothing refers to commit f. Eventually commit f (and by extension commit e) will be deleted by the routine Git garbage collection process, unless we create a reference before that happens. If we have not yet moved away from commit f, any of these will create a reference to it:
++
++```
++$ git checkout -b foo  # or "git switch -c foo"  (1)
++$ git branch foo                                 (2)
++$ git tag foo                                    (3)
++```
++
++1. creates a new branch foo, which refers to commit f, and then updates HEAD to refer to branch foo. In other words, we’ll no longer be in detached HEAD state after this command.
++2. similarly creates a new branch foo, which refers to commit f, but leaves HEAD detached.
++3. creates a new tag foo, which refers to commit f, leaving HEAD detached.
++
++If we have moved away from commit f, then we must first recover its object name (typically by using git reflog), and then we can create a reference to it. For example, to see the last two commits to which HEAD referred, we can use either of these commands:
++
++```
++$ git reflog -2 HEAD # or
++$ git log -g -2 HEAD
++```
++
++## Examples
++
++More: [Git checkout](https://git-scm.com/docs/git-checkout#_examples)
+diff --git a/DevOps/Git/git-cherry-pick.md b/DevOps/Git/git-cherry-pick.md
+new file mode 100644
+index 0000000..b028051
+--- /dev/null
++++ b/DevOps/Git/git-cherry-pick.md
+@@ -0,0 +1,205 @@
++# Git cherry pick
++
++Apply the changes introduced by some existing commits.
++
++Given one or more existing commits, apply the change each one introduces, recording a new commit for each. This requires your working tree to be clean (no modifications from the HEAD commit).
++
++When it is not obvious how to apply a change, the following happens:
++
++1. The current branch and HEAD pointer stay at the last commit successfully made.
++2. The CHERRY_PICK_HEAD ref is set to point at the commit that introduced the change that is difficult to apply.
++3. Paths in which the change applied cleanly are updated both in the index file and in your working tree.
++4. For conflicting paths, the index file records up to three versions, as described in the "TRUE MERGE" section of git-merge[1]. The working tree files will include a description of the conflict bracketed by the usual conflict markers <<<<<<< and >>>>>>>.
++5. No other modifications are made.
++
++The purpose of git cherry-pick is to apply specific commits from one branch onto another branch. It allows you to select individual commits and incorporate them into a different branch, essentially
++replaying those commits on top of the current branch.
++
++The benefits of using git cherry-pick include:
++
++- Selective commit application: You have granular control over which commits to apply, allowing you to cherry-pick only the desired changes.
++- Avoiding unnecessary merge conflicts: Since git cherry-pick applies individual commits, it can help avoid conflicts that might arise from merging larger branches.
++- Maintaining a clean commit history: By cherry-picking specific commits, you can keep your commit history focused and organized, incorporating only the relevant changes.
++
++## Options
++
++<commit>…​
++Commits to cherry-pick. For a more complete list of ways to spell commits, see gitrevisions[7]. Sets of commits can be passed but no traversal is done by default, as if the --no-walk option was specified, see git-rev-list[1]. Note that specifying a range will feed all <commit>…​ arguments to a single revision walk (see a later example that uses maint master..next).
++
++TODO: FIND MORE INFO.
++
++---
++
++```
++-e
++--edit
++
++```
++
++With this option, git cherry-pick will let you edit the commit message prior to committing.
++
++```
++-x
++```
++
++When recording the commit, append a line that says "(cherry picked from commit …​)" to the original commit message in order to indicate which commit this change was cherry-picked from. This is done only for cherry picks without conflicts.
++
++TODO: FIND MORE INFO.
++
++---
++
++```
++-m <parent-number>
++--mainline <parent-number>
++
++```
++
++Usually you cannot cherry-pick a merge because you do not know which side of the merge should be considered the mainline. This option specifies the parent number (starting from 1) of the mainline and allows cherry-pick to replay the change relative to the specified parent.
++
++---
++
++```
++-n
++--no-commit
++```
++
++The -n option in git cherry-pick is used to perform a "no-commit" cherry-pick. When you use git cherry-pick -n <commit>, Git applies the changes from the specified commit onto the current branch, but it does not automatically create a new commit with those changes.
++
++The purpose of using -n with git cherry-pick is to give you the opportunity to make additional modifications or adjustments to the changes before committing them. It allows you to further refine or tailor the cherry-picked changes to better suit your needs.
++
++Here's how the -n option affects the cherry-pick process:
++
++- You identify the commit you want to cherry-pick and run git cherry-pick -n <commit>.
++- Git applies the changes from the specified commit onto the current branch, but it does not automatically create a new commit.
++- After the cherry-pick is complete, the changes from the cherry-picked commit are staged but not committed. Git leaves the changes in the working directory and the staging area.
++- You can now make additional modifications to the changes if needed. This could involve adjusting the code, resolving conflicts, or making any necessary tweaks.
++- Once you're satisfied with the modifications, you manually stage the changes using git add.
++- Finally, you create a new commit to capture the modified changes using git commit. Git will prompt you to provide a commit message for the new commit.
++
++By using git cherry-pick -n, you have more control over the cherry-picked changes and the ability to fine-tune them before committing. It allows you to review and modify the changes as needed, ensuring that they fit well within the context of your current branch.
++
++```
++-s
++--signoff
++```
++
++Add a Signed-off-by trailer at the end of the commit message.
++
++The --signoff option in git cherry-pick is used to automatically add a "Signed-off-by" line to the commit message of the cherry-picked commit. The "Signed-off-by" line is a convention commonly used in Git commit messages to indicate that the author of the commit has agreed to the project's Contributor License Agreement (CLA) or Developer Certificate of Origin (DCO).
++
++The purpose of using --signoff with git cherry-pick is to acknowledge and record the origin of the commit. It helps track the history of the commit and provides a record of the author's agreement to the project's licensing terms.
++
++When you run git cherry-pick --signoff <commit>, Git performs the cherry-pick operation as usual, applying the changes from the specified commit onto the current branch. Additionally, it automatically appends the following line to the commit message:
++
++```
++Signed-off-by: Your Name <your.email@example.com>
++
++```
++
++The Signed-off-by line includes the name and email address associated with your Git configuration. This indicates that you, as the cherry-pick author, certify that you have the right to submit the changes and agree to the project's licensing terms.
++
++---
++
++```
++-S[<keyid>]
++--gpg-sign[=<keyid>]
++--no-gpg-sign
++```
++
++GPG-sign commits. The keyid argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space. --no-gpg-sign is useful to countermand both commit.gpgSign configuration variable, and earlier --gpg-sign.
++
++```
++--ff
++```
++
++If the current HEAD is the same as the parent of the cherry-pick’ed commit, then a fast forward to this commit will be performed.
++
++```
++--strategy=<strategy>
++```
++
++Use the given merge strategy.
++
++The --strategy option in git cherry-pick is used to specify the merge strategy to be used when applying the changes from the cherry-picked commit. It allows you to override the default merge strategy and choose a different strategy tailored to your specific needs.
++
++By default, git cherry-pick uses the "recursive" merge strategy, which is the most common and versatile strategy for combining changes. However, you can use --strategy to select a different strategy if necessary.
++
++Some common --strategy options include:
++
++- recursive (default): The default merge strategy that performs a recursive three-way merge.
++- resolve: A simpler merge strategy that performs a two-way merge, discarding the common ancestor.
++- ours: Resolves conflicts by keeping the version from the current branch, effectively ignoring changes from the cherry-picked commit.
++- theirs: Resolves conflicts by keeping the version from the cherry-picked commit, discarding changes from the current branch.
++
++Note that the available merge strategies can vary depending on your Git version.
++
++## Sequencer subcommands
++
++```
++--continue
++```
++
++Continue the operation in progress using the information in .git/sequencer. Can be used to continue after resolving conflicts in a failed cherry-pick or revert.
++
++```
++--skip
++```
++
++Skip the current commit and continue with the rest of the sequence.
++
++```
++--quit
++```
++
++Forget about the current operation in progress. Can be used to clear the sequencer state after a failed cherry-pick or revert.
++
++```
++--abort
++```
++
++Cancel the operation and return to the pre-sequence state.
++
++## Examples
++
++- Applying specific bug fixes: Suppose you have a branch with various commits, and you identify a specific commit that fixes a bug. Instead of merging the entire branch, you can cherry-pick that commit onto the branch where you want to apply the fix.
++- Selectively adding features: If you have a branch with multiple commits introducing different features, you can cherry-pick only the commits related to a specific feature onto another branch.
++- Incorporating changes from upstream: If you have a forked repository and want to bring in changes from the original repository, you can cherry-pick the relevant commits onto your forked branch.
++
++```
++git cherry-pick master
++
++```
++
++Apply the change introduced by the commit at the tip of the master branch and create a new commit with this change.
++
++---
++
++```
++git cherry-pick ..master
++git cherry-pick ^HEAD master
++
++```
++
++[cherry-pick](https://www.youtube.com/watch?v=i657Bg_HAWI)
++[cherry-pick conflicts](https://www.youtube.com/watch?v=aUeNbpSkY8k)
++
++Apply the changes introduced by all commits that are ancestors of master but not of HEAD to produce new commits.
++
++```
++git cherry-pick maint next ^master
++git cherry-pick maint master..next
++```
++
++Apply the changes introduced by all commits that are ancestors of maint or next, but not master or any of its ancestors. Note that the latter does not mean maint and everything between master and next; specifically, maint will not be used if it is included in master.
++
++```
++git cherry-pick -n master~1 next
++```
++
++Apply to the working tree and the index the changes introduced by the second last commit pointed to by master and by the last commit pointed to by next, but do not create any commit with these changes.
++
++```
++git cherry-pick --ff ..next
++```
++
++If history is linear and HEAD is an ancestor of next, update the working tree and advance the HEAD pointer to match next. Otherwise, apply the changes introduced by those commits that are in next but not HEAD to the current branch, creating a new commit for each new change.
+diff --git a/DevOps/Git/git-clean.md b/DevOps/Git/git-clean.md
+new file mode 100644
+index 0000000..6a5f35f
+--- /dev/null
++++ b/DevOps/Git/git-clean.md
+@@ -0,0 +1,54 @@
++# Git clean
++
++Remove untracked files from the working tree.
++
++Cleans the working tree by recursively removing files that are not under version control, starting from the current directory.
++
++Normally, only files unknown to Git are removed, but if the -x option is specified, ignored files are also removed. This can, for example, be useful to remove all build products.
++
++If any optional <pathspec>... arguments are given, only those paths that match the pathspec are affected.
++
++## Options
++
++```
++-d
++
++```
++
++Normally, when no <pathspec> is specified, git clean will not recurse into untracked directories to avoid removing too much. Specify -d to have it recurse into such directories as well. If a <pathspec> is specified, -d is irrelevant; all untracked files matching the specified paths (with exceptions for nested git directories mentioned under --force) will be removed.
++
++```
++-f
++--force
++```
++
++If the Git configuration variable clean.requireForce is not set to false, git clean will refuse to delete files or directories unless given -f or -i. Git will refuse to modify untracked nested git repositories (directories with a .git subdirectory) unless a second -f is given.
++
++```
++-i
++--interactive
++```
++
++Show what would be done and clean files interactively. See “Interactive mode” for details.
++
++[Interactive mode](https://git-scm.com/docs/git-clean#_interactive_mode)
++
++```
++-n
++--dry-run
++```
++
++Don’t actually remove anything, just show what would be done.
++
++```
++-e <pattern>
++--exclude=<pattern>
++```
++
++Use the given exclude pattern in addition to the standard ignore rules (see gitignore[5]).
++
++```
++-X
++```
++
++Remove only files ignored by Git. This may be useful to rebuild everything from scratch, but keep manually created files.
+diff --git a/DevOps/Git/git-clone.md b/DevOps/Git/git-clone.md
+new file mode 100644
+index 0000000..fe3d77f
+--- /dev/null
++++ b/DevOps/Git/git-clone.md
+@@ -0,0 +1,159 @@
++# Git clone
++
++Clone a repository into a new directory.
++
++Clones a repository into a newly created directory, creates remote-tracking branches for each branch in the cloned repository (visible using git branch --remotes), and creates and checks out an initial branch that is forked from the cloned repository’s currently active branch.
++
++After the clone, a plain git fetch without arguments will update all the remote-tracking branches, and a git pull without arguments will in addition merge the remote master branch into the current master branch, if any (this is untrue when "--single-branch" is given; see below).
++
++This default configuration is achieved by creating references to the remote branch heads under refs/remotes/origin and by initializing remote.origin.url and remote.origin.fetch configuration variables.
++
++## Options
++
++```
++--bare
++```
++
++Make a bare Git repository. That is, instead of creating <directory> and placing the administrative files in <directory>/.git, make the <directory> itself the $GIT_DIR. This obviously implies the --no-checkout because there is nowhere to check out the working tree. Also the branch heads at the remote are copied directly to corresponding local branch heads, without mapping them to refs/remotes/origin/. When this option is used, neither remote-tracking branches nor the related configuration variables are created.
++
++```
++--sparse
++```
++
++Employ a sparse-checkout, with only files in the toplevel directory initially being present.
++
++```
++--also-filter-submodules
++```
++
++Also apply the partial clone filter to any submodules in the repository. Requires --filter and --recurse-submodules. This can be turned on by default by setting the clone.filterSubmodules config option.
++
++```
++--mirror
++```
++
++Set up a mirror of the source repository. This implies --bare. Compared to --bare, --mirror not only maps local branches of the source to local branches of the target, it maps all refs (including remote-tracking branches, notes etc.) and sets up a refspec configuration such that all these refs are overwritten by a git remote update in the target repository.
++
++```
++-o <name>
++--origin <name>
++```
++
++Instead of using the remote name origin to keep track of the upstream repository, use <name>. Overrides clone.defaultRemoteName from the config.
++
++```
++--template=<template-directory>
++```
++
++Specify the directory from which templates will be used;
++
++```
++-c <key>=<value>
++--config <key>=<value>
++```
++
++Set a configuration variable in the newly-created repository; this takes effect immediately after the repository is initialized, but before the remote history is fetched or any files checked out. The key is in the same format as expected by git-config[1] (e.g., core.eol=true). If multiple values are given for the same key, each value will be written to the config file. This makes it safe, for example, to add additional fetch refspecs to the origin remote.
++
++Due to limitations of the current implementation, some configuration variables do not take effect until after the initial fetch and checkout. Configuration variables known to not take effect are: remote.<name>.mirror and remote.<name>.tagOpt. Use the corresponding --mirror and --no-tags options instead.
++
++```
++--no-tags
++```
++
++Don’t clone any tags, and set remote.<remote>.tagOpt=--no-tags in the config, ensuring that future git pull and git fetch operations won’t follow any tags. Subsequent explicit tag fetches will still work, (see git-fetch[1]).
++
++Can be used in conjunction with --single-branch to clone and maintain a branch with no references other than a single cloned branch. This is useful e.g. to maintain minimal clones of the default branch of some repository for search indexing.
++
++```
++<repository>
++
++```
++
++The (possibly remote) repository to clone from. See the GIT URLS section below for more information on specifying repositories.
++
++```
++<directory>
++```
++
++The name of a new directory to clone into. The "humanish" part of the source repository is used if no directory is explicitly given (repo for /path/to/repo.git and foo for host.xz:foo/.git). Cloning into an existing directory is only allowed if the directory is empty.
++
++```
++--bundle-uri=<uri>
++```
++
++Before fetching from the remote, fetch a bundle from the given <uri> and unbundle the data into the local repository. The refs in the bundle will be stored under the hidden refs/bundle/\* namespace. This option is incompatible with --depth, --shallow-since, and --shallow-exclude.
++
++## Git urls
++
++In general, URLs contain information about the transport protocol, the address of the remote server, and the path to the repository. Depending on the transport protocol, some of this information may be absent.
++
++Git supports ssh, git, http, and https protocols (in addition, ftp, and ftps can be used for fetching, but this is inefficient and deprecated; do not use it).
++
++The native transport (i.e. git:// URL) does no authentication and should be used with caution on unsecured networks.
++
++The following syntaxes may be used with them:
++
++ssh://[user@]host.xz[:port]/path/to/repo.git/
++
++git://host.xz[:port]/path/to/repo.git/
++
++http[s]://host.xz[:port]/path/to/repo.git/
++
++ftp[s]://host.xz[:port]/path/to/repo.git/
++
++An alternative scp-like syntax may also be used with the ssh protocol:
++
++[user@]host.xz:path/to/repo.git/
++
++This syntax is only recognized if there are no slashes before the first colon. This helps differentiate a local path that contains a colon. For example the local path foo:bar could be specified as an absolute path or ./foo:bar to avoid being misinterpreted as an ssh url.
++
++The ssh and git protocols additionally support ~username expansion:
++
++ssh://[user@]host.xz[:port]/~[user]/path/to/repo.git/
++
++git://host.xz[:port]/~[user]/path/to/repo.git/
++
++[user@]host.xz:/~[user]/path/to/repo.git/
++
++For local repositories, also supported by Git natively, the following syntaxes may be used:
++
++/path/to/repo.git/
++
++file:///path/to/repo.git/
++
++These two syntaxes are mostly equivalent, except the former implies --local option.
++
++git clone, git fetch and git pull, but not git push, will also accept a suitable bundle file.
++
++## Examples
++
++Clone from upstream:
++
++```
++$ git clone git://git.kernel.org/pub/scm/.../linux.git my-linux
++$ cd my-linux
++$ make
++```
++
++Make a local clone that borrows from the current directory, without checking things out:
++
++```
++$ git clone -l -s -n . ../copy
++$ cd ../copy
++$ git show-branch
++```
++
++Clone from upstream while borrowing from an existing local directory:
++
++```
++$ git clone --reference /git/linux.git \
++	git://git.kernel.org/pub/scm/.../linux.git \
++	my-linux
++$ cd my-linux
++```
++
++Create a bare repository to publish your changes to the public:
++
++```
++$ git clone --bare -l /home/proj/.git /pub/scm/proj.git
++```
+diff --git a/DevOps/Git/git-commit.md b/DevOps/Git/git-commit.md
+new file mode 100644
+index 0000000..f27a29c
+--- /dev/null
++++ b/DevOps/Git/git-commit.md
+@@ -0,0 +1,17 @@
++# Git commit
++
++Record changes to the repository.
++
++Create a new commit containing the current contents of the index and the given log message describing the changes. The new commit is a direct child of HEAD, usually the tip of the current branch, and the branch is updated to point to it (unless no branch is associated with the working tree, in which case HEAD is "detached").
++
++The content to be committed can be specified in several ways:
++
++- by using git-add[1] to incrementally "add" changes to the index before using the commit command (Note: even modified files must be "added");
++- by using git-rm[1] to remove files from the working tree and the index, again before using the commit command;
++- by listing files as arguments to the commit command (without --interactive or --patch switch), in which case the commit will ignore changes staged in the index, and instead record the current content of the listed files (which must already be known to Git);
++- by using the -a switch with the commit command to automatically "add" changes from all known files (i.e. all files that are already listed in the index) and to automatically "rm" files in the index that have been removed from the working tree, and then perform the actual commit;
++- by using the --interactive or --patch switches with the commit command to decide one by one which files or hunks should be part of the commit in addition to contents in the index, before finalizing the operation. See the “Interactive Mode” section of git-add[1] to learn how to operate these modes.
++
++The --dry-run option can be used to obtain a summary of what is included by any of the above for the next commit by giving the same set of parameters (options and paths).
++
++If you make a commit and then find a mistake immediately after that, you can recover from it with git reset.
+diff --git a/README.md b/README.md
+index bab2fc0..bad715b 100644
+--- a/README.md
++++ b/README.md
+@@ -18,6 +18,7 @@ Main topics (Table Contents):
+ - Apanche XAMPP
+ - LocalWP
+ 
+-More information: llanesleonardo.developer@gmail.com
++[You can visit the github pages from these repository here](https://llanesleonardo.github.io/Docs/)
+ 
++More information: llanesleonardo.developer@gmail.com
+ [3LStrategy](https://3lstrategy.com)
+-- 
+2.34.1
+
+
+From 4a115e6ce68ae72c8e6556bf000634ad6cda945e Mon Sep 17 00:00:00 2001
+From: Leonardo Llanes <llanesleonardo.developer@gmail.com>
+Date: Tue, 13 Jun 2023 23:22:46 -0700
+Subject: [PATCH 2/3] Using -u as a parameter when executing git commit.
+
+---
+ DevOps/Git/git-commit.md | 130 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 130 insertions(+)
+
+diff --git a/DevOps/Git/git-commit.md b/DevOps/Git/git-commit.md
+index f27a29c..0daeb46 100644
+--- a/DevOps/Git/git-commit.md
++++ b/DevOps/Git/git-commit.md
+@@ -15,3 +15,133 @@ The content to be committed can be specified in several ways:
+ The --dry-run option can be used to obtain a summary of what is included by any of the above for the next commit by giving the same set of parameters (options and paths).
+ 
+ If you make a commit and then find a mistake immediately after that, you can recover from it with git reset.
++
++## Options
++
++```
++-a
++--all
++```
++
++Tell the command to automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected.
++
++```
++-p
++--patch
++```
++
++Use the interactive patch selection interface to choose which changes to commit.
++
++```
++-C <commit>
++--reuse-message=<commit>
++```
++
++Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.
++
++```
++-c <commit>
++--reedit-message=<commit>
++```
++
++Like -C, but with -c the editor is invoked, so that the user can further edit the commit message.
++
++```
++--fixup=[(amend|reword):]<commit>
++
++```
++
++Create a new commit which "fixes up" <commit> when applied with git rebase --autosquash. Plain --fixup=<commit> creates a "fixup!" commit which changes the content of <commit> but leaves its log message untouched. --fixup=amend:<commit> is similar but creates an "amend!" commit which also replaces the log message of <commit> with the log message of the "amend!" commit. --fixup=reword:<commit> creates an "amend!" commit which replaces the log message of <commit> with its own log message but makes no changes to the content of <commit>.
++
++The commit created by plain --fixup=<commit> has a subject composed of "fixup!" followed by the subject line from <commit>, and is recognized specially by git rebase --autosquash. The -m option may be used to supplement the log message of the created commit, but the additional commentary will be thrown away once the "fixup!" commit is squashed into <commit> by git rebase --autosquash.
++
++The commit created by --fixup=amend:<commit> is similar but its subject is instead prefixed with "amend!". The log message of <commit> is copied into the log message of the "amend!" commit and opened in an editor so it can be refined. When git rebase --autosquash squashes the "amend!" commit into <commit>, the log message of <commit> is replaced by the refined log message from the "amend!" commit. It is an error for the "amend!" commit’s log message to be empty unless --allow-empty-message is specified.
++
++--fixup=reword:<commit> is shorthand for --fixup=amend:<commit> --only. It creates an "amend!" commit with only a log message (ignoring any changes staged in the index). When squashed by git rebase --autosquash, it replaces the log message of <commit> without making any other changes.
++
++Neither "fixup!" nor "amend!" commits change authorship of <commit> when applied by git rebase --autosquash. See git-rebase[1] for details.
++
++```
++--squash=<commit>
++
++```
++
++Construct a commit message for use with rebase --autosquash. The commit message subject line is taken from the specified commit with a prefix of "squash! ". Can be used with additional commit message options (-m/-c/-C/-F). See git-rebase[1] for details.
++
++```
++--branch
++```
++
++Show the branch and tracking info even in short-format.
++
++```
++--porcelain
++```
++
++When doing a dry-run, give the output in a porcelain-ready format. See git-status[1] for details. Implies --dry-run.
++
++```
++--long
++```
++
++When doing a dry-run, give the output in the long-format. Implies --dry-run.
++
++```
++-F <file>
++--file=<file>
++```
++
++Take the commit message from the given file. Use - to read the message from the standard input.
++
++```
++-m <msg>
++--message=<msg>
++```
++
++Use the given <msg> as the commit message. If multiple -m options are given, their values are concatenated as separate paragraphs.
++
++The -m option is mutually exclusive with -c, -C, and -F.
++
++```
++-s
++--signoff
++--no-signoff
++```
++
++Add a Signed-off-by trailer by the committer at the end of the commit log message. The meaning of a signoff depends on the project to which you’re committing. For example, it may certify that the committer has the rights to submit the work under the project’s license or agrees to some contributor representation, such as a Developer Certificate of Origin. (See http://developercertificate.org for the one used by the Linux kernel and Git projects.) Consult the documentation or leadership of the project to which you’re contributing to understand how the signoffs are used in that project.
++
++The --no-signoff option can be used to countermand an earlier --signoff option on the command line.
++
++```
++-e
++--edit
++```
++
++The message taken from file with -F, command line with -m, and from commit object with -C are usually used as the commit log message unmodified. This option lets you further edit the message taken from these sources.
++
++```
++--amend
++```
++
++Replace the tip of the current branch by creating a new commit. The recorded tree is prepared as usual (including the effect of the -i and -o options and explicit pathspec), and the message from the original commit is used as the starting point, instead of an empty message, when no other message is specified from the command line via options such as -m, -F, -c, etc. The new commit has the same parents and author as the current one (the --reset-author option can countermand this).
++
++It can be used to amend a merge commit.
++
++You should understand the implications of rewriting history if you amend a commit that has already been published.
++
++```
++-u[<mode>]
++--untracked-files[=<mode>]
++```
++
++Show untracked files.
++
++The mode parameter is optional (defaults to all), and is used to specify the handling of untracked files; when -u is not used, the default is normal, i.e. show untracked files and directories.
++
++The possible options are:
++
++no - Show no untracked files
++
++normal - Shows untracked files and directories
++
++all - Also shows individual files in untracked directories.
+-- 
+2.34.1
+
+
+From 69b880627b98338a92a415fb994704140396399c Mon Sep 17 00:00:00 2001
+From: Leonardo Llanes <llanesleonardo.developer@gmail.com>
+Date: Wed, 14 Jun 2023 00:00:43 -0700
+Subject: [PATCH 3/3] commit,describe,diff
+
+---
+ DevOps/Git/git-commit.md   | 76 +++++++++++++++++++++++++++++
+ DevOps/Git/git-describe.md | 99 ++++++++++++++++++++++++++++++++++++++
+ DevOps/Git/git-diff.md     | 21 ++++++++
+ 3 files changed, 196 insertions(+)
+ create mode 100644 DevOps/Git/git-describe.md
+ create mode 100644 DevOps/Git/git-diff.md
+
+diff --git a/DevOps/Git/git-commit.md b/DevOps/Git/git-commit.md
+index 0daeb46..82ca5af 100644
+--- a/DevOps/Git/git-commit.md
++++ b/DevOps/Git/git-commit.md
+@@ -145,3 +145,79 @@ no - Show no untracked files
+ normal - Shows untracked files and directories
+ 
+ all - Also shows individual files in untracked directories.
++
++```
++--dry-run
++```
++
++Do not create a commit, but show a list of paths that are to be committed, paths with local changes that will be left uncommitted and paths that are untracked.
++
++```
++-S[<keyid>]
++--gpg-sign[=<keyid>]
++--no-gpg-sign
++
++```
++
++GPG-sign commits. The keyid argument is optional and defaults to the committer identity; if specified, it must be stuck to the option without a space. --no-gpg-sign is useful to countermand both commit.gpgSign configuration variable, and earlier --gpg-sign.
++
++## Examples
++
++When recording your own work, the contents of modified files in your working tree are temporarily stored to a staging area called the "index" with git add. A file can be reverted back, only in the index but not in the working tree, to that of the last commit with git restore --staged <file>, which effectively reverts git add and prevents the changes to this file from participating in the next commit. After building the state to be committed incrementally with these commands, git commit (without any pathname parameter) is used to record what has been staged so far. This is the most basic form of the command. An example:
++
++```
++$ edit hello.c
++$ git rm goodbye.c
++$ git add hello.c
++$ git commit
++```
++
++Instead of staging files after each individual change, you can tell git commit to notice the changes to the files whose contents are tracked in your working tree and do corresponding git add and git rm for you. That is, this example does the same as the earlier example if there is no other change in your working tree:
++
++```
++$ edit hello.c
++$ rm goodbye.c
++$ git commit -a
++```
++
++The command git commit -a first looks at your working tree, notices that you have modified hello.c and removed goodbye.c, and performs necessary git add and git rm for you.
++
++After staging changes to many files, you can alter the order the changes are recorded in, by giving pathnames to git commit. When pathnames are given, the command makes a commit that only records the changes made to the named paths:
++
++```
++$ edit hello.c hello.h
++$ git add hello.c hello.h
++$ edit Makefile
++$ git commit Makefile`
++```
++
++This makes a commit that records the modification to Makefile. The changes staged for hello.c and hello.h are not included in the resulting commit. However, their changes are not lost — they are still staged and merely held back. After the above sequence, if you do:
++
++```
++$ git commit
++```
++
++this second commit would record the changes to hello.c and hello.h as expected.
++
++After a merge (initiated by git merge or git pull) stops because of conflicts, cleanly merged paths are already staged to be committed for you, and paths that conflicted are left in unmerged state. You would have to first check which paths are conflicting with git status and after fixing them manually in your working tree, you would stage the result as usual with git add:
++
++```
++$ git status | grep unmerged
++unmerged: hello.c
++$ edit hello.c
++$ git add hello.c
++```
++
++After resolving conflicts and staging the result, git ls-files -u would stop mentioning the conflicted path. When you are done, run git commit to finally record the merge:
++
++```
++$ git commit
++```
++
++As with the case to record your own changes, you can use -a option to save typing. One difference is that during a merge resolution, you cannot use git commit with pathnames to alter the order the changes are committed, because the merge should be recorded as a single commit.
++
++## Information taken by commits command
++
++[Info](https://git-scm.com/docs/git-commit#_date_formats)
++
++[Git commit hooks](https://git-scm.com/docs/git-commit#_hooks)
+diff --git a/DevOps/Git/git-describe.md b/DevOps/Git/git-describe.md
+new file mode 100644
+index 0000000..84e69c3
+--- /dev/null
++++ b/DevOps/Git/git-describe.md
+@@ -0,0 +1,99 @@
++# Git describe
++
++Give an object a human readable name based on an available ref.
++
++The command finds the most recent tag that is reachable from a commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a "human-readable" object name which can also be used to identify the commit to other git commands.
++
++By default (without --all or --tags) git describe only shows annotated tags.
++
++If the given object refers to a blob, it will be described as <commit-ish>:<path>, such that the blob can be found at <path> in the <commit-ish>, which itself describes the first commit in which this blob occurs in a reverse revision walk from HEAD.
++
++```
++<commit-ish>…​
++```
++
++Commit-ish object names to describe. Defaults to HEAD if omitted.
++
++```
++--dirty[=<mark>]
++--broken[=<mark>]
++```
++
++Describe the state of the working tree. When the working tree matches HEAD, the output is the same as "git describe HEAD". If the working tree has local modification "-dirty" is appended to it. If a repository is corrupt and Git cannot determine if there is local modification, Git will error out, unless ‘--broken’ is given, which appends the suffix "-broken" instead.
++
++```
++--all
++```
++
++Instead of using only the annotated tags, use any ref found in refs/ namespace. This option enables matching any known branch, remote-tracking branch, or lightweight tag.
++
++```
++--tags
++```
++
++Instead of using only the annotated tags, use any tag found in refs/tags namespace. This option enables matching a lightweight (non-annotated) tag.
++
++```
++--contains
++```
++
++Instead of finding the tag that predates the commit, find the tag that comes after the commit, and thus contains it. Automatically implies --tags.
++
++```
++--abbrev=<n>
++```
++
++Instead of using the default number of hexadecimal digits (which will vary according to the number of objects in the repository with a default of 7) of the abbreviated object name, use <n> digits, or as many digits as needed to form a unique object name. An <n> of 0 will suppress long format, only showing the closest tag.
++
++```
++--debug
++```
++
++Verbosely display information about the searching strategy being employed to standard error. The tag name will still be printed to standard out.
++
++## Examples
++
++With something like git.git current tree, I get:
++
++```
++[torvalds@g5 git]$ git describe parent
++v1.0.4-14-g2414721
++```
++
++i.e. the current head of my "parent" branch is based on v1.0.4, but since it has a few commits on top of that, describe has added the number of additional commits ("14") and an abbreviated object name for the commit itself ("2414721") at the end.
++
++Doing a git describe on a tag-name will just show the tag name:
++
++```
++[torvalds@g5 git]$ git describe v1.0.4
++v1.0.4
++```
++
++With --all, the command can use branch heads as references, so the output shows the reference path as well:
++
++```
++[torvalds@g5 git]$ git describe --all --abbrev=4 v1.0.5^2
++tags/v1.0.0-21-g975b
++```
++
++```
++[torvalds@g5 git]$ git describe --all --abbrev=4 HEAD^
++heads/lt/describe-7-g975b
++```
++
++With --abbrev set to 0, the command can be used to find the closest tagname without any suffix:
++
++```
++[torvalds@g5 git]$ git describe --abbrev=0 v1.0.5^2
++tags/v1.0.0
++```
++
++TODO: CREATE A TAG AND TRY THIS CODE
++
++## Search strategy
++
++For each commit-ish supplied, git describe will first look for a tag which tags exactly that commit. Annotated tags will always be preferred over lightweight tags, and tags with newer dates will always be preferred over tags with older dates. If an exact match is found, its name will be output and searching will stop.
++
++If an exact match was not found, git describe will walk back through the commit history to locate an ancestor commit which has been tagged. The ancestor’s tag will be output along with an abbreviation of the input commit-ish’s SHA-1. If --first-parent was specified then the walk will only consider the first parent of each commit.
++
++If multiple tags were found during the walk then the tag which has the fewest commits different from the input commit-ish will be selected and output. Here fewest commits different is defined as the number of commits which would be shown by git log tag..input will be the smallest number of commits possible.
+diff --git a/DevOps/Git/git-diff.md b/DevOps/Git/git-diff.md
+new file mode 100644
+index 0000000..40b4231
+--- /dev/null
++++ b/DevOps/Git/git-diff.md
+@@ -0,0 +1,21 @@
++# Git diff
++
++Show changes between commits, commit and working tree, etc.
++
++Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two trees, changes resulting from a merge, changes between two blob objects, or changes between two files on disk.
++
++## Options
++
++[Diff Options](https://git-scm.com/docs/git-diff#_options)
++
++## Examples
++
++[Git diff examples](https://git-scm.com/docs/git-diff#_examples)
++
++Various ways to check your working tree:
++
++```
++$ git diff            (1)
++$ git diff --cached   (2)
++$ git diff HEAD       (3)
++```
+-- 
+2.34.1
+

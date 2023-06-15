@@ -16,7 +16,7 @@ These docs were gathered from various sources, such as:
 
 ## Getting and Creating Projects
 
-- init
+- [init](./git-init.md)
 - [clone](https://git-scm.com/docs/git-clone)
 
 ## Basic Snapshotting
@@ -25,7 +25,6 @@ These docs were gathered from various sources, such as:
 - status
 - diff
 - [commit](./git-commit.md)
-- [citool](https://git-scm.com/docs/git-citool)
 - notes
 - restore
 - reset
@@ -55,7 +54,7 @@ These docs were gathered from various sources, such as:
 ## Inspections and comparison
 
 - show
-- log
+- [log](./git-log.md)
 - diff
 - difftool
 - range-diff
@@ -70,18 +69,19 @@ These docs were gathered from various sources, such as:
 - rebase
 - revert
 - [am](git-am.md)
+- [format-patch](./git-format-patch.md)
 
 ## Debugging
 
 - bisect
 - blame
-- grep
+- [grep](./git-grep.md)
 - [bisect](./git-bisect.md)
 
 ## Administration
 
 - [clean](https://git-scm.com/docs/git-clean)
-- gc
+- [gc](./git-gc.md)
 - reflog
 - filter-branch
 - instaweb
@@ -89,6 +89,9 @@ These docs were gathered from various sources, such as:
 - [bundle](./git-bundle.md)
 - daemon
 - update-server-info
+- [git gui](https://git-scm.com/docs/git-gui)
+- [citool](https://git-scm.com/docs/git-citool)
+- [maintenance](./git-maintenance.md)
 
 ## Plumbing commands
 
