@@ -23,20 +23,20 @@ These docs were gathered from various sources, such as:
 
 - [git add](./git-add.md)
 - status
-- diff
+- [diff](./git-diff.md)
 - [commit](./git-commit.md)
-- notes
+- [notes](/.git-notes.md)
 - restore
 - reset
 - rm
-- mv
+- [mv](./git-mv.md)
 
 ## Branching and Merging
 
 - [branch](./git-branch.md)
 - [checkout](./git-checkout.md)
 - switch
-- merge
+- [merge](./git-merge.md)
 - mergetool
 - log
 - stash
