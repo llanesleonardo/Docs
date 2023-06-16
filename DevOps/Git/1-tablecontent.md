@@ -23,31 +23,31 @@ These docs were gathered from various sources, such as:
 
 - [git add](./git-add.md)
 - status
-- diff
+- [diff](./git-diff.md)
 - [commit](./git-commit.md)
-- notes
-- restore
-- reset
+- [notes](/.git-notes.md)
+- [restore](./git-restore.md)
+- [reset](./git-reset.md)
 - rm
-- mv
+- [mv](./git-mv.md)
 
 ## Branching and Merging
 
 - [branch](./git-branch.md)
 - [checkout](./git-checkout.md)
 - switch
-- merge
+- [merge](./git-merge.md)
 - mergetool
-- log
+- [log](./git-log.md)
 - stash
 - tag
 - worktree
 
 ## Sharing and Updating Projects
 
-- fetch
-- pull
-- push
+- [fetch](./git-fetch.md)
+- [pull](./git-pull.md)
+- [push](./git-push.md)
 - remote
 - submodule
 
@@ -55,18 +55,18 @@ These docs were gathered from various sources, such as:
 
 - show
 - [log](./git-log.md)
-- diff
+- [diff](./git-diff.md)
 - difftool
-- range-diff
+- [range-diff](./git-range-diff.md)
 - shortlog
-- describe
+- [describe](./git-describe.md)
 
 ## Patching
 
 - apply
 - [cherry-pick](./git cherry-pick.md)
-- diff
-- rebase
+- [diff](./git-diff.md)
+- [rebase](./git-rebase.md)
 - revert
 - [am](git-am.md)
 - [format-patch](./git-format-patch.md)
@@ -124,3 +124,5 @@ These docs were gathered from various sources, such as:
 - - [gitignore](https://git-scm.com/docs/gitignore)
 
 ## Common Errors
+
+[Security executing a Pull request](https://git-scm.com/docs/git-pull#_security)
