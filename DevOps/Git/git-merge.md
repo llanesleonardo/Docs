@@ -169,6 +169,8 @@ TODO: FIND MORE INFO.
 
 ## Examples
 
+[Git merge conflict](https://www.youtube.com/watch?v=kBIMGOxqqnk)
+
 Merge branches fixes and enhancements on top of the current branch, making an octopus merge:
 
 ```

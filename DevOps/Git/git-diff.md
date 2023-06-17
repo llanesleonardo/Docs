@@ -11,6 +11,7 @@ Show changes between the working tree and the index or a tree, changes between t
 ## Examples
 
 [Git diff examples](https://git-scm.com/docs/git-diff#_examples)
+[git diff another example](https://www.youtube.com/watch?v=PCVeuHe-Mik)
 
 Various ways to check your working tree:
 
