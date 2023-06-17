@@ -40,3 +40,32 @@ $ git restore '*.c'
 Note the quotes around \*.c. The file hello.c will also be restored, even though it is no longer in the working tree, because the file globbing is used to match entries in the index (not in the working tree by the shell).
 
 To restore all files in the current directory
+
+```
+$ git restore .
+```
+
+or to restore all working tree files with top pathspec magic (see gitglossary[7])
+
+```
+$ git restore :/
+
+```
+
+To restore a file in the index to match the version in HEAD (this is the same as using git-reset[1])
+
+```
+$ git restore --staged hello.c
+```
+
+or you can restore both the index and the working tree (this the same as using git-checkout[1])
+
+```
+$ git restore --source=HEAD --staged --worktree hello.c
+```
+
+or the short form which is more practical but less readable:
+
+```
+$ git restore -s@ -SW hello.c
+```

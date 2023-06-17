@@ -18,47 +18,51 @@ These docs were gathered from various sources, such as:
 
 - [init](./git-init.md)
 - [clone](https://git-scm.com/docs/git-clone)
+- [fast exports](https://git-scm.com/docs/git-fast-export)
+- [fast imports](https://git-scm.com/docs/git-fast-import)
 
 ## Basic Snapshotting
 
 - [git add](./git-add.md)
-- status
+- [status](./git-status.md)
 - [diff](./git-diff.md)
 - [commit](./git-commit.md)
 - [notes](/.git-notes.md)
 - [restore](./git-restore.md)
 - [reset](./git-reset.md)
-- rm
+- [rm](./git-rm.md)
 - [mv](./git-mv.md)
+- [revert](./git-revert.md)
 
 ## Branching and Merging
 
 - [branch](./git-branch.md)
 - [checkout](./git-checkout.md)
-- switch
+- [switch](./git-switch.md)
 - [merge](./git-merge.md)
-- mergetool
+- [mergetool](./git-mergetool.md)
 - [log](./git-log.md)
-- stash
-- tag
-- worktree
+- [stash](./git-stash.md)
+- [tag](./git-tag.md)
+- [worktree](./git-wrktree.md)
+- [sparse checkout](./git-sparse-checkout.md)
 
 ## Sharing and Updating Projects
 
 - [fetch](./git-fetch.md)
 - [pull](./git-pull.md)
 - [push](./git-push.md)
-- remote
-- submodule
+- [remote](./git-remote.md)
+- [submodule](./git-submodules.md)
 
 ## Inspections and comparison
 
-- show
+- [show](./git-show.md)
 - [log](./git-log.md)
 - [diff](./git-diff.md)
 - difftool
 - [range-diff](./git-range-diff.md)
-- shortlog
+- [shortlog](./git-shortlog.md)
 - [describe](./git-describe.md)
 
 ## Patching
@@ -67,23 +71,24 @@ These docs were gathered from various sources, such as:
 - [cherry-pick](./git cherry-pick.md)
 - [diff](./git-diff.md)
 - [rebase](./git-rebase.md)
-- revert
+- [revert](./git-revert.md)
 - [am](git-am.md)
 - [format-patch](./git-format-patch.md)
 
 ## Debugging
 
-- bisect
 - blame
 - [grep](./git-grep.md)
 - [bisect](./git-bisect.md)
+- -[prune](./git-prune.md)
+- [reflog](./git-reflog.md)
 
 ## Administration
 
 - [clean](https://git-scm.com/docs/git-clean)
 - [gc](./git-gc.md)
 - reflog
-- filter-branch
+- [filter-branch](./git-filter-branch.md)
 - instaweb
 - [archive](./git-archive.md)
 - [bundle](./git-bundle.md)
@@ -92,6 +97,10 @@ These docs were gathered from various sources, such as:
 - [git gui](https://git-scm.com/docs/git-gui)
 - [citool](https://git-scm.com/docs/git-citool)
 - [maintenance](./git-maintenance.md)
+- [gitk](./git-gitk.md)
+- [git scalar](./git-scalar.md)
+- [git pack-refs](./git-pack-refs.md)
+- [git repack](./git-repack.md)
 
 ## Plumbing commands
 
