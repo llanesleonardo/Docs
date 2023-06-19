@@ -11,8 +11,9 @@ These docs were gathered from various sources, such as:
 - [setup](./setupgit.md)
 - [git options](./git-options.md)
 - config
-- help
-- bugreport
+- [help](./git-help.md)
+- [bugreport](./git-bugreport.md)
+- [git version](./git-version.md)
 
 ## Getting and Creating Projects
 
@@ -33,6 +34,7 @@ These docs were gathered from various sources, such as:
 - [rm](./git-rm.md)
 - [mv](./git-mv.md)
 - [revert](./git-revert.md)
+- [watchanged](./git-watchanged.md)
 
 ## Branching and Merging
 
@@ -54,16 +56,21 @@ These docs were gathered from various sources, such as:
 - [push](./git-push.md)
 - [remote](./git-remote.md)
 - [submodule](./git-submodules.md)
+- [instaweb](https://git-scm.com/docs/git-instaweb)
+- [gitweb](https://git-scm.com/docs/gitweb)
 
 ## Inspections and comparison
 
 - [show](./git-show.md)
 - [log](./git-log.md)
 - [diff](./git-diff.md)
-- difftool
+- [difftool](./git-difftool.md)
 - [range-diff](./git-range-diff.md)
 - [shortlog](./git-shortlog.md)
 - [describe](./git-describe.md)
+- [show-branch](./git-show-branch.md)
+- [verify commit](./git-verify-commit.md)
+- [verify tag](./git-verify-tag.md)
 
 ## Patching
 
@@ -77,11 +84,13 @@ These docs were gathered from various sources, such as:
 
 ## Debugging
 
-- blame
+- [blame](./git-blame.md)
 - [grep](./git-grep.md)
 - [bisect](./git-bisect.md)
-- -[prune](./git-prune.md)
+- [prune](./git-prune.md)
 - [reflog](./git-reflog.md)
+- [annotate](./git-annotate.md)
+- [fsck](./git-fsck.md)
 
 ## Administration
 
@@ -108,7 +117,7 @@ These docs were gathered from various sources, such as:
 - check-ignore
 - checkout-index
 - commit-tree
-- count-objects
+- [count-objects](./git-count-objects.md)
 - diff-index
 - for-each-ref
 - hash-object
@@ -124,14 +133,18 @@ These docs were gathered from various sources, such as:
 - update-ref
 - verify-pack
 - write-tree
+- [merge-tree](./git-merge-tree.md)
+- [rerere](./git-rerere.md)
 
 #### More information links
 
 - [using-git-rebase-on-the-command-line](https://docs.github.com/en/get-started/using-git/using-git-rebase-on-the-command-line)
 - [Git-Tools-Rewriting-History#\_changing_multiple](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_changing_multiple)
 - [Squashing commits with rebase](https://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)
-- - [gitignore](https://git-scm.com/docs/gitignore)
+- [gitignore](https://git-scm.com/docs/gitignore)
+- [Interacting with others](https://git-scm.com/docs/git#_interacting_with_others)
 
 ## Common Errors
 
 [Security executing a Pull request](https://git-scm.com/docs/git-pull#_security)
+[Mistakes to avoid with merge-tree](https://git-scm.com/docs/git-merge-tree#_mistakes_to_avoid)
