@@ -262,3 +262,5 @@ node-docker         latest              3809733582bc        32 minutes ago      
 ```
 
 Our image that was tagged with :v1.0.0 has been removed but we still have the node-docker:latest tag available on our machine.
+
+[Best practices to containerize nodejs web apps](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/)
