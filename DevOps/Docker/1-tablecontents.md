@@ -20,17 +20,19 @@
 
 ### Docker desktop hands-on
 
-- [Overview]()
-- [What is a container?]()
-- [How do I run a container]()
-- [Run Docker Hub images]()
-- [Publish your images]()
+- [What is a container?](./ho-whats-container.md)
+- [How do I run a container](./ho-how-run-container.md)
+- [Run Docker Hub images](./ho-run-docker-hub-images.md)
+- [Publish your images](./ho-publish-image.md)
 
 ### Language-specific
 
-- [Overview]()
-- [Node.js]()
-- [Python]()
+- [Node.js](./docker-nodejs.md)
+  - [Run your image as a container](./docker-nodejs-runimage-container.md)
+  - [Use containers for development](./docker-nodejs-container-development.md)
+  - [Run your test](./docker-nodejs-configurecicd.md)
+  - [Deploy your app](./docker-nodejs-deployapp.md)
+- Python
 
 ### Develop with Docker
 
